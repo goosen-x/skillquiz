@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { SoundProvider, SoundToggle } from "@/components/animations/SoundEffects";
 import { EasterEggProvider, TimeBasedEasterEgg } from "@/components/animations/EasterEggs";
+import { EngagementNotification } from "@/components/animations/EngagementNotification";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -51,6 +52,7 @@ export default function RootLayout({
             {children}
             <SoundToggle />
             <TimeBasedEasterEgg />
+            <EngagementNotification timeThreshold={300000} position="bottom-right" />
             <Toaster position="bottom-center" />
           </EasterEggProvider>
         </SoundProvider>

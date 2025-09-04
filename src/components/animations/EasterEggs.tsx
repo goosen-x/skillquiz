@@ -341,52 +341,9 @@ function EggCounter({ count }: { count: number }) {
   );
 }
 
-// Time-based easter egg (appears after staying on page for a while)
+// Time-based easter egg - теперь использует EngagementNotification
+// Эта функция оставлена для обратной совместимости, но теперь просто возвращает EngagementNotification
 export function TimeBasedEasterEgg() {
-  const [showTimeEgg, setShowTimeEgg] = useState(false);
-  const { playSuccess } = useSoundEffects();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowTimeEgg(true);
-      playSuccess();
-      
-      // Auto-hide after 10 seconds
-      setTimeout(() => setShowTimeEgg(false), 10000);
-    }, 60000); // Show after 1 minute
-
-    return () => clearTimeout(timer);
-  }, [playSuccess]);
-
-  if (!showTimeEgg) return null;
-
-  return (
-    <motion.div
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0, opacity: 0 }}
-      transition={{ type: "spring", duration: 0.8 }}
-    >
-      <div className="bg-gradient-to-br from-indigo-900 to-purple-900 text-white px-8 py-6 rounded-2xl shadow-2xl text-center max-w-md">
-        <motion.div
-          className="text-4xl mb-4"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 3, repeat: Infinity }}
-        >
-          ⏰
-        </motion.div>
-        
-        <h3 className="text-xl font-bold mb-2">Терпеливый исследователь!</h3>
-        <p className="text-sm opacity-90">
-          Вы провели на сайте целую минуту! 
-          <br />
-          Это заслуживает награды! 🎖️
-        </p>
-      </div>
-    </motion.div>
-  );
+  // Компонент перемещен в EngagementNotification для лучшего UX
+  return null;
 }
