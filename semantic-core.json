@@ -1,0 +1,225 @@
+{
+  "project": "PsyTest - Психологические тесты онлайн",
+  "target_engine": "Yandex",
+  "categories": {
+    "psychology": {
+      "name": "Психологические тесты",
+      "keywords": [
+        {
+          "keyword": "психологический тест",
+          "frequency": "ВЧ",
+          "volume": 45000,
+          "intent": "informational",
+          "competition": "high"
+        },
+        {
+          "keyword": "тест на личность",
+          "frequency": "ВЧ",
+          "volume": 38000,
+          "intent": "informational",
+          "competition": "high"
+        },
+        {
+          "keyword": "тест на тип личности бесплатно",
+          "frequency": "СЧ",
+          "volume": 8900,
+          "intent": "commercial",
+          "competition": "medium"
+        },
+        {
+          "keyword": "узнать тип личности онлайн",
+          "frequency": "СЧ",
+          "volume": 5600,
+          "intent": "transactional",
+          "competition": "medium"
+        },
+        {
+          "keyword": "тест эмоциональный интеллект",
+          "frequency": "СЧ",
+          "volume": 4200,
+          "intent": "informational",
+          "competition": "medium"
+        },
+        {
+          "keyword": "цифровое выгорание тест",
+          "frequency": "НЧ",
+          "volume": 1200,
+          "intent": "informational",
+          "competition": "low"
+        }
+      ],
+      "lsi_words": [
+        "психология", "личность", "характер", "темперамент", "эмоции",
+        "интроверт", "экстраверт", "холерик", "сангвиник", "флегматик",
+        "меланхолик", "психотип", "соционика", "эннеаграмма", "архетип",
+        "самопознание", "рефлексия", "эмпатия", "стресс", "тревожность"
+      ]
+    },
+    "career": {
+      "name": "Карьерные тесты",
+      "keywords": [
+        {
+          "keyword": "тест на профессию",
+          "frequency": "ВЧ",
+          "volume": 32000,
+          "intent": "informational",
+          "competition": "high"
+        },
+        {
+          "keyword": "выбор профессии тест",
+          "frequency": "ВЧ",
+          "volume": 24000,
+          "intent": "commercial",
+          "competition": "high"
+        },
+        {
+          "keyword": "тест какая профессия мне подходит",
+          "frequency": "СЧ",
+          "volume": 9500,
+          "intent": "transactional",
+          "competition": "medium"
+        },
+        {
+          "keyword": "профориентация онлайн бесплатно",
+          "frequency": "СЧ",
+          "volume": 7200,
+          "intent": "commercial",
+          "competition": "medium"
+        },
+        {
+          "keyword": "тест на лидерские качества",
+          "frequency": "СЧ",
+          "volume": 3800,
+          "intent": "informational",
+          "competition": "medium"
+        },
+        {
+          "keyword": "определить свои сильные стороны тест",
+          "frequency": "НЧ",
+          "volume": 2100,
+          "intent": "informational",
+          "competition": "low"
+        }
+      ],
+      "lsi_words": [
+        "карьера", "профессия", "работа", "специальность", "навыки",
+        "компетенции", "резюме", "собеседование", "зарплата", "должность",
+        "руководитель", "лидер", "команда", "менеджмент", "фриланс",
+        "удаленка", "офис", "стартап", "корпорация", "самозанятость"
+      ]
+    },
+    "lifestyle": {
+      "name": "Тесты образа жизни",
+      "keywords": [
+        {
+          "keyword": "тест на продуктивность",
+          "frequency": "ВЧ",
+          "volume": 18000,
+          "intent": "informational",
+          "competition": "medium"
+        },
+        {
+          "keyword": "определить хронотип тест",
+          "frequency": "СЧ",
+          "volume": 8400,
+          "intent": "informational",
+          "competition": "medium"
+        },
+        {
+          "keyword": "тест жаворонок или сова",
+          "frequency": "СЧ",
+          "volume": 6700,
+          "intent": "transactional",
+          "competition": "low"
+        },
+        {
+          "keyword": "тест на вредные привычки",
+          "frequency": "СЧ",
+          "volume": 4500,
+          "intent": "informational",
+          "competition": "medium"
+        },
+        {
+          "keyword": "баланс работа жизнь тест",
+          "frequency": "НЧ",
+          "volume": 2800,
+          "intent": "commercial",
+          "competition": "low"
+        },
+        {
+          "keyword": "оценить уровень стресса онлайн",
+          "frequency": "НЧ",
+          "volume": 1900,
+          "intent": "transactional",
+          "competition": "low"
+        }
+      ],
+      "lsi_words": [
+        "продуктивность", "эффективность", "тайм-менеджмент", "привычки", "режим",
+        "биоритмы", "сон", "отдых", "здоровье", "фитнес",
+        "питание", "медитация", "йога", "баланс", "гармония",
+        "мотивация", "цели", "планирование", "дисциплина", "фокус"
+      ]
+    }
+  },
+  "regional_modifiers": {
+    "cities": ["Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань"],
+    "examples": [
+      "психологический тест москва",
+      "профориентация спб",
+      "тест на профессию новосибирск"
+    ]
+  },
+  "seasonal_keywords": {
+    "back_to_school": {
+      "period": "август-сентябрь",
+      "keywords": [
+        "тест на профессию для школьников",
+        "профориентация подростков",
+        "выбор вуза тест"
+      ]
+    },
+    "new_year": {
+      "period": "декабрь-январь",
+      "keywords": [
+        "тест цели на новый год",
+        "планирование года тест",
+        "новогодние резолюции психология"
+      ]
+    },
+    "career_season": {
+      "period": "февраль-март",
+      "keywords": [
+        "смена работы тест",
+        "готовность к карьерным изменениям",
+        "тест на профессиональное выгорание"
+      ]
+    }
+  },
+  "long_tail_keywords": [
+    "бесплатный психологический тест на тип личности с расшифровкой результатов онлайн",
+    "как узнать какая профессия мне подходит тест для подростков бесплатно",
+    "определить свой хронотип жаворонок сова голубь медведь тест онлайн"
+  ],
+  "commercial_intent_variations": [
+    "пройти тест",
+    "онлайн тест",
+    "бесплатный тест",
+    "тест с результатами",
+    "быстрый тест",
+    "точный тест",
+    "проверенный тест"
+  ],
+  "content_ideas": {
+    "blog_topics": [
+      "10 признаков цифрового выгорания",
+      "Как выбрать профессию по типу личности",
+      "Продуктивность по хронотипу: научный подход"
+    ],
+    "landing_pages": [
+      "/test/lichnost - Тест на тип личности",
+      "/test/professiya - Тест на профессию",
+      "/test/produktivnost - Тест продуктивности"
+    ]
+  }
+}
