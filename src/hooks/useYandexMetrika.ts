@@ -13,7 +13,7 @@ export function useYandexMetrika() {
 
   const trackGoal = useCallback(
     (goalName: string, params?: Record<string, unknown>) => {
-      if (counterId && counterId !== 'XXXXXXXXX') {
+      if (counterId) {
         ymTrackGoal(counterId, goalName, params);
       }
     },
@@ -22,7 +22,7 @@ export function useYandexMetrika() {
 
   const trackExtLink = useCallback(
     (url: string, title?: string) => {
-      if (counterId && counterId !== 'XXXXXXXXX') {
+      if (counterId) {
         ymTrackExtLink(counterId, url, title);
       }
     },
@@ -31,7 +31,7 @@ export function useYandexMetrika() {
 
   const trackFile = useCallback(
     (file: string, title?: string) => {
-      if (counterId && counterId !== 'XXXXXXXXX') {
+      if (counterId) {
         ymTrackFile(counterId, file, title);
       }
     },
@@ -40,7 +40,7 @@ export function useYandexMetrika() {
 
   const setUserParams = useCallback(
     (params: Record<string, unknown>) => {
-      if (counterId && counterId !== 'XXXXXXXXX') {
+      if (counterId) {
         ymSetUserParams(counterId, params);
       }
     },
@@ -49,7 +49,7 @@ export function useYandexMetrika() {
 
   const setVisitParams = useCallback(
     (params: Record<string, unknown>) => {
-      if (counterId && counterId !== 'XXXXXXXXX') {
+      if (counterId) {
         ymSetVisitParams(counterId, params);
       }
     },
