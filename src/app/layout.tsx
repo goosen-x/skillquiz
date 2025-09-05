@@ -51,7 +51,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="yandex-verification" content="yandex_verification_code" />
+        <meta name="yandex-verification" content="22185c9579369a2c" />
         <meta name="format-detection" content="telephone=no" />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-white text-gray-900`}>
