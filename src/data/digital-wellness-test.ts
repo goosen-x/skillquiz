@@ -317,6 +317,11 @@ export const digitalPersonas: DigitalPersona[] = [
   }
 ];
 
+// Функция для получения персоны по ID
+export function getDigitalPersonaById(id: string): DigitalPersona | undefined {
+  return digitalPersonas.find(persona => persona.id === id);
+}
+
 export function calculateDigitalPersona(answers: number[]): DigitalPersona {
   const totalScore = answers.reduce((sum, answer) => sum + answer, 0);
   const averageScore = totalScore / answers.length;

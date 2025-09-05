@@ -5,6 +5,7 @@ import { SocialProof } from '@/components/landing/SocialProof';
 import { CTA, FinalCTA } from '@/components/landing/CTA';
 import { WebsiteSchema, OrganizationSchema, FAQSchema } from '@/components/seo/StructuredData';
 import { GeometricSeparator } from '@/components/ui/geometric-separator';
+import RecentResults from '@/components/landing/RecentResults';
 
 export default function Home() {
   return (
@@ -34,6 +35,9 @@ export default function Home() {
         <SocialProof />
         
         <GeometricSeparator variant="simple" />
+        
+        {/* Последние результаты пользователя */}
+        <RecentResults />
         
         {/* Главная CTA секция */}
         <CTA />

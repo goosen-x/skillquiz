@@ -14,23 +14,121 @@ import {
   Zap,
   Heart,
   Brain,
+  Star,
+  Home,
+  PartyPopper,
+  UserMinus,
+  MessageCircle,
+  Battery,
+  Handshake,
+  Ear,
+  Calendar,
+  Users2,
+  HeartHandshake,
+  Eye,
+  Smile,
+  Scale as Balance,
+  User,
+  Trophy,
+  Gift,
+  Lock,
+  CheckCircle,
+  FolderOpen,
+  Target,
+  Frown,
+  Search,
+  Wind,
+  Mountain,
+  Shuffle,
+  AlertTriangle,
+  TrendingUp,
+  CloudRain,
+  HeartCrack,
+  ArrowUp,
+  UserX,
+  Anchor,
+  Lightbulb,
+  Archive,
+  Compass,
+  Puzzle,
+  Palette,
+  X,
+  FlaskConical,
+  BookOpen,
+  BookOpenCheck,
+  CloudLightning,
+  ShieldAlert,
+  Sun,
+  Cloud,
+  Glasses,
+  FileText,
+  Pause,
+  Flame,
+  Hand,
+  Network,
+  UserCheck,
+  Globe,
+  Thermometer,
+  Activity,
+  Magnet,
+  Settings,
 } from 'lucide-react';
 import { TestData } from '@/data/tests';
 import { digitalWellnessQuestions, DigitalPersona, calculateDigitalPersona } from '@/data/digital-wellness-test';
-import TestResults from './TestResults';
+import { personalityTypeQuestions, TestResult, calculatePersonalityTypeResult } from '@/data/personality-type-test';
+import { emotionalIntelligenceQuestions, TestResult as EITestResult, calculateEmotionalIntelligenceResult } from '@/data/emotional-intelligence-test';
+// Removed unused imports
+// import { saveResultToHistory } from '@/lib/results-storage';
+import { generateShortResultUrl } from '@/lib/short-urls';
+import { useRouter } from 'next/navigation';
+import { calculateBigFiveScores } from '@/data/personality-type-test';
 
 interface TestPageProps {
   test: TestData;
 }
 
+// Функция для рендеринга иконок
+const renderIcon = (iconName: string, className: string = "w-12 h-12 text-foreground") => {
+  const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
+    // Digital wellness icons
+    smartphone: Smartphone,
+    clock: Clock,
+    users: Users,
+    shield: Shield,
+    zap: Zap,
+    heart: Heart,
+    
+    // Personality type icons
+    Star, Home, PartyPopper, UserMinus, MessageCircle, Battery, Handshake, Ear, 
+    Calendar, Users2, HeartHandshake, Eye, Smile, User, Trophy, Gift, Lock,
+    CheckCircle, FolderOpen, Target, Frown, Search, Wind, Mountain, Shuffle,
+    AlertTriangle, TrendingUp, CloudRain, HeartCrack, ArrowUp, UserX, Anchor,
+    Lightbulb, Archive, Compass, Puzzle, Palette, X, FlaskConical, BookOpen,
+    BookOpenCheck, CloudLightning, ShieldAlert, Sun, Cloud, Balance,
+    
+    // Emotional Intelligence icons
+    Glasses, FileText, Pause, Flame, Hand, Network, UserCheck, Globe,
+    Thermometer, Activity, Magnet, Settings
+  };
+  
+  const IconComponent = iconMap[iconName] || Brain;
+  return <IconComponent className={className} />;
+};
+
 export default function TestPage({ test }: TestPageProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
-  const [showResults, setShowResults] = useState(false);
-  const [result, setResult] = useState<DigitalPersona | null>(null);
+  const [showResults] = useState(false);
+  const [result, setResult] = useState<DigitalPersona | TestResult | EITestResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [animationDirection, setAnimationDirection] = useState(0); // 1 for forward, -1 for backward
+  const router = useRouter();
 
-  const questions = digitalWellnessQuestions;
+  // Определяем тип теста и соответствующие вопросы
+  const questions = test.slug === 'digital-wellness-persona' ? digitalWellnessQuestions : 
+                   test.slug === 'personality-type' ? personalityTypeQuestions : 
+                   test.slug === 'emotional-intelligence' ? emotionalIntelligenceQuestions :
+                   digitalWellnessQuestions;
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   useEffect(() => {
@@ -57,6 +155,7 @@ export default function TestPage({ test }: TestPageProps) {
 
     if (currentQuestion < questions.length - 1) {
       saveProgress(newAnswers, currentQuestion + 1);
+      setAnimationDirection(1);
       setCurrentQuestion(currentQuestion + 1);
     } else {
       // Последний вопрос - показываем результаты
@@ -70,30 +169,67 @@ export default function TestPage({ test }: TestPageProps) {
     // Имитация загрузки для эффекта
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    const persona = calculateDigitalPersona(finalAnswers);
-    setResult(persona);
-    setShowResults(true);
+    // Вычисляем результат в зависимости от типа теста
+    let testResult;
+    if (test.slug === 'digital-wellness-persona') {
+      testResult = calculateDigitalPersona(finalAnswers);
+    } else if (test.slug === 'personality-type') {
+      testResult = calculatePersonalityTypeResult(finalAnswers);
+    } else if (test.slug === 'emotional-intelligence') {
+      testResult = calculateEmotionalIntelligenceResult(finalAnswers);
+    } else {
+      testResult = calculateDigitalPersona(finalAnswers); // Fallback
+    }
+    
+    setResult(testResult);
     setIsLoading(false);
 
-    // Сохраняем результат
+    // Генерируем короткую ссылку
+    let shortUrl: string;
+    let scores: { [key: string]: number } | undefined;
+    
+    if (test.slug === 'personality-type') {
+      // Для теста личности добавляем оценки Big Five
+      const bigFiveScores = calculateBigFiveScores(finalAnswers);
+      scores = {
+        extraversion: bigFiveScores.extraversion,
+        agreeableness: bigFiveScores.agreeableness,
+        conscientiousness: bigFiveScores.conscientiousness,
+        neuroticism: bigFiveScores.neuroticism,
+        openness: bigFiveScores.openness
+      };
+      shortUrl = generateShortResultUrl(test.slug, testResult, scores);
+    } else {
+      shortUrl = generateShortResultUrl(test.slug, testResult);
+    }
+    
+    // Сохраняем в историю короткую ссылку
+    // saveResultToHistory(test.slug, shortUrl, testResult.name);
+    
+    // Сохраняем результат в localStorage для совместимости
     localStorage.setItem(
       `test-result-${test.slug}`,
-      JSON.stringify({ persona, date: new Date().toISOString() })
+      JSON.stringify({ result: testResult, date: new Date().toISOString() })
     );
     
     // Очищаем прогресс
     localStorage.removeItem(`test-progress-${test.slug}`);
+    
+    // Редиректим на короткую ссылку
+    router.push(shortUrl);
   };
 
   const goToPreviousQuestion = () => {
     if (currentQuestion > 0) {
+      setAnimationDirection(-1);
       setCurrentQuestion(currentQuestion - 1);
       saveProgress(answers, currentQuestion - 1);
     }
   };
 
+  // Убираем показ результатов здесь, так как теперь редиректим на новую страницу
   if (showResults && result) {
-    return <TestResults test={test} result={result} answers={answers} />;
+    return null; // Результаты теперь показываются на отдельной странице
   }
 
   if (isLoading) {
@@ -155,12 +291,13 @@ export default function TestPage({ test }: TestPageProps) {
         </div>
 
         {/* Карточка вопроса */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" custom={animationDirection}>
           <motion.div
             key={currentQuestion}
-            initial={{ opacity: 0, x: 100 }}
+            custom={animationDirection}
+            initial={{ opacity: 0, x: animationDirection * 100 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
+            exit={{ opacity: 0, x: animationDirection * -100 }}
             transition={{ duration: 0.3 }}
           >
             <NeoCard className="bg-background">
@@ -169,22 +306,15 @@ export default function TestPage({ test }: TestPageProps) {
                 <div className="flex justify-center mb-6">
                   <motion.div 
                     className={`w-24 h-24 border-2 border-border shadow-shadow flex items-center justify-center ${
-                      currentQ.icon === 'smartphone' ? 'bg-chart-2' :
-                      currentQ.icon === 'clock' ? 'bg-chart-5' :
-                      currentQ.icon === 'users' ? 'bg-chart-4' :
-                      currentQ.icon === 'shield' ? 'bg-chart-3' :
-                      currentQ.icon === 'zap' ? 'bg-chart-1' :
-                      currentQ.icon === 'heart' ? 'bg-chart-3' : ''
+                      // Используем хеширование названия иконки для выбора цвета
+                      ['bg-chart-1', 'bg-chart-2', 'bg-chart-3', 'bg-chart-4', 'bg-chart-5'][
+                        currentQ.icon.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 5
+                      ]
                     }`}
                     whileHover={{ rotate: [0, -10, 10, 0] }}
                     transition={{ duration: 0.3 }}
                   >
-                    {currentQ.icon === 'smartphone' && <Smartphone className="w-12 h-12 text-foreground" />}
-                    {currentQ.icon === 'clock' && <Clock className="w-12 h-12 text-foreground" />}
-                    {currentQ.icon === 'users' && <Users className="w-12 h-12 text-foreground" />}
-                    {currentQ.icon === 'shield' && <Shield className="w-12 h-12 text-foreground" />}
-                    {currentQ.icon === 'zap' && <Zap className="w-12 h-12 text-foreground" />}
-                    {currentQ.icon === 'heart' && <Heart className="w-12 h-12 text-foreground" />}
+                    {renderIcon(currentQ.icon)}
                   </motion.div>
                 </div>
 
@@ -236,7 +366,9 @@ export default function TestPage({ test }: TestPageProps) {
             variant="outline"
             onClick={() => {
               if (answers[currentQuestion] !== undefined && currentQuestion < questions.length - 1) {
+                setAnimationDirection(1);
                 setCurrentQuestion(currentQuestion + 1);
+                saveProgress(answers, currentQuestion + 1);
               }
             }}
             disabled={answers[currentQuestion] === undefined || currentQuestion === questions.length - 1}

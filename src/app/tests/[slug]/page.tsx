@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTestBySlug, getAllTests } from '@/data/tests';
 import TestPage from '@/components/tests/TestPage';
+import TestUnderDevelopment from '@/components/tests/TestUnderDevelopment';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -44,19 +45,19 @@ export default async function TestPageRoute({ params }: Props) {
     notFound();
   }
 
-  // Для теста "Цифровая личность" используем специальный компонент
+  // Для реализованных тестов используем специальный компонент
   if (test.slug === 'digital-wellness-persona') {
     return <TestPage test={test} />;
   }
 
-  // Для остальных тестов показываем заглушку
-  return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-3xl font-bold mb-4">{test.title}</h1>
-        <p className="text-gray-600 mb-8">{test.description}</p>
-        <p className="text-lg">Этот тест находится в разработке</p>
-      </div>
-    </div>
-  );
+  if (test.slug === 'personality-type') {
+    return <TestPage test={test} />;
+  }
+
+  if (test.slug === 'emotional-intelligence') {
+    return <TestPage test={test} />;
+  }
+
+  // Для остальных тестов показываем красивую страницу "В разработке"
+  return <TestUnderDevelopment test={test} />;
 }

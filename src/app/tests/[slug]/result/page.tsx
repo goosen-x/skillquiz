@@ -1,11 +1,11 @@
-'use client';
-
-import { TestData } from '@/data/tests';
-import { DigitalPersona } from '@/data/digital-wellness-test';
-import { TestResult, calculatePersonalityTypeResult, calculateBigFiveScores } from '@/data/personality-type-test';
-import { TestResult as EmotionalTestResult, calculateEmotionalIntelligenceResult } from '@/data/emotional-intelligence-test';
-import EmotionalIntelligenceResults from './EmotionalIntelligenceResults';
-import UniversalTestResults from './UniversalTestResults';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getTestBySlug } from '@/data/tests';
+import { parseShortUrl } from '@/lib/short-urls';
+import { getPersonalityTypeById } from '@/data/personality-type-test';
+import { getDigitalPersonaById } from '@/data/digital-wellness-test';
+import { getEmotionalIntelligenceById } from '@/data/emotional-intelligence-test';
+import UniversalTestResults from '@/components/tests/UniversalTestResults';
 
 // Универсальный тип результата теста
 interface UniversalTestResult {
@@ -17,13 +17,15 @@ interface UniversalTestResult {
   characteristics: string[];
   advice: string[];
   chartData?: unknown[];
-  chartType?: 'bar' | 'pie' | 'radar';
+  chartType?: "bar" | "pie" | "radar";
   factorScores?: { [key: string]: number };
-  factorDescriptions?: { [key: string]: {
-    high: string;
-    medium: string;
-    low: string;
-  }};
+  factorDescriptions?: {
+    [key: string]: {
+      high: string;
+      medium: string;
+      low: string;
+    };
+  };
   methodology?: {
     title: string;
     description: string;
@@ -33,43 +35,74 @@ interface UniversalTestResult {
   detailedFactors?: Array<{
     name: string;
     score: number;
-    level: 'high' | 'medium' | 'low';
+    level: "high" | "medium" | "low";
     description: string;
     icon?: string;
     color?: string;
   }>;
 }
 
-interface TestResultsProps {
-  test: TestData;
-  result: DigitalPersona | TestResult | EmotionalTestResult | UniversalTestResult;
-  answers: number[];
+interface Props {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export default function TestResults({ test, result, answers }: TestResultsProps) {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const search = await searchParams;
+  const test = getTestBySlug(slug);
+  const urlData = parseShortUrl(new URLSearchParams(search as Record<string, string>));
   
-  // Специализированные компоненты для определённых тестов
-  if (test.slug === 'personality-type') {
-    const personalityResult = calculatePersonalityTypeResult(answers);
-    const scores = calculateBigFiveScores(answers);
-    
-    // Prepare chart data for NeoBrutalistRadarChart (without fullMark)
-    const chartData = [
-      { factor: "Экстраверсия", value: scores.extraversion },
-      { factor: "Доброжелательность", value: scores.agreeableness },
-      { factor: "Добросовестность", value: scores.conscientiousness },
-      { factor: "Эмоциональная стабильность", value: 100 - scores.neuroticism },
-      { factor: "Открытость опыту", value: scores.openness }
-    ];
-    
-    // Преобразуем CSS переменную цвета в название цвета
-    const colorMap: { [key: string]: string } = {
-      'var(--chart-1)': 'yellow',
-      'var(--chart-2)': 'blue',
-      'var(--chart-3)': 'green',
-      'var(--chart-4)': 'purple',
-      'var(--chart-5)': 'orange'
+  if (!test || !urlData) {
+    return {
+      title: 'Результат не найден',
     };
+  }
+
+  return {
+    title: `${urlData.resultType} - Результат теста "${test.title}"`,
+    description: `Результат прохождения теста "${test.title}". Пройдите тест и узнайте свой результат!`,
+  };
+}
+
+export default async function ShortResultPage({ params, searchParams }: Props) {
+  const { slug } = await params;
+  const search = await searchParams;
+  const test = getTestBySlug(slug);
+  const urlData = parseShortUrl(new URLSearchParams(search as Record<string, string>));
+
+  if (!test || !urlData) {
+    notFound();
+  }
+
+  // Восстанавливаем результат из короткой ссылки
+  let result: UniversalTestResult | null = null;
+  
+  if (slug === 'personality-type' && urlData.scores) {
+    // Для теста личности восстанавливаем из типа и оценок
+    const personalityResult = getPersonalityTypeById(urlData.resultType);
+    if (!personalityResult) {
+      notFound();
+    }
+    
+    // Восстанавливаем оценки Big Five
+    const [extraversion, agreeableness, conscientiousness, neuroticism, openness] = urlData.scores;
+    const scores = {
+      extraversion,
+      agreeableness,
+      conscientiousness,
+      neuroticism,
+      openness
+    };
+    
+    // Генерируем данные для графика
+    const chartData = [
+      { factor: "Экстраверсия", value: extraversion },
+      { factor: "Доброжелательность", value: agreeableness },
+      { factor: "Добросовестность", value: conscientiousness },
+      { factor: "Эмоциональная стабильность", value: 100 - neuroticism },
+      { factor: "Открытость опыту", value: openness }
+    ];
     
     // Определяем уровень для каждого фактора
     const getFactorLevel = (score: number): 'high' | 'medium' | 'low' => {
@@ -135,7 +168,7 @@ export default function TestResults({ test, result, answers }: TestResultsProps)
       },
       {
         name: 'Эмоциональная стабильность',
-        score: 100 - scores.neuroticism, // Инвертируем для лучшей интерпретации
+        score: 100 - scores.neuroticism,
         level: getFactorLevel(100 - scores.neuroticism),
         description: factorDescriptions.neuroticism[getFactorLevel(100 - scores.neuroticism)],
         icon: 'Shield',
@@ -151,17 +184,21 @@ export default function TestResults({ test, result, answers }: TestResultsProps)
       }
     ];
     
-    const normalizedResult: UniversalTestResult = {
+    result = {
       name: personalityResult.name,
       description: personalityResult.description,
       emoji: personalityResult.emoji,
-      color: colorMap[personalityResult.color] || 'blue',
+      color: personalityResult.color === 'var(--chart-1)' ? 'yellow' :
+              personalityResult.color === 'var(--chart-2)' ? 'blue' :
+              personalityResult.color === 'var(--chart-3)' ? 'green' :
+              personalityResult.color === 'var(--chart-4)' ? 'purple' :
+              personalityResult.color === 'var(--chart-5)' ? 'orange' : 'blue',
       percentage: 15,
       characteristics: personalityResult.characteristics,
       advice: personalityResult.advice,
       chartData: chartData,
       chartType: 'radar',
-      factorScores: { ...scores },
+      factorScores: scores,
       detailedFactors: detailedFactors,
       factorDescriptions: factorDescriptions,
       methodology: {
@@ -181,72 +218,42 @@ export default function TestResults({ test, result, answers }: TestResultsProps)
         ]
       }
     };
-    return <UniversalTestResults test={test} result={normalizedResult} answers={answers} />;
-  }
-  
-  if (test.slug === 'emotional-intelligence') {
-    const emotionalResult = calculateEmotionalIntelligenceResult(answers);
-    return <EmotionalIntelligenceResults test={test} result={emotionalResult} answers={answers} />;
-  }
-
-  // Нормализуем результат к универсальному формату
-  const normalizeResult = (result: DigitalPersona | TestResult | EmotionalTestResult | UniversalTestResult): UniversalTestResult => {
-    // Если это уже DigitalPersona, используем как есть
-    if ('percentage' in result && 'name' in result && 'emoji' in result) {
-      return {
-        name: result.name,
-        description: result.description,
-        emoji: result.emoji,
-        color: result.color,
-        percentage: result.percentage,
-        characteristics: result.characteristics || [],
-        advice: result.advice || [],
-        chartData: generateDigitalWellnessChartData(answers),
-        chartType: 'radar',
-        factorScores: calculateFactorScores(answers)
+  } else if (slug === 'digital-wellness-persona') {
+    const digitalResult = getDigitalPersonaById(urlData.resultType);
+    if (digitalResult) {
+      result = {
+        name: digitalResult.name,
+        description: digitalResult.description,
+        emoji: digitalResult.emoji,
+        color: digitalResult.color,
+        percentage: digitalResult.percentage,
+        characteristics: digitalResult.characteristics || [],
+        advice: digitalResult.advice || []
       };
     }
-    
-    // Для других типов результатов добавляем значения по умолчанию
-    const baseResult = result as unknown as UniversalTestResult;
-    return {
-      name: baseResult.name || 'Результат',
-      description: baseResult.description || 'Описание результата',
-      emoji: baseResult.emoji || '🎯',
-      color: baseResult.color || 'blue',
-      percentage: baseResult.percentage || 0,
-      characteristics: baseResult.characteristics || [],
-      advice: baseResult.advice || []
-    };
-  };
+  } else if (slug === 'emotional-intelligence') {
+    const emotionalResult = getEmotionalIntelligenceById(urlData.resultType);
+    if (emotionalResult) {
+      result = {
+        name: emotionalResult.name,
+        description: emotionalResult.description,
+        emoji: emotionalResult.emoji,
+        color: emotionalResult.color,
+        percentage: 20, // Добавляем значение по умолчанию
+        characteristics: emotionalResult.characteristics || [],
+        advice: emotionalResult.advice || []
+      };
+    }
+  } else {
+    notFound();
+  }
 
-  // Генерируем данные для графика цифрового благополучия
-  const generateDigitalWellnessChartData = (answers: number[]) => {
-    const categories = [
-      { name: 'Контроль', value: Math.round(((answers[0] + answers[7]) / 2) * 25) },
-      { name: 'Соцсети', value: Math.round(((answers[1] + answers[5]) / 2) * 25) },
-      { name: 'Границы', value: Math.round(((answers[2] + answers[9]) / 2) * 25) },
-      { name: 'Фокус', value: Math.round(((answers[3] + answers[8]) / 2) * 25) },
-      { name: 'Баланс', value: Math.round(((answers[4] + answers[10]) / 2) * 25) },
-      { name: 'Развитие', value: Math.round((answers[11] * 25)) }
-    ];
-    return categories;
-  };
+  if (!result) {
+    notFound();
+  }
 
-  // Подсчитываем факторы
-  const calculateFactorScores = (answers: number[]) => {
-    return {
-      control: (answers[0] + answers[7]) / 2,
-      social: (answers[1] + answers[5]) / 2,
-      boundaries: (answers[2] + answers[9]) / 2,
-      focus: (answers[3] + answers[8]) / 2,
-      balance: (answers[4] + answers[10]) / 2,
-      development: answers[11]
-    };
-  };
+  // Примерные ответы для совместимости (в реальности не используются для отображения)
+  const dummyAnswers: number[] = [];
 
-  const normalizedResult = normalizeResult(result);
-
-  // Для цифрового благополучия используем универсальный компонент
-  return <UniversalTestResults test={test} result={normalizedResult} answers={answers} />;
+  return <UniversalTestResults test={test} result={result} answers={dummyAnswers} />;
 }
