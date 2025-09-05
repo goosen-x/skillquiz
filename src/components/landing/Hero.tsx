@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Play, Users, CheckCircle, ArrowDown, Zap, Star } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import SpiralImage from '@public/images/spiral.png';
 
 export function Hero() {
   const fadeInUp = {
@@ -32,7 +34,9 @@ export function Hero() {
         }}
       />
       {/* Floating geometric shapes */}
-      <div className="w-10 h-10 absolute top-0 left-0 bg-white">dkfkj</div>
+      <div className="w-10 h-10 absolute top-0 left-0 bg-white">
+        <Image src={SpiralImage} alt="spiral" />
+      </div>
       <motion.div
         className="absolute w-48 h-48 border-2 border-border bg-chart-1 rotate-12"
         style={{ left: '5%', top: '10%' }}
