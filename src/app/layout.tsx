@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   description: "Пройдите бесплатные психологические тесты онлайн: тест на тип личности, тест на профессию, определение характера. Быстрые и точные результаты с расшифровкой.",
   keywords: "психологический тест, тест на личность, тест на профессию, психология, тип личности, профориентация, бесплатно, онлайн",
   authors: [{ name: "PsyTest Team" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "PsyTest - Психологические тесты онлайн бесплатно",
@@ -29,6 +28,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://psytest.ru",
   },
+  metadataBase: new URL("https://psytest.ru"),
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({
