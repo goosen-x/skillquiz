@@ -23,7 +23,7 @@ interface NeoBrutalistRadarChartProps {
 // Custom angle tick component with better positioning
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomAngleTick = ({ x, y, payload, cx, cy }: any) => {
-  if (!payload?.value) return null;
+  if (!payload?.value) return <g />;
 
   const text = payload.value;
   

@@ -27,7 +27,7 @@ const SimpleCustomAngleTick = ({ x, y, payload }: any) => {
   
   if (!payload?.value) {
     console.log('No payload value in SimpleCustomAngleTick');
-    return null;
+    return <g />;
   }
 
   const text = payload.value;
