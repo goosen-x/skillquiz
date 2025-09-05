@@ -33,8 +33,8 @@ const footerSections: FooterSection[] = [
 ];
 
 const socialLinks = [
-  { label: 'Telegram', href: 'https://t.me/psytest' },
-  { label: 'VK', href: 'https://vk.com/psytest' },
+  { label: 'Telegram', href: 'https://t.me/professional_test' },
+  { label: 'VK', href: 'https://vk.com/professional_test' },
 ];
 
 export function Footer() {
@@ -44,7 +44,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Main info section */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-3xl font-heading font-black mb-4 uppercase">PsyTest</h3>
+            <h3 className="text-3xl font-heading font-black mb-4 uppercase">Professional Test</h3>
             <p className="text-background/80 mb-4 leading-relaxed font-base">
               Профессиональные <strong className="font-bold">психологические тесты онлайн</strong>{' '}
               для определения типа личности, выбора профессии и саморазвития. Все тесты бесплатны и
@@ -94,7 +94,7 @@ export function Footer() {
         {/* Bottom section */}
         <div className="border-t-2 border-background mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-background/60 text-sm font-bold uppercase">
-            © 2024 PsyTest. Все права защищены.
+            © {new Date().getFullYear()} Professional Test. Все права защищены.
           </p>
           <p className="text-background/60 text-sm mt-2 md:mt-0 font-bold uppercase">
             Психологические тесты • Профориентация • Саморазвитие

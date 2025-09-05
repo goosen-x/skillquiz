@@ -1,20 +1,27 @@
+import { siteConfig } from '@/config/site.config';
+
 export function GET() {
-  return new Response(`User-agent: Yandex
+  const siteUrl = siteConfig.url;
+
+  return new Response(
+    `User-agent: Yandex
 Allow: /
-Sitemap: https://psytest.ru/sitemap.xml
+Sitemap: ${siteUrl}/sitemap.xml
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
-Host: https://psytest.ru
+Host: ${siteUrl}
 
 User-agent: Googlebot
 Allow: /
-Sitemap: https://psytest.ru/sitemap.xml
+Sitemap: ${siteUrl}/sitemap.xml
 
 User-agent: *
 Allow: /
 Crawl-delay: 1
-Sitemap: https://psytest.ru/sitemap.xml`, {
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-  });
+Sitemap: ${siteUrl}/sitemap.xml`,
+    {
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    }
+  );
 }

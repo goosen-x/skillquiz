@@ -4,12 +4,12 @@ import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  Brain, 
-  Briefcase, 
+import {
+  Brain,
+  Briefcase,
   Heart,
-  Clock, 
-  Users, 
+  Clock,
+  Users,
   HelpCircle,
   Star,
   TrendingUp,
@@ -28,45 +28,47 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 
-import { 
-  allTests, 
-  testCategories, 
-  getTestsByCategory, 
-  getPopularTests, 
+import {
+  allTests,
+  testCategories,
+  getTestsByCategory,
+  getPopularTests,
   type TestData,
-  type TestCategory
+  type TestCategory,
 } from '@/data/tests';
+import { siteConfig } from '@/config/site.config';
 
 function TestsCatalogContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams?.get('category');
-  
+
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
-    if (categoryParam && testCategories.some(cat => cat.id === categoryParam)) {
+    if (categoryParam && testCategories.some((cat) => cat.id === categoryParam)) {
       setActiveCategory(categoryParam);
     }
   }, [categoryParam]);
 
   const filteredTests = useMemo(() => {
     let tests = allTests;
-    
+
     if (activeCategory !== 'all') {
       tests = getTestsByCategory(activeCategory);
     }
-    
+
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      tests = tests.filter(test => 
-        test.title.toLowerCase().includes(query) ||
-        test.description.toLowerCase().includes(query) ||
-        test.tags.some(tag => tag.toLowerCase().includes(query)) ||
-        test.seoKeywords.some(keyword => keyword.toLowerCase().includes(query))
+      tests = tests.filter(
+        (test) =>
+          test.title.toLowerCase().includes(query) ||
+          test.description.toLowerCase().includes(query) ||
+          test.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+          test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(query))
       );
     }
-    
+
     return tests;
   }, [activeCategory, searchQuery]);
 
@@ -76,14 +78,12 @@ function TestsCatalogContent() {
     const icons = {
       Brain,
       Briefcase,
-      Heart
+      Heart,
     };
     return icons[iconName as keyof typeof icons] || Brain;
   };
 
-  const breadcrumbItems = [
-    { label: 'Каталог тестов' }
-  ];
+  const breadcrumbItems = [{ label: 'Каталог тестов' }];
 
   return (
     <div className="min-h-screen bg-background">
@@ -91,17 +91,18 @@ function TestsCatalogContent() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Каталог психологических тестов онлайн",
-            "description": "Полный каталог психологических тестов: на личность, профориентацию, продуктивность.",
-            "url": "https://psytest.ru/tests",
-            "publisher": {
-              "@type": "Organization",
-              "name": "PsyTest",
-              "url": "https://psytest.ru"
-            }
-          })
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Каталог психологических тестов онлайн',
+            description:
+              'Полный каталог психологических тестов: на личность, профориентацию, продуктивность.',
+            url: `${siteConfig.url}/tests`,
+            publisher: {
+              '@type': 'Organization',
+              name: 'Professional Test',
+              url: siteConfig.url,
+            },
+          }),
         }}
       />
 
@@ -119,28 +120,31 @@ function TestsCatalogContent() {
             Каталог <span className="text-main">тестов</span>
           </h1>
           <p className="text-xl sm:text-2xl text-foreground max-w-4xl mx-auto mb-8 font-base">
-            Откройте свой потенциал с научными <strong className="font-bold">психологическими тестами</strong>. 
-            Всё <strong className="font-bold">бесплатно</strong> с детальной расшифровкой.
+            Откройте свой потенциал с научными{' '}
+            <strong className="font-bold">психологическими тестами</strong>. Всё{' '}
+            <strong className="font-bold">бесплатно</strong> с детальной расшифровкой.
           </p>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
-              { value: allTests.length, label: "Тестов", color: "bg-chart-1" },
-              { value: "50K+", label: "Пользователей", color: "bg-chart-2" },
-              { value: "3", label: "Категории", color: "bg-chart-3" },
-              { value: "100%", label: "Бесплатно", color: "bg-chart-4" }
+              { value: allTests.length, label: 'Тестов', color: 'bg-chart-1' },
+              { value: '50K+', label: 'Пользователей', color: 'bg-chart-2' },
+              { value: '3', label: 'Категории', color: 'bg-chart-3' },
+              { value: '100%', label: 'Бесплатно', color: 'bg-chart-4' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
                 className="border-2 border-border bg-secondary-background p-4 shadow-shadow"
-                whileHover={{ 
+                whileHover={{
                   x: -2,
                   y: -2,
-                  boxShadow: "6px 6px 0px 0px var(--border)"
+                  boxShadow: '6px 6px 0px 0px var(--border)',
                 }}
               >
-                <div className={`text-3xl font-heading font-black ${stat.color} bg-clip-text text-transparent`}>
+                <div
+                  className={`text-3xl font-heading font-black ${stat.color} bg-clip-text text-transparent`}
+                >
                   {stat.value}
                 </div>
                 <div className="text-sm font-bold uppercase">{stat.label}</div>
@@ -159,7 +163,7 @@ function TestsCatalogContent() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-8 text-center uppercase">
             Топ тесты
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {popularTests.map((test, index) => (
               <motion.div
@@ -178,19 +182,22 @@ function TestsCatalogContent() {
                         </Badge>
                         <div className="flex items-center text-chart-1">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className={`w-4 h-4 ${i < test.popularity ? 'fill-current' : ''}`} />
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 ${i < test.popularity ? 'fill-current' : ''}`}
+                            />
                           ))}
                         </div>
                       </div>
-                      
+
                       <h3 className="text-lg font-heading font-bold text-foreground mb-2 uppercase">
                         {test.title}
                       </h3>
-                      
+
                       <p className="text-foreground/80 text-sm mb-4 line-clamp-2 font-base">
                         {test.description}
                       </p>
-                      
+
                       <div className="flex items-center justify-between text-xs font-bold uppercase mb-4">
                         <span className="flex items-center">
                           <Clock className="w-3 h-3 mr-1" />
@@ -201,7 +208,7 @@ function TestsCatalogContent() {
                           {test.usersCount}
                         </span>
                       </div>
-                      
+
                       <Button className="w-full uppercase font-bold">
                         Пройти тест
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -226,10 +233,10 @@ function TestsCatalogContent() {
               <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4 lg:mb-0 uppercase">
                 Все тесты
               </h2>
-              
+
               <TabsList className="grid grid-cols-2 lg:grid-cols-4 w-full lg:w-auto gap-2 bg-transparent p-0">
-                <TabsTrigger 
-                  value="all" 
+                <TabsTrigger
+                  value="all"
                   className="border-2 border-border bg-secondary-background data-[state=active]:bg-main data-[state=active]:text-main-foreground shadow-shadow data-[state=active]:shadow-[4px_4px_0px_0px_theme(colors.border)] font-bold uppercase"
                 >
                   <Filter className="w-4 h-4 mr-2" />
@@ -238,8 +245,8 @@ function TestsCatalogContent() {
                 {testCategories.map((category) => {
                   const IconComponent = getCategoryIcon(category.icon);
                   return (
-                    <TabsTrigger 
-                      key={category.id} 
+                    <TabsTrigger
+                      key={category.id}
                       value={category.id}
                       className="border-2 border-border bg-secondary-background data-[state=active]:bg-main data-[state=active]:text-main-foreground shadow-shadow data-[state=active]:shadow-[4px_4px_0px_0px_theme(colors.border)] font-bold uppercase"
                     >
@@ -267,18 +274,22 @@ function TestsCatalogContent() {
             <TabsContent value="all" className="mt-0">
               <TestGrid tests={filteredTests} />
             </TabsContent>
-            
+
             {testCategories.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-0">
                 <CategoryHeader category={category} />
-                <TestGrid tests={getTestsByCategory(category.id).filter(test => {
-                  if (!searchQuery.trim()) return true;
-                  const query = searchQuery.toLowerCase().trim();
-                  return test.title.toLowerCase().includes(query) ||
-                         test.description.toLowerCase().includes(query) ||
-                         test.tags.some(tag => tag.toLowerCase().includes(query)) ||
-                         test.seoKeywords.some(keyword => keyword.toLowerCase().includes(query));
-                })} />
+                <TestGrid
+                  tests={getTestsByCategory(category.id).filter((test) => {
+                    if (!searchQuery.trim()) return true;
+                    const query = searchQuery.toLowerCase().trim();
+                    return (
+                      test.title.toLowerCase().includes(query) ||
+                      test.description.toLowerCase().includes(query) ||
+                      test.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+                      test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(query))
+                    );
+                  })}
+                />
               </TabsContent>
             ))}
           </Tabs>
@@ -294,55 +305,51 @@ function TestsCatalogContent() {
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-8 text-center uppercase">
             Почему наши тесты?
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {[
               {
                 icon: Target,
-                title: "Точность",
-                description: "Научные методики с высокой достоверностью",
-                color: "bg-chart-1"
+                title: 'Точность',
+                description: 'Научные методики с высокой достоверностью',
+                color: 'bg-chart-1',
               },
               {
                 icon: Zap,
-                title: "Быстро",
-                description: "5-15 минут для полного анализа",
-                color: "bg-chart-2"
+                title: 'Быстро',
+                description: '5-15 минут для полного анализа',
+                color: 'bg-chart-2',
               },
               {
                 icon: Award,
-                title: "Подробно",
-                description: "Детальные результаты и рекомендации",
-                color: "bg-chart-3"
+                title: 'Подробно',
+                description: 'Детальные результаты и рекомендации',
+                color: 'bg-chart-3',
               },
               {
                 icon: Sparkles,
-                title: "Бесплатно",
-                description: "Все тесты без регистрации и оплаты",
-                color: "bg-chart-4"
-              }
+                title: 'Бесплатно',
+                description: 'Все тесты без регистрации и оплаты',
+                color: 'bg-chart-4',
+              },
             ].map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <motion.div
-                  key={index}
-                  className="text-center"
-                  whileHover={{ y: -5 }}
-                >
-                  <motion.div 
+                <motion.div key={index} className="text-center" whileHover={{ y: -5 }}>
+                  <motion.div
                     className={`w-20 h-20 ${feature.color} border-2 border-border shadow-shadow mx-auto mb-4 flex items-center justify-center`}
-                    whileHover={{ 
-                      boxShadow: "4px 4px 0px 0px var(--border)",
+                    whileHover={{
+                      boxShadow: '4px 4px 0px 0px var(--border)',
                       x: -2,
-                      y: -2
+                      y: -2,
                     }}
                   >
                     <Icon className="w-10 h-10 text-foreground" />
                   </motion.div>
-                  <h3 className="font-heading font-bold text-foreground mb-2 uppercase">{feature.title}</h3>
-                  <p className="text-foreground/80 text-sm font-base">
-                    {feature.description}
-                  </p>
+                  <h3 className="font-heading font-bold text-foreground mb-2 uppercase">
+                    {feature.title}
+                  </h3>
+                  <p className="text-foreground/80 text-sm font-base">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -361,7 +368,7 @@ function TestsCatalogContent() {
                 'профориентация',
                 'тест жаворонок сова',
                 'интроверт экстраверт',
-                'эмоциональный интеллект'
+                'эмоциональный интеллект',
               ].map((keyword, index) => (
                 <span
                   key={index}
@@ -382,12 +389,12 @@ function CategoryHeader({ category }: { category: TestCategory }) {
   const colors = {
     blue: 'bg-chart-2',
     green: 'bg-chart-4',
-    purple: 'bg-chart-5'
+    purple: 'bg-chart-5',
   };
-  
+
   const colorClass = colors[category.color as keyof typeof colors];
   const IconComponent = getCategoryIcon(category.icon);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -396,21 +403,19 @@ function CategoryHeader({ category }: { category: TestCategory }) {
       className="mb-8 p-6 border-2 border-border bg-secondary-background shadow-shadow"
     >
       <div className="flex items-center mb-4">
-        <div className={`w-16 h-16 ${colorClass} border-2 border-border shadow-shadow flex items-center justify-center mr-4`}>
+        <div
+          className={`w-16 h-16 ${colorClass} border-2 border-border shadow-shadow flex items-center justify-center mr-4`}
+        >
           <IconComponent className="w-8 h-8 text-foreground" />
         </div>
         <div>
           <h2 className="text-2xl font-heading font-bold text-foreground uppercase">
             {category.name}
           </h2>
-          <p className="text-foreground/80 font-bold uppercase">
-            {category.testsCount} тестов
-          </p>
+          <p className="text-foreground/80 font-bold uppercase">{category.testsCount} тестов</p>
         </div>
       </div>
-      <p className="text-foreground/80 leading-relaxed font-base">
-        {category.description}
-      </p>
+      <p className="text-foreground/80 leading-relaxed font-base">{category.description}</p>
     </motion.div>
   );
 }
@@ -425,9 +430,7 @@ function TestGrid({ tests }: { tests: TestData[] }) {
         <h3 className="text-xl font-heading font-bold text-foreground mb-2 uppercase">
           Тесты не найдены
         </h3>
-        <p className="text-foreground/80 font-base">
-          Попробуйте изменить запрос или категорию
-        </p>
+        <p className="text-foreground/80 font-base">Попробуйте изменить запрос или категорию</p>
       </div>
     );
   }
@@ -438,8 +441,8 @@ function TestGrid({ tests }: { tests: TestData[] }) {
         hidden: { opacity: 0 },
         visible: {
           opacity: 1,
-          transition: { staggerChildren: 0.1 }
-        }
+          transition: { staggerChildren: 0.1 },
+        },
       }}
       initial="hidden"
       animate="visible"
@@ -456,7 +459,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
   const categoryColors = {
     psychology: 'bg-chart-2',
     career: 'bg-chart-4',
-    lifestyle: 'bg-chart-5'
+    lifestyle: 'bg-chart-5',
   };
 
   const bgColor = categoryColors[test.category];
@@ -465,11 +468,11 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
       }}
       whileHover={test.status === 'completed' ? { y: -5 } : {}}
     >
-{test.status === 'completed' ? (
+      {test.status === 'completed' ? (
         <Link href={`/tests/${test.slug}`}>
           <Card className="h-full border-2 border-border shadow-shadow hover:shadow-[6px_6px_0px_0px_theme(colors.border)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all cursor-pointer overflow-hidden bg-secondary-background">
             {/* Header */}
@@ -488,12 +491,9 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                   </Badge>
                 )}
               </div>
-              
+
               <div className="absolute bottom-3 left-4">
-                <Badge 
-                  variant="secondary"
-                  className="text-xs px-2 py-1 uppercase font-bold"
-                >
+                <Badge variant="secondary" className="text-xs px-2 py-1 uppercase font-bold">
                   {test.difficulty}
                 </Badge>
               </div>
@@ -541,9 +541,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                       <Star
                         key={i}
                         className={`w-3 h-3 ${
-                          i < test.popularity
-                            ? 'text-chart-1 fill-current'
-                            : 'text-foreground/30'
+                          i < test.popularity ? 'text-chart-1 fill-current' : 'text-foreground/30'
                         }`}
                       />
                     ))}
@@ -563,11 +561,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                       Ожидается: {test.expectedDate}
                     </p>
                   )}
-                  <Button 
-                    variant="outline" 
-                    className="w-full uppercase font-bold"
-                    disabled
-                  >
+                  <Button variant="outline" className="w-full uppercase font-bold" disabled>
                     <Clock className="w-4 h-4 mr-2" />
                     {test.status === 'in_development' ? 'В разработке' : 'Запланирован'}
                   </Button>
@@ -583,8 +577,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
             <div className="absolute top-3 right-3 flex gap-2">
               {test.status === 'in_development' && (
                 <Badge variant="secondary" className="text-xs px-2 py-1 uppercase">
-                  <Clock className="w-3 h-3 mr-1" />
-                  В РАЗРАБОТКЕ
+                  <Clock className="w-3 h-3 mr-1" />В РАЗРАБОТКЕ
                 </Badge>
               )}
               {test.status === 'planned' && (
@@ -594,12 +587,9 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                 </Badge>
               )}
             </div>
-            
+
             <div className="absolute bottom-3 left-4">
-              <Badge 
-                variant="secondary"
-                className="text-xs px-2 py-1 uppercase font-bold"
-              >
+              <Badge variant="secondary" className="text-xs px-2 py-1 uppercase font-bold">
                 {test.difficulty}
               </Badge>
             </div>
@@ -647,9 +637,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                     <Star
                       key={i}
                       className={`w-3 h-3 ${
-                        i < test.popularity
-                          ? 'text-chart-1 fill-current'
-                          : 'text-foreground/30'
+                        i < test.popularity ? 'text-chart-1 fill-current' : 'text-foreground/30'
                       }`}
                     />
                   ))}
@@ -663,11 +651,7 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
                   Ожидается: {test.expectedDate}
                 </p>
               )}
-              <Button 
-                variant="outline" 
-                className="w-full uppercase font-bold"
-                disabled
-              >
+              <Button variant="outline" className="w-full uppercase font-bold" disabled>
                 <Clock className="w-4 h-4 mr-2" />
                 {test.status === 'in_development' ? 'В разработке' : 'Запланирован'}
               </Button>
@@ -679,19 +663,24 @@ function TestCard({ test, index }: { test: TestData; index: number }) {
   );
 }
 
-
 function getCategoryIcon(iconName: string) {
   const icons = {
     Brain,
     Briefcase,
-    Heart
+    Heart,
   };
   return icons[iconName as keyof typeof icons] || Brain;
 }
 
 export function TestsCatalogPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-foreground font-bold uppercase">Загрузка...</div></div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-background flex items-center justify-center">
+          <div className="text-foreground font-bold uppercase">Загрузка...</div>
+        </div>
+      }
+    >
       <TestsCatalogContent />
     </Suspense>
   );

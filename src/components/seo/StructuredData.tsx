@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { siteConfig } from '@/config/site.config';
 
 interface StructuredDataProps {
   type: 'WebSite' | 'Organization' | 'WebPage' | 'FAQPage';
@@ -29,20 +30,21 @@ export function WebsiteSchema() {
     <StructuredData
       type="WebSite"
       data={{
-        name: "PsyTest - Психологические тесты онлайн",
-        url: "https://psytest.ru",
-        description: "Бесплатные психологические тесты онлайн для определения типа личности, выбора профессии и самопознания",
+        name: 'Professional Test - Психологические тесты онлайн',
+        url: siteConfig.url,
+        description:
+          'Бесплатные психологические тесты онлайн для определения типа личности, выбора профессии и самопознания',
         publisher: {
-          "@type": "Organization",
-          name: "PsyTest",
-          url: "https://psytest.ru"
+          '@type': 'Organization',
+          name: 'Professional Test',
+          url: siteConfig.url,
         },
         potentialAction: {
-          "@type": "SearchAction",
-          target: "https://psytest.ru/search?q={search_term_string}",
-          "query-input": "required name=search_term_string"
+          '@type': 'SearchAction',
+          target: `${siteConfig.url}/search?q={search_term_string}`,
+          'query-input': 'required name=search_term_string',
         },
-        inLanguage: "ru-RU"
+        inLanguage: 'ru-RU',
       }}
     />
   );
@@ -53,25 +55,22 @@ export function OrganizationSchema() {
     <StructuredData
       type="Organization"
       data={{
-        name: "PsyTest",
-        url: "https://psytest.ru",
-        description: "Онлайн платформа для прохождения психологических тестов",
-        foundingDate: "2024",
+        name: 'Professional Test',
+        url: siteConfig.url,
+        description: 'Онлайн платформа для прохождения психологических тестов',
+        foundingDate: String(new Date().getFullYear()),
         knowsAbout: [
-          "Психология",
-          "Типы личности", 
-          "Профориентация",
-          "Психологические тесты",
-          "Самопознание"
+          'Психология',
+          'Типы личности',
+          'Профориентация',
+          'Психологические тесты',
+          'Самопознание',
         ],
-        sameAs: [
-          "https://t.me/psytest_ru",
-          "https://vk.com/psytest_ru"
-        ],
+        sameAs: ['https://t.me/professional_test_ru', 'https://vk.com/professional_test_ru'],
         areaServed: {
-          "@type": "Country",
-          name: "Russia"
-        }
+          '@type': 'Country',
+          name: 'Russia',
+        },
       }}
     />
   );
@@ -84,30 +83,30 @@ export function FAQSchema() {
       data={{
         mainEntity: [
           {
-            "@type": "Question",
-            name: "Как пройти психологический тест на тип личности?",
+            '@type': 'Question',
+            name: 'Как пройти психологический тест на тип личности?',
             acceptedAnswer: {
-              "@type": "Answer",
-              text: "Для прохождения психологического теста на тип личности выберите подходящий тест, честно отвечайте на вопросы и получите детальную расшифровку результатов."
-            }
+              '@type': 'Answer',
+              text: 'Для прохождения психологического теста на тип личности выберите подходящий тест, честно отвечайте на вопросы и получите детальную расшифровку результатов.',
+            },
           },
           {
-            "@type": "Question", 
-            name: "Какие профессии подходят моему типу личности?",
+            '@type': 'Question',
+            name: 'Какие профессии подходят моему типу личности?',
             acceptedAnswer: {
-              "@type": "Answer",
-              text: "Профессиональная пригодность зависит от ваших интересов, навыков и типа личности. Пройдите тест на профориентацию для получения персональных рекомендаций."
-            }
+              '@type': 'Answer',
+              text: 'Профессиональная пригодность зависит от ваших интересов, навыков и типа личности. Пройдите тест на профориентацию для получения персональных рекомендаций.',
+            },
           },
           {
-            "@type": "Question",
-            name: "Бесплатны ли психологические тесты на сайте?",
+            '@type': 'Question',
+            name: 'Бесплатны ли психологические тесты на сайте?',
             acceptedAnswer: {
-              "@type": "Answer", 
-              text: "Да, все основные психологические тесты на определение типа личности и профориентацию доступны бесплатно с подробной расшифровкой результатов."
-            }
-          }
-        ]
+              '@type': 'Answer',
+              text: 'Да, все основные психологические тесты на определение типа личности и профориентацию доступны бесплатно с подробной расшифровкой результатов.',
+            },
+          },
+        ],
       }}
     />
   );

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
 import { TestsCatalogPage } from '@/components/tests/TestsCatalogPage';
+import { siteConfig } from '@/config/site.config';
 
 export const metadata: Metadata = {
-  title: 'Психологические тесты онлайн бесплатно - каталог всех тестов | PsyTest',
-  description: 'Полный каталог психологических тестов онлайн бесплатно. Тесты на личность, профориентация, продуктивность. Быстрые и точные результаты с расшифровкой.',
+  title: 'Психологические тесты онлайн бесплатно - каталог всех тестов | Professional Test',
+  description:
+    'Полный каталог психологических тестов онлайн бесплатно. Тесты на личность, профориентация, продуктивность. Быстрые и точные результаты с расшифровкой.',
   keywords: [
     'психологические тесты',
     'тест на личность',
@@ -14,31 +16,32 @@ export const metadata: Metadata = {
     'определить хронотип',
     'бесплатные тесты',
     'психология онлайн',
-    'самопознание тесты'
+    'самопознание тесты',
   ].join(', '),
-  authors: [{ name: 'PsyTest Team' }],
+  authors: [{ name: 'Professional Test Team' }],
   robots: 'index, follow',
   openGraph: {
-    title: 'Каталог психологических тестов онлайн бесплатно - PsyTest',
-    description: 'Откройте свой потенциал с помощью наших психологических тестов. Определите тип личности, выберите профессию, повысьте продуктивность.',
+    title: 'Каталог психологических тестов онлайн бесплатно - Professional Test',
+    description:
+      'Откройте свой потенциал с помощью наших психологических тестов. Определите тип личности, выберите профессию, повысьте продуктивность.',
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'PsyTest',
+    siteName: 'Professional Test',
     images: [
       {
         url: '/images/tests-catalog-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Каталог психологических тестов PsyTest'
-      }
-    ]
+        alt: 'Каталог психологических тестов Professional Test',
+      },
+    ],
   },
   alternates: {
-    canonical: 'https://psytest.ru/tests'
+    canonical: `${siteConfig.url}/tests`,
   },
   other: {
-    'yandex-zen-verification': 'yandex_zen_verification_code'
-  }
+    'yandex-zen-verification': 'yandex_zen_verification_code',
+  },
 };
 
 export default function TestsPage() {

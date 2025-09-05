@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: 'PsyTest',
-  url: 'https://psytest.ru',
+  name: 'Professional Test',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://professional-test.ru',
   description:
     'Профессиональные психологические тесты онлайн для определения типа личности, выбора профессии и саморазвития',
-  defaultTitle: 'PsyTest - Психологические тесты онлайн | Тесты на тип личности',
-  titleTemplate: '%s | PsyTest',
+  defaultTitle: 'Professional Test - Психологические тесты онлайн | Тесты на тип личности',
+  titleTemplate: '%s | Professional Test',
 
   // SEO мета-теги по умолчанию
   seo: {
@@ -17,9 +17,9 @@ export const siteConfig = {
       'профориентация',
       'тест темперамент',
     ],
-    authors: [{ name: 'PsyTest Team' }],
-    creator: 'PsyTest',
-    publisher: 'PsyTest',
+    authors: [{ name: 'Professional Test Team' }],
+    creator: 'Professional Test',
+    publisher: 'Professional Test',
     robots: 'index, follow',
     googlebot: 'index, follow',
     yandex: 'index, follow',
@@ -29,13 +29,13 @@ export const siteConfig = {
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'PsyTest',
+    siteName: 'Professional Test',
     images: [
       {
-        url: 'https://psytest.ru/og-image.png',
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://professional-test.ru'}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'PsyTest - Психологические тесты онлайн',
+        alt: 'Professional Test - Психологические тесты онлайн',
       },
     ],
   },
@@ -43,15 +43,15 @@ export const siteConfig = {
   // Twitter Card настройки
   twitter: {
     card: 'summary_large_image',
-    site: '@psytest_ru',
-    creator: '@psytest_ru',
+    site: '@professional_test_ru',
+    creator: '@professional_test_ru',
   },
 
   // Контактная информация
   contacts: {
-    email: 'info@psytest.ru',
-    telegram: 'https://t.me/psytest_ru',
-    vk: 'https://vk.com/psytest_ru',
+    email: 'info@professional-test.ru',
+    telegram: 'https://t.me/professional_test_ru',
+    vk: 'https://vk.com/professional_test_ru',
   },
 
   // Аналитика
@@ -171,7 +171,7 @@ export const siteConfig = {
 
   // API endpoints (для будущего использования)
   api: {
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.psytest.ru',
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://api.professional-test.ru',
     endpoints: {
       tests: '/api/tests',
       results: '/api/results',

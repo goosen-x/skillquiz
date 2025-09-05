@@ -15,25 +15,26 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'PsyTest - Психологические тесты онлайн бесплатно | Узнать тип личности и профессию',
+  title:
+    'Professional Test - Психологические тесты онлайн бесплатно | Узнать тип личности и профессию',
   description:
     'Пройдите бесплатные психологические тесты онлайн: тест на тип личности, тест на профессию, определение характера. Быстрые и точные результаты с расшифровкой.',
   keywords:
     'психологический тест, тест на личность, тест на профессию, психология, тип личности, профориентация, бесплатно, онлайн',
-  authors: [{ name: 'PsyTest Team' }],
+  authors: [{ name: 'Professional Test Team' }],
   robots: 'index, follow',
   openGraph: {
-    title: 'PsyTest - Психологические тесты онлайн бесплатно',
+    title: 'Professional Test - Психологические тесты онлайн бесплатно',
     description:
       'Узнайте свой тип личности и подходящую профессию с помощью наших бесплатных психологических тестов',
     type: 'website',
     locale: 'ru_RU',
-    siteName: 'PsyTest',
+    siteName: 'Professional Test',
   },
   alternates: {
-    canonical: 'https://psytest.ru',
+    canonical: siteConfig.url,
   },
-  metadataBase: new URL('https://psytest.ru'),
+  metadataBase: new URL(siteConfig.url),
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },

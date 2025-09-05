@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { siteConfig } from '@/config/site.config';
 
 interface RelatedTestsProps {
   tests: Array<{
@@ -108,7 +109,7 @@ export function RelatedTests({
                 '@type': 'Quiz',
                 name: test.title,
                 description: test.description,
-                url: `https://psytest.ru/tests/${test.slug}`,
+                url: `${siteConfig.url}/tests/${test.slug}`,
                 educationalLevel: test.difficulty,
                 timeRequired: test.duration,
               },

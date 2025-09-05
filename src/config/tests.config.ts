@@ -8,7 +8,7 @@ export const testsConfig = {
     showTimeRemaining: false,
     animateTransitions: true,
   },
-  
+
   // Настройки прохождения
   progression: {
     allowBackNavigation: true,
@@ -18,7 +18,7 @@ export const testsConfig = {
     saveProgress: true,
     autoSaveInterval: 30000, // 30 секунд
   },
-  
+
   // Настройки результатов
   results: {
     showDetailedAnalysis: true,
@@ -28,7 +28,7 @@ export const testsConfig = {
     saveResults: true,
     generateCertificate: false,
   },
-  
+
   // Настройки валидации
   validation: {
     minQuestionsAnswered: 1,
@@ -36,17 +36,17 @@ export const testsConfig = {
     minTimePerQuestion: 3000, // 3 секунды
     maxTimePerQuestion: 300000, // 5 минут
   },
-  
+
   // Настройки хранения
   storage: {
-    prefix: 'psytest',
+    prefix: 'professional-test',
     progressKey: 'test-progress',
     resultsKey: 'test-result',
     settingsKey: 'test-settings',
     maxStorageTime: 30 * 24 * 60 * 60 * 1000, // 30 дней
     compression: true,
   },
-  
+
   // Настройки аналитики
   analytics: {
     trackQuestionTime: true,
@@ -55,7 +55,7 @@ export const testsConfig = {
     trackShareEvents: true,
     anonymizeData: true,
   },
-  
+
   // Настройки доступности
   accessibility: {
     enableKeyboardNavigation: true,
@@ -64,7 +64,7 @@ export const testsConfig = {
     fontSize: 'normal',
     reduceMotion: false,
   },
-  
+
   // Настройки уведомлений
   notifications: {
     showWelcomeMessage: true,
@@ -74,7 +74,7 @@ export const testsConfig = {
     playSound: true,
     showConfetti: true,
   },
-  
+
   // Типы вопросов
   questionTypes: {
     singleChoice: {
@@ -106,7 +106,7 @@ export const testsConfig = {
       maxLength: 500,
     },
   },
-  
+
   // Настройки результатов по типам
   resultTypes: {
     persona: {
@@ -130,7 +130,7 @@ export const testsConfig = {
       showRecommendations: true,
     },
   },
-  
+
   // Пресеты для разных типов тестов
   presets: {
     personality: {

@@ -43,9 +43,7 @@ export const defaultMetadata: Metadata = {
       { url: '/favicon.ico', sizes: 'any' },
       { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180' },
-    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180' }],
   },
   alternates: {
     canonical: siteConfig.url,
@@ -71,7 +69,7 @@ export function generatePageMetadata({
   image?: string;
 }): Metadata {
   const url = `${siteConfig.url}${path}`;
-  const finalKeywords = keywords 
+  const finalKeywords = keywords
     ? [...siteConfig.seo.keywords, ...keywords]
     : siteConfig.seo.keywords;
 
@@ -100,27 +98,31 @@ export function generatePageMetadata({
 export const pageMetadata = {
   tests: {
     title: 'Каталог психологических тестов',
-    description: 'Полный каталог психологических тестов: на личность, профориентацию, продуктивность. Все тесты бесплатны с подробной расшифровкой результатов.',
+    description:
+      'Полный каталог психологических тестов: на личность, профориентацию, продуктивность. Все тесты бесплатны с подробной расшифровкой результатов.',
     keywords: ['каталог тестов', 'все тесты', 'психологические тесты список'],
   },
   about: {
-    title: 'О проекте PsyTest',
-    description: 'PsyTest - платформа научных психологических тестов. Узнайте больше о нашей миссии и методологии.',
+    title: 'О проекте Professional Test',
+    description:
+      'Professional Test - платформа научных психологических тестов. Узнайте больше о нашей миссии и методологии.',
     keywords: ['о проекте', 'о нас', 'психологические тесты методология'],
   },
   contact: {
     title: 'Контакты',
-    description: 'Свяжитесь с командой PsyTest. Мы открыты для предложений и сотрудничества.',
+    description:
+      'Свяжитесь с командой Professional Test. Мы открыты для предложений и сотрудничества.',
     keywords: ['контакты', 'связаться', 'обратная связь'],
   },
   privacy: {
     title: 'Политика конфиденциальности',
-    description: 'Политика конфиденциальности сайта PsyTest. Как мы защищаем ваши данные.',
+    description:
+      'Политика конфиденциальности сайта Professional Test. Как мы защищаем ваши данные.',
     keywords: ['конфиденциальность', 'защита данных', 'приватность'],
   },
   terms: {
     title: 'Условия использования',
-    description: 'Условия использования сайта PsyTest. Правила пользования платформой.',
+    description: 'Условия использования сайта Professional Test. Правила пользования платформой.',
     keywords: ['условия использования', 'правила', 'соглашение'],
   },
 } as const;
