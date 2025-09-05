@@ -34,22 +34,19 @@ export function Hero() {
         }}
       />
       {/* Floating geometric shapes */}
-      <div className="w-10 h-10 absolute top-0 left-0 bg-white">
+      <div className="w-64 h-auto absolute top-0 right-[10%] ">
         <Image src={SpiralImage} alt="spiral" />
       </div>
-      <motion.div
-        className="absolute w-48 h-48 border-2 border-border bg-chart-1 rotate-12"
-        style={{ left: '5%', top: '10%' }}
-        animate={{
-          rotate: [12, 24, 12],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      <div className="absolute" style={{ left: '5%', top: '10%' }}>
+        <div className="spinner">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24">
         <motion.div className="text-center" variants={stagger} initial="initial" animate="animate">
