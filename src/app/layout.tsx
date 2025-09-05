@@ -34,6 +34,22 @@ export const metadata: Metadata = {
     canonical: 'https://psytest.ru',
   },
   metadataBase: new URL('https://psytest.ru'),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon-57x57.png', sizes: '57x57' },
+      { url: '/favicon-76x76.png', sizes: '76x76' },
+      { url: '/favicon-120x120.png', sizes: '120x120' },
+      { url: '/favicon-152x152.png', sizes: '152x152' },
+      { url: '/favicon-180x180.png', sizes: '180x180' },
+    ],
+  },
 };
 
 export const viewport = {
@@ -53,6 +69,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="yandex-verification" content="22185c9579369a2c" />
         <meta name="format-detection" content="telephone=no" />
+
+        {/* Favicons */}
+        <link rel="icon" href="/favicon.ico" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon-57x57.png" sizes="57x57" />
+        <link rel="apple-touch-icon" href="/favicon-76x76.png" sizes="76x76" />
+        <link rel="apple-touch-icon" href="/favicon-120x120.png" sizes="120x120" />
+        <link rel="apple-touch-icon" href="/favicon-152x152.png" sizes="152x152" />
+        <link rel="apple-touch-icon" href="/favicon-180x180.png" sizes="180x180" />
+        <link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/favicon-512x512.png" sizes="512x512" type="image/png" />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-white text-gray-900`}>
         <YandexMetrika counterId={siteConfig.analytics.yandexMetrikaId} />
