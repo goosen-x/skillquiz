@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { VariantProps } from 'class-variance-authority';
 
-interface NeoBrutalButtonProps extends React.ComponentProps<"button">, VariantProps<typeof Button> {
+interface NeoBrutalButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof Button> {
   children: React.ReactNode;
   color?: 'yellow' | 'blue' | 'orange' | 'green' | 'purple';
   disabled?: boolean;
@@ -20,31 +20,27 @@ const colorClasses = {
   purple: 'bg-chart-5 hover:bg-chart-5/90',
 };
 
-export function NeoBrutalButton({ 
-  children, 
+export function NeoBrutalButton({
+  children,
   className,
   color = 'yellow',
   variant,
   size,
   disabled,
-  ...props 
+  ...props
 }: NeoBrutalButtonProps) {
   return (
     <motion.div
       whileHover={!disabled ? { x: -2, y: -2 } : {}}
       whileTap={!disabled ? { x: 4, y: 4 } : {}}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       className="inline-block"
     >
       <Button
         variant={variant}
         size={size}
         disabled={disabled}
-        className={cn(
-          colorClasses[color],
-          "relative overflow-hidden",
-          className
-        )}
+        className={cn(colorClasses[color], 'relative overflow-hidden', className)}
         {...props}
       >
         {children}
@@ -53,37 +49,41 @@ export function NeoBrutalButton({
   );
 }
 
-interface NeoBrutalIconButtonProps extends Omit<React.ComponentProps<"button">, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart'> {
+interface NeoBrutalIconButtonProps
+  extends Omit<
+    React.ComponentProps<'button'>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart'
+  > {
   icon: React.ReactNode;
   color?: 'yellow' | 'blue' | 'orange' | 'green' | 'purple';
   size?: 'sm' | 'default' | 'lg';
 }
 
-export function NeoBrutalIconButton({ 
-  icon, 
+export function NeoBrutalIconButton({
+  icon,
   color = 'yellow',
   size = 'default',
   className,
-  ...props 
+  ...props
 }: NeoBrutalIconButtonProps) {
   const sizeClasses = {
     sm: 'size-10',
     default: 'size-12',
-    lg: 'size-14'
+    lg: 'size-14',
   };
 
   return (
     <motion.button
       className={cn(
-        "border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)]",
-        "flex items-center justify-center font-bold",
+        'border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)]',
+        'flex items-center justify-center font-bold cursor-pointer',
         colorClasses[color],
         sizeClasses[size],
-        "transition-all duration-300",
+        'transition-all duration-300',
         className
       )}
-      whileHover={{ x: -2, y: -2, boxShadow: "6px 6px 0px 0px var(--border)" }}
-      whileTap={{ x: 4, y: 4, boxShadow: "0px 0px 0px 0px var(--border)" }}
+      whileHover={{ x: -2, y: -2, boxShadow: '6px 6px 0px 0px var(--border)' }}
+      whileTap={{ x: 4, y: 4, boxShadow: '0px 0px 0px 0px var(--border)' }}
       {...props}
     >
       {icon}
@@ -98,25 +98,25 @@ interface NeoBrutalFloatingButtonProps {
   color?: 'yellow' | 'blue' | 'orange' | 'green' | 'purple';
 }
 
-export function NeoBrutalFloatingButton({ 
-  children, 
+export function NeoBrutalFloatingButton({
+  children,
   onClick,
   position = 'bottom-right',
-  color = 'yellow'
+  color = 'yellow',
 }: NeoBrutalFloatingButtonProps) {
   const positionClasses = {
     'bottom-right': 'bottom-8 right-8',
     'bottom-left': 'bottom-8 left-8',
     'top-right': 'top-8 right-8',
-    'top-left': 'top-8 left-8'
+    'top-left': 'top-8 left-8',
   };
 
   return (
     <motion.button
       className={cn(
-        "fixed z-50 size-16",
-        "border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)]",
-        "flex items-center justify-center font-bold",
+        'fixed z-50 size-16',
+        'border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)]',
+        'flex items-center justify-center font-bold cursor-pointer',
         colorClasses[color],
         positionClasses[position]
       )}
@@ -126,20 +126,20 @@ export function NeoBrutalFloatingButton({
       transition={{
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: 'easeInOut',
       }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.1,
         rotate: 0,
-        x: -2, 
-        y: -2, 
-        boxShadow: "6px 6px 0px 0px var(--border)" 
+        x: -2,
+        y: -2,
+        boxShadow: '6px 6px 0px 0px var(--border)',
       }}
-      whileTap={{ 
+      whileTap={{
         scale: 0.9,
-        x: 4, 
-        y: 4, 
-        boxShadow: "0px 0px 0px 0px var(--border)" 
+        x: 4,
+        y: 4,
+        boxShadow: '0px 0px 0px 0px var(--border)',
       }}
       onClick={onClick}
     >
@@ -163,32 +163,30 @@ export function NeoBrutalToggleButton({
   activeIcon,
   inactiveIcon,
   activeColor = 'bg-chart-4',
-  inactiveColor = 'bg-secondary-background'
+  inactiveColor = 'bg-secondary-background',
 }: NeobrutalToggleButtonProps) {
   return (
     <motion.button
       className={cn(
-        "size-12 border-2 border-border",
-        "flex items-center justify-center font-bold",
-        "transition-colors duration-200",
+        'size-12 border-2 border-border',
+        'flex items-center justify-center font-bold cursor-pointer',
+        'transition-colors duration-200',
         isActive ? activeColor : inactiveColor
       )}
       animate={{
-        boxShadow: isActive 
-          ? "6px 6px 0px 0px var(--border)" 
-          : "4px 4px 0px 0px var(--border)",
+        boxShadow: isActive ? '6px 6px 0px 0px var(--border)' : '4px 4px 0px 0px var(--border)',
         x: isActive ? -2 : 0,
         y: isActive ? -2 : 0,
       }}
-      whileHover={{ 
-        x: -2, 
-        y: -2, 
-        boxShadow: "6px 6px 0px 0px var(--border)" 
+      whileHover={{
+        x: -2,
+        y: -2,
+        boxShadow: '6px 6px 0px 0px var(--border)',
       }}
-      whileTap={{ 
-        x: 4, 
-        y: 4, 
-        boxShadow: "0px 0px 0px 0px var(--border)" 
+      whileTap={{
+        x: 4,
+        y: 4,
+        boxShadow: '0px 0px 0px 0px var(--border)',
       }}
       onClick={onToggle}
     >
@@ -196,7 +194,7 @@ export function NeoBrutalToggleButton({
         key={isActive ? 'active' : 'inactive'}
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
-        transition={{ type: "spring", stiffness: 200, damping: 10 }}
+        transition={{ type: 'spring', stiffness: 200, damping: 10 }}
       >
         {isActive ? activeIcon : inactiveIcon}
       </motion.div>

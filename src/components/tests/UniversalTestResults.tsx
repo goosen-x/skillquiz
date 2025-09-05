@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { NeoCard, NeoCardContent, NeoBadge } from "@/components/ui/neo-card";
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
 import {
   RefreshCw,
   CheckCircle,
@@ -19,12 +19,12 @@ import {
   Sparkles,
   Info,
   TrendingUp,
-} from "lucide-react";
-import Link from "next/link";
-import { TestData } from "@/data/tests";
-import { toast } from "sonner";
-import { ConfettiEffect } from "@/components/animations/ConfettiEffect";
-import { useSoundEffects } from "@/components/animations/SoundEffects";
+} from 'lucide-react';
+import Link from 'next/link';
+import { TestData } from '@/data/tests';
+import { toast } from 'sonner';
+import { ConfettiEffect } from '@/components/animations/ConfettiEffect';
+import { useSoundEffects } from '@/components/animations/SoundEffects';
 import {
   BarChart,
   Bar,
@@ -36,8 +36,9 @@ import {
   PieChart,
   Pie,
   Cell,
-} from "recharts";
-import NeoBrutalistRadarChartFixed from "./NeoBrutalistRadarChartFixed";
+} from 'recharts';
+import NeoBrutalistRadarChartFixed from './NeoBrutalistRadarChartFixed';
+import ModernResultsBlock from './ModernResultsBlock';
 
 interface ChartDataPoint {
   factor: string;
@@ -54,7 +55,7 @@ interface UniversalTestResult {
   characteristics: string[];
   advice: string[];
   chartData?: unknown[];
-  chartType?: "bar" | "pie" | "radar";
+  chartType?: 'bar' | 'pie' | 'radar';
   factorScores?: { [key: string]: number };
   factorDescriptions?: {
     [key: string]: {
@@ -72,7 +73,7 @@ interface UniversalTestResult {
   detailedFactors?: Array<{
     name: string;
     score: number;
-    level: "high" | "medium" | "low";
+    level: 'high' | 'medium' | 'low';
     description: string;
     icon?: string;
     color?: string;
@@ -85,100 +86,70 @@ interface UniversalTestResultsProps {
   answers: number[];
 }
 
-export default function UniversalTestResults({
-  test,
-  result,
-}: UniversalTestResultsProps) {
+export default function UniversalTestResults({ test, result }: UniversalTestResultsProps) {
   const [copied, setCopied] = useState(false);
   const [showConfetti, setShowConfetti] = useState(true);
   const { playCompletion, playClick } = useSoundEffects();
 
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareText = `Я прошел тест "${test.title}" и мой результат: ${result.name} ${result.emoji}. Пройди тест и узнай свой результат!`;
 
   useEffect(() => {
     playCompletion();
   }, [playCompletion]);
 
-  const handleShare = async (platform: "twitter" | "telegram" | "copy") => {
+  const handleShare = async (platform: 'twitter' | 'telegram' | 'copy') => {
     playClick();
 
     switch (platform) {
-      case "twitter":
+      case 'twitter':
         window.open(
           `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
-          "_blank",
+          '_blank'
         );
         break;
-      case "telegram":
+      case 'telegram':
         window.open(
           `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
-          "_blank",
+          '_blank'
         );
         break;
-      case "copy":
+      case 'copy':
         await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
         setCopied(true);
-        toast.success("Ссылка скопирована!");
+        toast.success('Ссылка скопирована!');
         setTimeout(() => setCopied(false), 2000);
         break;
     }
   };
 
-  const getNeoColor = (
-    color: string,
-  ): "yellow" | "blue" | "orange" | "green" | "purple" => {
-    const colorMap = {
-      green: "green" as const,
-      purple: "purple" as const,
-      blue: "blue" as const,
-      red: "orange" as const,
-      indigo: "purple" as const,
-      orange: "orange" as const,
-      yellow: "yellow" as const,
-      teal: "blue" as const,
-    };
-    return colorMap[color as keyof typeof colorMap] || "blue";
-  };
-
-  const colors = ["#FFBF00", "#0099FF", "#FF7A05", "#00D696", "#7A83FF"];
+  const colors = ['#FFBF00', '#0099FF', '#FF7A05', '#00D696', '#7A83FF'];
 
   const renderChart = () => {
     if (!result.chartData || !result.chartType) return null;
 
     switch (result.chartType) {
-      case "bar":
+      case 'bar':
         return (
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart
-              data={result.chartData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
+            <BarChart data={result.chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 12, fontWeight: "bold" }}
-              />
-              <YAxis tick={{ fontSize: 12, fontWeight: "bold" }} />
+              <XAxis dataKey="name" tick={{ fontSize: 12, fontWeight: 'bold' }} />
+              <YAxis tick={{ fontSize: 12, fontWeight: 'bold' }} />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "var(--secondary-background)",
-                  border: "2px solid var(--border)",
-                  borderRadius: "0",
-                  boxShadow: "4px 4px 0px 0px var(--border)",
+                  backgroundColor: 'var(--secondary-background)',
+                  border: '2px solid var(--border)',
+                  borderRadius: '15px',
+                  boxShadow: '4px 4px 0px 0px var(--border)',
                 }}
               />
-              <Bar
-                dataKey="value"
-                fill="#FFBF00"
-                stroke="var(--border)"
-                strokeWidth={2}
-              />
+              <Bar dataKey="value" fill="#FFBF00" stroke="var(--border)" strokeWidth={2} />
             </BarChart>
           </ResponsiveContainer>
         );
 
-      case "pie":
+      case 'pie':
         return (
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -193,10 +164,7 @@ export default function UniversalTestResults({
                 strokeWidth={2}
               >
                 {result.chartData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={colors[index % colors.length]}
-                  />
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
                 ))}
               </Pie>
               <Tooltip />
@@ -204,12 +172,10 @@ export default function UniversalTestResults({
           </ResponsiveContainer>
         );
 
-      case "radar":
+      case 'radar':
         if (!result.chartData || result.chartData.length === 0) {
           return (
-            <div className="text-center py-8 text-foreground/60">
-              Нет данных для отображения
-            </div>
+            <div className="text-center py-8 text-foreground/60">Нет данных для отображения</div>
           );
         }
 
@@ -217,7 +183,7 @@ export default function UniversalTestResults({
           const typedChartData = result.chartData as ChartDataPoint[];
           return <NeoBrutalistRadarChartFixed data={typedChartData} />;
         } catch (error) {
-          console.error("Error rendering radar chart:", error);
+          console.error('Error rendering radar chart:', error);
           return (
             <div className="text-center py-8 text-red-500">
               <div>Ошибка отображения радар-чарта</div>
@@ -233,11 +199,14 @@ export default function UniversalTestResults({
   return (
     <div className="min-h-screen bg-secondary-background py-8 relative overflow-hidden">
       {/* Grid pattern background */}
-      <div className="absolute inset-0" style={{
-        backgroundImage: `repeating-linear-gradient(0deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px),
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px),
                         repeating-linear-gradient(90deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px)`,
-        opacity: 0.1
-      }} />
+          opacity: 0.1,
+        }}
+      />
 
       {/* Confetti Effect */}
       <ConfettiEffect
@@ -254,55 +223,26 @@ export default function UniversalTestResults({
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl font-heading font-black mb-2 uppercase">
-            Ваш результат готов!
-          </h1>
-          <p className="text-foreground/80 font-base">
-            Тест &quot;{test.title}&quot; пройден
-          </p>
+          <h1 className="text-3xl font-heading font-black mb-2 uppercase">Ваш результат готов!</h1>
+          <p className="text-foreground/80 font-base">Тест &quot;{test.title}&quot; пройден</p>
         </motion.div>
 
-        {/* Основная карточка результата */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <NeoCard color={getNeoColor(result.color)} className="mb-8">
-            <NeoCardContent className="p-8 text-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", delay: 0.4 }}
-                className="text-8xl mb-4 flex justify-center"
-              >
-                <motion.div
-                  animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
-                  transition={{ duration: 2, delay: 1, repeat: 1 }}
-                >
-                  {result.emoji}
-                </motion.div>
-              </motion.div>
-
-              <h2 className="text-4xl font-heading font-black mb-4 uppercase">
-                {result.name}
-              </h2>
-
-              <p className="text-lg leading-relaxed mb-6 font-base">
-                {result.description}
-              </p>
-
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-8 h-8 bg-main border-2 border-border shadow-shadow flex items-center justify-center">
-                  <Users className="w-4 h-4" />
-                </div>
-                <span className="text-sm font-bold uppercase">
-                  {result.percentage}% людей получили такой же результат
-                </span>
-              </div>
-            </NeoCardContent>
-          </NeoCard>
-        </motion.div>
+        {/* Modern Results Block with Bento Grid */}
+        <div className="mb-8">
+          <ModernResultsBlock
+            result={{
+              emoji: result.emoji,
+              name: result.name,
+              description: result.description,
+              percentage: result.percentage,
+              color: result.color,
+              traits: result.characteristics?.slice(0, 4),
+              strengths: result.characteristics,
+              compatibleTypes: ['Аналитик', 'Лидер', 'Творец'],
+            }}
+            test={test}
+          />
+        </div>
 
         {/* График результатов */}
         {result.chartData && (
@@ -315,26 +255,22 @@ export default function UniversalTestResults({
             <NeoCard>
               <NeoCardContent className="p-6">
                 <h3 className="text-xl font-heading font-bold mb-4 flex items-center uppercase">
-                  <div className="w-8 h-8 bg-chart-1 border-2 border-border shadow-shadow flex items-center justify-center mr-3">
+                  <div className="w-8 h-8 bg-chart-1 border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-3">
                     <BarChart3 className="w-4 h-4 text-foreground" />
                   </div>
-                  {result.chartType === "radar"
-                    ? "Профиль личности Big Five"
-                    : "Детальный анализ"}
+                  {result.chartType === 'radar' ? 'Профиль личности Big Five' : 'Детальный анализ'}
                 </h3>
-                {result.chartType === "radar" && (
+                {result.chartType === 'radar' && (
                   <p className="text-sm text-foreground/60 mb-4">
                     Ваши показатели по пяти основным факторам личности (0-100%)
                   </p>
                 )}
                 {renderChart()}
-                {result.chartType === "radar" && result.detailedFactors && (
+                {result.chartType === 'radar' && result.detailedFactors && (
                   <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
                     {result.detailedFactors.map((factor) => (
                       <div key={factor.name} className="flex items-center">
-                        <div
-                          className={`w-3 h-3 bg-${factor.color} border border-border mr-2`}
-                        />
+                        <div className={`w-3 h-3 bg-${factor.color} border border-border mr-2`} />
                         <span className="font-bold">{factor.name}:</span>
                         <span className="ml-1">{factor.score}%</span>
                       </div>
@@ -357,7 +293,7 @@ export default function UniversalTestResults({
             <NeoCard>
               <NeoCardContent className="p-6">
                 <h3 className="text-xl font-heading font-bold mb-6 flex items-center uppercase">
-                  <div className="w-8 h-8 bg-chart-3 border-2 border-border shadow-shadow flex items-center justify-center mr-3">
+                  <div className="w-8 h-8 bg-chart-3 border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-3">
                     <TrendingUp className="w-4 h-4 text-foreground" />
                   </div>
                   Детальный анализ факторов
@@ -365,24 +301,24 @@ export default function UniversalTestResults({
                 <div className="space-y-6">
                   {result.detailedFactors.map((factor, index) => {
                     const IconComponent =
-                      factor.icon === "Users"
+                      factor.icon === 'Users'
                         ? Users
-                        : factor.icon === "Heart"
+                        : factor.icon === 'Heart'
                           ? Heart
-                          : factor.icon === "Target"
+                          : factor.icon === 'Target'
                             ? Target
-                            : factor.icon === "Shield"
+                            : factor.icon === 'Shield'
                               ? Shield
-                              : factor.icon === "Sparkles"
+                              : factor.icon === 'Sparkles'
                                 ? Sparkles
                                 : Info;
 
                     const levelBadge =
-                      factor.level === "high"
-                        ? { text: "Высокий", color: "green" as const }
-                        : factor.level === "medium"
-                          ? { text: "Средний", color: "yellow" as const }
-                          : { text: "Низкий", color: "blue" as const };
+                      factor.level === 'high'
+                        ? { text: 'Высокий', color: 'green' as const }
+                        : factor.level === 'medium'
+                          ? { text: 'Средний', color: 'yellow' as const }
+                          : { text: 'Низкий', color: 'blue' as const };
 
                     return (
                       <motion.div
@@ -402,9 +338,7 @@ export default function UniversalTestResults({
                             {factor.name}
                           </h4>
                           <div className="flex items-center gap-3">
-                            <NeoBadge color={levelBadge.color}>
-                              {levelBadge.text}
-                            </NeoBadge>
+                            <NeoBadge color={levelBadge.color}>{levelBadge.text}</NeoBadge>
                             <span className="font-bold text-lg min-w-[3rem] text-right">
                               {factor.score}%
                             </span>
@@ -459,10 +393,7 @@ export default function UniversalTestResults({
                     </h4>
                     <ul className="space-y-2">
                       {result.methodology.applications.map((app, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start text-sm text-foreground/80"
-                        >
+                        <li key={index} className="flex items-start text-sm text-foreground/80">
                           <span className="text-chart-5 font-bold mr-2">•</span>
                           {app}
                         </li>
@@ -470,15 +401,10 @@ export default function UniversalTestResults({
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold mb-3 uppercase">
-                      Важно помнить:
-                    </h4>
+                    <h4 className="font-heading font-bold mb-3 uppercase">Важно помнить:</h4>
                     <ul className="space-y-2">
                       {result.methodology.notes.map((note, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start text-sm text-foreground/80"
-                        >
+                        <li key={index} className="flex items-start text-sm text-foreground/80">
                           <span className="text-chart-5 font-bold mr-2">•</span>
                           {note}
                         </li>
@@ -501,7 +427,7 @@ export default function UniversalTestResults({
           <NeoCard>
             <NeoCardContent className="p-6">
               <h3 className="text-xl font-heading font-bold mb-4 flex items-center uppercase">
-                <div className="w-8 h-8 bg-chart-4 border-2 border-border shadow-shadow flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-chart-4 border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-3">
                   <CheckCircle className="w-4 h-4 text-foreground" />
                 </div>
                 Ваши сильные стороны
@@ -515,9 +441,7 @@ export default function UniversalTestResults({
                     transition={{ delay: 0.5 + index * 0.1 }}
                     className="flex items-start"
                   >
-                    <span className="text-chart-4 font-bold text-xl mr-3">
-                      •
-                    </span>
+                    <span className="text-chart-4 font-bold text-xl mr-3">•</span>
                     <span className="font-base">{char}</span>
                   </motion.li>
                 ))}
@@ -528,7 +452,7 @@ export default function UniversalTestResults({
           <NeoCard>
             <NeoCardContent className="p-6">
               <h3 className="text-xl font-heading font-bold mb-4 flex items-center uppercase">
-                <div className="w-8 h-8 bg-chart-2 border-2 border-border shadow-shadow flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-chart-2 border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-3">
                   <ArrowRight className="w-4 h-4 text-foreground" />
                 </div>
                 Рекомендации для вас
@@ -542,9 +466,7 @@ export default function UniversalTestResults({
                     transition={{ delay: 0.6 + index * 0.1 }}
                     className="flex items-start"
                   >
-                    <span className="text-chart-2 font-bold text-xl mr-3">
-                      →
-                    </span>
+                    <span className="text-chart-2 font-bold text-xl mr-3">→</span>
                     <span className="font-base">{advice}</span>
                   </motion.li>
                 ))}
@@ -568,7 +490,7 @@ export default function UniversalTestResults({
               </h3>
               <div className="flex flex-wrap gap-3">
                 <Button
-                  onClick={() => handleShare("twitter")}
+                  onClick={() => handleShare('twitter')}
                   variant="outline"
                   className="flex items-center uppercase font-bold"
                 >
@@ -576,7 +498,7 @@ export default function UniversalTestResults({
                   Twitter
                 </Button>
                 <Button
-                  onClick={() => handleShare("telegram")}
+                  onClick={() => handleShare('telegram')}
                   variant="outline"
                   className="flex items-center uppercase font-bold"
                 >
@@ -584,7 +506,7 @@ export default function UniversalTestResults({
                   Telegram
                 </Button>
                 <Button
-                  onClick={() => handleShare("copy")}
+                  onClick={() => handleShare('copy')}
                   variant="outline"
                   className="flex items-center uppercase font-bold"
                 >
@@ -607,11 +529,7 @@ export default function UniversalTestResults({
           {/* Дополнительные действия */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Link href={`/tests/${test.slug}`} className="flex-1">
-              <Button
-                variant="outline"
-                className="w-full uppercase font-bold"
-                size="lg"
-              >
+              <Button variant="outline" className="w-full uppercase font-bold" size="lg">
                 <RefreshCw className="w-5 h-5 mr-2" />
                 Пройти тест заново
               </Button>
@@ -637,39 +555,30 @@ export default function UniversalTestResults({
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
             <Link href="/tests/personality-type">
-              <NeoCard className="cursor-pointer h-full">
+              <NeoCard hover={true} className="h-full">
                 <NeoCardContent className="p-6">
-                  <h4 className="font-heading font-bold mb-2 uppercase">
-                    Тест на тип личности
-                  </h4>
+                  <h4 className="font-heading font-bold mb-2 uppercase">Тест на тип личности</h4>
                   <p className="text-sm text-foreground/80 mb-3 font-base">
                     Определите свой психологический тип по модели Big Five
                   </p>
                   <div className="flex items-center justify-between">
                     <NeoBadge color="purple">60 вопросов</NeoBadge>
-                    <span className="text-sm text-foreground/60 font-bold">
-                      10 мин
-                    </span>
+                    <span className="text-sm text-foreground/60 font-bold">10 мин</span>
                   </div>
                 </NeoCardContent>
               </NeoCard>
             </Link>
 
             <Link href="/tests/emotional-intelligence">
-              <NeoCard className="cursor-pointer h-full">
+              <NeoCard hover={true} className="h-full">
                 <NeoCardContent className="p-6">
-                  <h4 className="font-heading font-bold mb-2 uppercase">
-                    Эмоциональный интеллект
-                  </h4>
+                  <h4 className="font-heading font-bold mb-2 uppercase">Эмоциональный интеллект</h4>
                   <p className="text-sm text-foreground/80 mb-3 font-base">
-                    Узнайте, насколько хорошо вы понимаете свои эмоции и эмоции
-                    других
+                    Узнайте, насколько хорошо вы понимаете свои эмоции и эмоции других
                   </p>
                   <div className="flex items-center justify-between">
                     <NeoBadge color="orange">45 вопросов</NeoBadge>
-                    <span className="text-sm text-foreground/60 font-bold">
-                      8 мин
-                    </span>
+                    <span className="text-sm text-foreground/60 font-bold">8 мин</span>
                   </div>
                 </NeoCardContent>
               </NeoCard>

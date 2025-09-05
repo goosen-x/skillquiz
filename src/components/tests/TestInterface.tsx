@@ -19,39 +19,39 @@ interface TestInterfaceProps {
   onComplete: () => void;
 }
 
-export function TestInterface({ 
-  test, 
-  questions, 
-  answers, 
-  onAnswerSelect, 
-  onComplete 
+export function TestInterface({
+  test,
+  questions,
+  answers,
+  onAnswerSelect,
+  onComplete,
 }: TestInterfaceProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showMilestone, setShowMilestone] = useState<number | null>(null);
   const [achievedMilestones, setAchievedMilestones] = useState<Set<number>>(new Set());
-  
+
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
-  
+
   // Check if current question is answered
   const isCurrentQuestionAnswered = !!answers[currentQuestion.id];
-  
+
   // Check if all questions are answered
-  const allQuestionsAnswered = questions.every(q => !!answers[q.id]);
+  const allQuestionsAnswered = questions.every((q) => !!answers[q.id]);
 
   const { playClick, playSuccess, playTransition, playMilestone } = useSoundEffects();
 
   // Check for milestones
   useEffect(() => {
     const milestones = [25, 50, 75];
-    
-    milestones.forEach(milestone => {
+
+    milestones.forEach((milestone) => {
       if (progress >= milestone && !achievedMilestones.has(milestone)) {
-        setAchievedMilestones(prev => new Set(prev).add(milestone));
+        setAchievedMilestones((prev) => new Set(prev).add(milestone));
         setShowMilestone(milestone);
         playMilestone();
-        
+
         setTimeout(() => setShowMilestone(null), 3000);
       }
     });
@@ -63,14 +63,14 @@ export function TestInterface({
       onComplete();
     } else if (currentQuestionIndex < questions.length - 1) {
       playTransition();
-      setCurrentQuestionIndex(prev => prev + 1);
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       playTransition();
-      setCurrentQuestionIndex(prev => prev - 1);
+      setCurrentQuestionIndex((prev) => prev - 1);
     }
   };
 
@@ -82,18 +82,18 @@ export function TestInterface({
   const questionVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 100 : -100,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction: number) => ({
       zIndex: 0,
       x: direction < 0 ? 100 : -100,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   return (
@@ -102,9 +102,7 @@ export function TestInterface({
       <div className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-10">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-3">
-            <h1 className="text-lg font-semibold text-gray-900 truncate">
-              {test.title}
-            </h1>
+            <h1 className="text-lg font-semibold text-gray-900 truncate">{test.title}</h1>
             <span className="text-sm text-gray-500 whitespace-nowrap ml-4">
               {currentQuestionIndex + 1} из {questions.length}
             </span>
@@ -125,8 +123,8 @@ export function TestInterface({
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
+                x: { type: 'spring', stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
               }}
             >
               <Card className="p-6 md:p-8 bg-white/90 backdrop-blur-sm border-0 shadow-xl">
@@ -147,26 +145,26 @@ export function TestInterface({
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1, duration: 0.3 }}
                       onClick={() => handleAnswerClick(option.value.toString())}
-                      className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] ${
+                      className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] cursor-pointer ${
                         answers[currentQuestion.id.toString()] === option.value.toString()
                           ? 'border-indigo-500 bg-indigo-50 shadow-md'
                           : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mt-0.5 transition-colors ${
-                          answers[currentQuestion.id.toString()] === option.value.toString()
-                            ? 'border-indigo-500 bg-indigo-500'
-                            : 'border-gray-300'
-                        }`}>
+                        <div
+                          className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mt-0.5 transition-colors ${
+                            answers[currentQuestion.id.toString()] === option.value.toString()
+                              ? 'border-indigo-500 bg-indigo-500'
+                              : 'border-gray-300'
+                          }`}
+                        >
                           {answers[currentQuestion.id.toString()] === option.value.toString() && (
                             <Check className="w-3 h-3 text-white" />
                           )}
                         </div>
                         <div className="flex-1">
-                          <p className="text-gray-900 font-medium leading-relaxed">
-                            {option.text}
-                          </p>
+                          <p className="text-gray-900 font-medium leading-relaxed">{option.text}</p>
                         </div>
                       </div>
                     </motion.button>
@@ -201,8 +199,8 @@ export function TestInterface({
                     index === currentQuestionIndex
                       ? 'bg-indigo-500'
                       : answers[questions[index].id.toString()]
-                      ? 'bg-green-500'
-                      : 'bg-gray-300'
+                        ? 'bg-green-500'
+                        : 'bg-gray-300'
                   }`}
                   aria-label={`Перейти к вопросу ${index + 1}`}
                 />
@@ -246,8 +244,8 @@ export function TestInterface({
       {/* Milestone celebration toast */}
       <AnimatePresence>
         {showMilestone && (
-          <MilestoneToast 
-            milestone={showMilestone} 
+          <MilestoneToast
+            milestone={showMilestone}
             currentQuestion={currentQuestionIndex + 1}
             totalQuestions={questions.length}
           />

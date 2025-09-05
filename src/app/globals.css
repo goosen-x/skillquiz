@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,11 +12,11 @@
   --ring: oklch(0% 0 0);
   --overlay: oklch(0% 0 0 / 0.8);
   --shadow: 4px 4px 0px 0px var(--border);
-  --chart-1: #FFBF00;
-  --chart-2: #0099FF;
-  --chart-3: #FF7A05;
-  --chart-4: #00D696;
-  --chart-5: #7A83FF;
+  --chart-1: #ffbf00;
+  --chart-2: #0099ff;
+  --chart-3: #ff7a05;
+  --chart-4: #00d696;
+  --chart-5: #7a83ff;
   --chart-active-dot: #000;
 }
 
@@ -29,11 +29,11 @@
   --border: oklch(0% 0 0);
   --ring: oklch(100% 0 0);
   --shadow: 4px 4px 0px 0px var(--border);
-  --chart-1: #E5AC00;
-  --chart-2: #008AE5;
-  --chart-3: #EB6D00;
-  --chart-4: #00BD84;
-  --chart-5: #7A83FF;
+  --chart-1: #e5ac00;
+  --chart-2: #008ae5;
+  --chart-3: #eb6d00;
+  --chart-4: #00bd84;
+  --chart-5: #7a83ff;
   --chart-active-dot: #fff;
 }
 
@@ -61,20 +61,25 @@
   --font-weight-base: 500;
   --font-weight-heading: 900;
 }
-  
+
 @layer base {
   html {
     overscroll-behavior: none;
     overflow-x: hidden;
   }
-  
+
   body {
     @apply text-foreground font-base bg-background;
     overscroll-behavior: none;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading;
   }
 }
@@ -202,19 +207,35 @@
 
 /* Neobrutalism animations */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-shake {
@@ -227,4 +248,67 @@
 
 .animate-rotate {
   animation: rotate 2s linear infinite;
+}
+
+/* Neobrutalist Sonner toast styles */
+[data-sonner-toaster] {
+  --normal-bg: var(--background) !important;
+  --normal-text: var(--foreground) !important;
+  --normal-border: var(--border) !important;
+}
+
+[data-sonner-toast] {
+  border: 2px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0px 0px var(--border) !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+[data-sonner-toast][data-type='success'] {
+  background: var(--chart-4) !important;
+  border-color: var(--border) !important;
+}
+
+[data-sonner-toast][data-type='error'] {
+  background: var(--chart-3) !important;
+  border-color: var(--border) !important;
+}
+
+[data-sonner-toast][data-type='info'] {
+  background: var(--chart-2) !important;
+  border-color: var(--border) !important;
+  color: white !important;
+}
+
+[data-sonner-toast][data-type='warning'] {
+  background: var(--chart-1) !important;
+  border-color: var(--border) !important;
+}
+
+[data-title] {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+[data-description] {
+  font-weight: 400 !important;
+  opacity: 0.9 !important;
+}
+
+[data-close-button] {
+  border: 2px solid var(--border) !important;
+  border-radius: 0 !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+  top: 8px !important;
+  right: 8px !important;
+}
+
+[data-close-button]:hover {
+  background: var(--foreground) !important;
+  color: var(--background) !important;
 }

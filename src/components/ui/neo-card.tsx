@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-interface NeoCardProps extends HTMLMotionProps<"div"> {
+interface NeoCardProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode;
   color?: 'white' | 'yellow' | 'blue' | 'orange' | 'green' | 'purple';
   hover?: boolean;
@@ -20,31 +20,39 @@ const colorClasses = {
   purple: 'bg-chart-5',
 };
 
-export function NeoCard({ 
-  children, 
+export function NeoCard({
+  children,
   color = 'white',
-  hover = true,
+  hover = false,
   className,
-  ...props 
+  ...props
 }: NeoCardProps) {
   return (
     <motion.div
       className={cn(
-        "border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)]",
+        'border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)] rounded-[15px]',
         colorClasses[color],
-        hover && "transition-all duration-300 cursor-pointer",
+        hover && 'transition-all duration-300 cursor-pointer',
         className
       )}
-      whileHover={hover ? {
-        x: -2,
-        y: -2,
-        boxShadow: "6px 6px 0px 0px var(--border)"
-      } : {}}
-      whileTap={hover ? {
-        x: 4,
-        y: 4,
-        boxShadow: "0px 0px 0px 0px var(--border)"
-      } : {}}
+      whileHover={
+        hover
+          ? {
+              x: -2,
+              y: -2,
+              boxShadow: '6px 6px 0px 0px var(--border)',
+            }
+          : {}
+      }
+      whileTap={
+        hover
+          ? {
+              x: 4,
+              y: 4,
+              boxShadow: '0px 0px 0px 0px var(--border)',
+            }
+          : {}
+      }
       {...props}
     >
       {children}
@@ -58,14 +66,7 @@ interface NeoCardHeaderProps {
 }
 
 export function NeoCardHeader({ children, className }: NeoCardHeaderProps) {
-  return (
-    <div className={cn(
-      "border-b-2 border-border p-6",
-      className
-    )}>
-      {children}
-    </div>
-  );
+  return <div className={cn('border-b-2 border-border p-6', className)}>{children}</div>;
 }
 
 interface NeoCardContentProps {
@@ -74,11 +75,7 @@ interface NeoCardContentProps {
 }
 
 export function NeoCardContent({ children, className }: NeoCardContentProps) {
-  return (
-    <div className={cn("p-6", className)}>
-      {children}
-    </div>
-  );
+  return <div className={cn('p-6', className)}>{children}</div>;
 }
 
 interface NeoCardFooterProps {
@@ -87,14 +84,7 @@ interface NeoCardFooterProps {
 }
 
 export function NeoCardFooter({ children, className }: NeoCardFooterProps) {
-  return (
-    <div className={cn(
-      "border-t-2 border-border p-6",
-      className
-    )}>
-      {children}
-    </div>
-  );
+  return <div className={cn('border-t-2 border-border p-6', className)}>{children}</div>;
 }
 
 interface NeoBadgeProps {
@@ -103,20 +93,18 @@ interface NeoBadgeProps {
   className?: string;
 }
 
-export function NeoBadge({ 
-  children, 
-  color = 'yellow',
-  className 
-}: NeoBadgeProps) {
+export function NeoBadge({ children, color = 'yellow', className }: NeoBadgeProps) {
   return (
-    <span className={cn(
-      "inline-flex items-center px-3 py-1",
-      "border-2 border-border",
-      "text-xs font-bold uppercase",
-      "shadow-[2px_2px_0px_0px_theme(colors.border)]",
-      colorClasses[color],
-      className
-    )}>
+    <span
+      className={cn(
+        'inline-flex items-center px-3 py-1',
+        'border-2 border-border rounded-[15px]',
+        'text-xs font-bold uppercase',
+        'shadow-[2px_2px_0px_0px_theme(colors.border)]',
+        colorClasses[color],
+        className
+      )}
+    >
       {children}
     </span>
   );
@@ -139,37 +127,30 @@ export function NeoStatCard({
   icon,
   color = 'yellow',
   trend,
-  trendValue
+  trendValue,
 }: NeoStatCardProps) {
   const trendColors = {
     up: 'text-chart-4',
     down: 'text-chart-3',
-    neutral: 'text-foreground'
+    neutral: 'text-foreground',
   };
 
   return (
-    <NeoCard color={color} hover={false} className="relative overflow-hidden">
+    <NeoCard color={color} hover={false} className="relative overflow-hidden rounded-[15px]">
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold uppercase text-foreground/80">{title}</h3>
             <p className="text-3xl font-heading mt-2">{value}</p>
           </div>
-          {icon && (
-            <div className="text-2xl opacity-80">
-              {icon}
-            </div>
-          )}
+          {icon && <div className="text-2xl opacity-80">{icon}</div>}
         </div>
-        {description && (
-          <p className="text-sm text-foreground/60">{description}</p>
-        )}
+        {description && <p className="text-sm text-foreground/60">{description}</p>}
         {trend && trendValue && (
-          <div className={cn("text-sm font-bold mt-2", trendColors[trend])}>
+          <div className={cn('text-sm font-bold mt-2', trendColors[trend])}>
             {trend === 'up' && '↑'}
             {trend === 'down' && '↓'}
-            {trend === 'neutral' && '→'}
-            {' '}{trendValue}
+            {trend === 'neutral' && '→'} {trendValue}
           </div>
         )}
       </div>
@@ -195,24 +176,25 @@ export function NeoAccordion({ items }: NeoAccordionProps) {
         <motion.div
           key={index}
           className={cn(
-            "border-2 border-border overflow-hidden",
-            "shadow-[4px_4px_0px_0px_theme(colors.border)]",
-            "bg-secondary-background"
+            'border-2 border-border overflow-hidden',
+            'shadow-[4px_4px_0px_0px_theme(colors.border)]',
+            'bg-secondary-background'
           )}
           animate={{
-            boxShadow: openIndex === index 
-              ? "6px 6px 0px 0px var(--border)"
-              : "4px 4px 0px 0px var(--border)",
+            boxShadow:
+              openIndex === index
+                ? '6px 6px 0px 0px var(--border)'
+                : '4px 4px 0px 0px var(--border)',
             x: openIndex === index ? -2 : 0,
             y: openIndex === index ? -2 : 0,
           }}
         >
           <button
             className={cn(
-              "w-full p-4 text-left font-bold uppercase",
-              "flex items-center justify-between",
-              "transition-colors duration-200",
-              openIndex === index ? "bg-main text-main-foreground" : "hover:bg-main/10"
+              'w-full p-4 text-left font-bold uppercase cursor-pointer',
+              'flex items-center justify-between',
+              'transition-colors duration-200',
+              openIndex === index ? 'bg-main text-main-foreground' : 'hover:bg-main/10'
             )}
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
           >
@@ -228,15 +210,13 @@ export function NeoAccordion({ items }: NeoAccordionProps) {
           <motion.div
             initial={false}
             animate={{
-              height: openIndex === index ? "auto" : 0,
-              opacity: openIndex === index ? 1 : 0
+              height: openIndex === index ? 'auto' : 0,
+              opacity: openIndex === index ? 1 : 0,
             }}
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="p-4 border-t-2 border-border">
-              {item.content}
-            </div>
+            <div className="p-4 border-t-2 border-border">{item.content}</div>
           </motion.div>
         </motion.div>
       ))}

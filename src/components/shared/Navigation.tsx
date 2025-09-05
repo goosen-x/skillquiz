@@ -25,9 +25,7 @@ export function Navigation() {
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Brain className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">
-              PsyTest
-            </span>
+            <span className="text-xl font-bold text-gray-900">PsyTest</span>
           </Link>
 
           {/* Десктоп навигация */}
@@ -45,7 +43,7 @@ export function Navigation() {
                 </Link>
               );
             })}
-            
+
             <Button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white">
               Пройти тест
             </Button>
@@ -55,7 +53,7 @@ export function Navigation() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="text-gray-700 hover:text-blue-600 focus:outline-none cursor-pointer"
               aria-label="Открыть меню"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -89,7 +87,7 @@ export function Navigation() {
               </Link>
             );
           })}
-          
+
           <Button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white mt-4">
             Пройти тест
           </Button>

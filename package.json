@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-progress": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.13",
@@ -39,8 +42,20 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.12",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
   }
 }

@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Smartphone, 
-  Clock, 
-  Users, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Smartphone,
+  Clock,
+  Users,
   Shield,
   Zap,
   Heart,
@@ -74,9 +74,21 @@ import {
   Settings,
 } from 'lucide-react';
 import { TestData } from '@/data/tests';
-import { digitalWellnessQuestions, DigitalPersona, calculateDigitalPersona } from '@/data/digital-wellness-test';
-import { personalityTypeQuestions, TestResult, calculatePersonalityTypeResult } from '@/data/personality-type-test';
-import { emotionalIntelligenceQuestions, TestResult as EITestResult, calculateEmotionalIntelligenceResult } from '@/data/emotional-intelligence-test';
+import {
+  digitalWellnessQuestions,
+  DigitalPersona,
+  calculateDigitalPersona,
+} from '@/data/digital-wellness-test';
+import {
+  personalityTypeQuestions,
+  TestResult,
+  calculatePersonalityTypeResult,
+} from '@/data/personality-type-test';
+import {
+  emotionalIntelligenceQuestions,
+  TestResult as EITestResult,
+  calculateEmotionalIntelligenceResult,
+} from '@/data/emotional-intelligence-test';
 // Removed unused imports
 // import { saveResultToHistory } from '@/lib/results-storage';
 import { generateShortResultUrl } from '@/lib/short-urls';
@@ -88,7 +100,7 @@ interface TestPageProps {
 }
 
 // Функция для рендеринга иконок
-const renderIcon = (iconName: string, className: string = "w-12 h-12 text-foreground") => {
+const renderIcon = (iconName: string, className: string = 'w-12 h-12 text-foreground') => {
   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
     // Digital wellness icons
     smartphone: Smartphone,
@@ -97,20 +109,70 @@ const renderIcon = (iconName: string, className: string = "w-12 h-12 text-foregr
     shield: Shield,
     zap: Zap,
     heart: Heart,
-    
+
     // Personality type icons
-    Star, Home, PartyPopper, UserMinus, MessageCircle, Battery, Handshake, Ear, 
-    Calendar, Users2, HeartHandshake, Eye, Smile, User, Trophy, Gift, Lock,
-    CheckCircle, FolderOpen, Target, Frown, Search, Wind, Mountain, Shuffle,
-    AlertTriangle, TrendingUp, CloudRain, HeartCrack, ArrowUp, UserX, Anchor,
-    Lightbulb, Archive, Compass, Puzzle, Palette, X, FlaskConical, BookOpen,
-    BookOpenCheck, CloudLightning, ShieldAlert, Sun, Cloud, Balance,
-    
+    Star,
+    Home,
+    PartyPopper,
+    UserMinus,
+    MessageCircle,
+    Battery,
+    Handshake,
+    Ear,
+    Calendar,
+    Users2,
+    HeartHandshake,
+    Eye,
+    Smile,
+    User,
+    Trophy,
+    Gift,
+    Lock,
+    CheckCircle,
+    FolderOpen,
+    Target,
+    Frown,
+    Search,
+    Wind,
+    Mountain,
+    Shuffle,
+    AlertTriangle,
+    TrendingUp,
+    CloudRain,
+    HeartCrack,
+    ArrowUp,
+    UserX,
+    Anchor,
+    Lightbulb,
+    Archive,
+    Compass,
+    Puzzle,
+    Palette,
+    X,
+    FlaskConical,
+    BookOpen,
+    BookOpenCheck,
+    CloudLightning,
+    ShieldAlert,
+    Sun,
+    Cloud,
+    Balance,
+
     // Emotional Intelligence icons
-    Glasses, FileText, Pause, Flame, Hand, Network, UserCheck, Globe,
-    Thermometer, Activity, Magnet, Settings
+    Glasses,
+    FileText,
+    Pause,
+    Flame,
+    Hand,
+    Network,
+    UserCheck,
+    Globe,
+    Thermometer,
+    Activity,
+    Magnet,
+    Settings,
   };
-  
+
   const IconComponent = iconMap[iconName] || Brain;
   return <IconComponent className={className} />;
 };
@@ -125,10 +187,14 @@ export default function TestPage({ test }: TestPageProps) {
   const router = useRouter();
 
   // Определяем тип теста и соответствующие вопросы
-  const questions = test.slug === 'digital-wellness-persona' ? digitalWellnessQuestions : 
-                   test.slug === 'personality-type' ? personalityTypeQuestions : 
-                   test.slug === 'emotional-intelligence' ? emotionalIntelligenceQuestions :
-                   digitalWellnessQuestions;
+  const questions =
+    test.slug === 'digital-wellness-persona'
+      ? digitalWellnessQuestions
+      : test.slug === 'personality-type'
+        ? personalityTypeQuestions
+        : test.slug === 'emotional-intelligence'
+          ? emotionalIntelligenceQuestions
+          : digitalWellnessQuestions;
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   useEffect(() => {
@@ -165,10 +231,10 @@ export default function TestPage({ test }: TestPageProps) {
 
   const calculateResults = async (finalAnswers: number[]) => {
     setIsLoading(true);
-    
+
     // Имитация загрузки для эффекта
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     // Вычисляем результат в зависимости от типа теста
     let testResult;
     if (test.slug === 'digital-wellness-persona') {
@@ -180,14 +246,14 @@ export default function TestPage({ test }: TestPageProps) {
     } else {
       testResult = calculateDigitalPersona(finalAnswers); // Fallback
     }
-    
+
     setResult(testResult);
     setIsLoading(false);
 
     // Генерируем короткую ссылку
     let shortUrl: string;
     let scores: { [key: string]: number } | undefined;
-    
+
     if (test.slug === 'personality-type') {
       // Для теста личности добавляем оценки Big Five
       const bigFiveScores = calculateBigFiveScores(finalAnswers);
@@ -196,25 +262,25 @@ export default function TestPage({ test }: TestPageProps) {
         agreeableness: bigFiveScores.agreeableness,
         conscientiousness: bigFiveScores.conscientiousness,
         neuroticism: bigFiveScores.neuroticism,
-        openness: bigFiveScores.openness
+        openness: bigFiveScores.openness,
       };
       shortUrl = generateShortResultUrl(test.slug, testResult, scores);
     } else {
       shortUrl = generateShortResultUrl(test.slug, testResult);
     }
-    
+
     // Сохраняем в историю короткую ссылку
     // saveResultToHistory(test.slug, shortUrl, testResult.name);
-    
+
     // Сохраняем результат в localStorage для совместимости
     localStorage.setItem(
       `test-result-${test.slug}`,
       JSON.stringify({ result: testResult, date: new Date().toISOString() })
     );
-    
+
     // Очищаем прогресс
     localStorage.removeItem(`test-progress-${test.slug}`);
-    
+
     // Редиректим на короткую ссылку
     router.push(shortUrl);
   };
@@ -243,16 +309,18 @@ export default function TestPage({ test }: TestPageProps) {
           <div className="mb-8">
             <motion.div
               className="w-24 h-24 mx-auto bg-chart-5 border-2 border-border shadow-shadow flex items-center justify-center"
-              animate={{ 
+              animate={{
                 rotate: [0, -10, 10, -10, 10, 0],
-                scale: [1, 1.1, 1]
+                scale: [1, 1.1, 1],
               }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               <Brain className="w-16 h-16 text-foreground" />
             </motion.div>
           </div>
-          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">Анализируем ваши ответы...</h2>
+          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">
+            Анализируем ваши ответы...
+          </h2>
           <p className="text-foreground/80 font-base">Определяем вашу цифровую личность</p>
         </motion.div>
       </div>
@@ -269,7 +337,7 @@ export default function TestPage({ test }: TestPageProps) {
         <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-chart-1 rounded-full" />
         <div className="absolute top-1/2 right-1/3 w-24 h-24 bg-chart-2" />
       </div>
-      
+
       <div className="max-w-3xl mx-auto px-4 py-8 relative z-10">
         {/* Шапка с прогрессом */}
         <div className="mb-8">
@@ -280,7 +348,7 @@ export default function TestPage({ test }: TestPageProps) {
             </NeoBadge>
           </div>
           <div className="bg-background border-2 border-border p-1">
-            <div 
+            <div
               className="h-3 bg-chart-3 border-border border transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
@@ -304,11 +372,12 @@ export default function TestPage({ test }: TestPageProps) {
               <NeoCardContent className="p-8">
                 {/* Иконка вопроса */}
                 <div className="flex justify-center mb-6">
-                  <motion.div 
+                  <motion.div
                     className={`w-24 h-24 border-2 border-border shadow-shadow flex items-center justify-center ${
                       // Используем хеширование названия иконки для выбора цвета
                       ['bg-chart-1', 'bg-chart-2', 'bg-chart-3', 'bg-chart-4', 'bg-chart-5'][
-                        currentQ.icon.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % 5
+                        currentQ.icon.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) %
+                          5
                       ]
                     }`}
                     whileHover={{ rotate: [0, -10, 10, 0] }}
@@ -331,7 +400,7 @@ export default function TestPage({ test }: TestPageProps) {
                       whileHover={{ x: 4, y: 4 }}
                       whileTap={{ x: 0, y: 0 }}
                       onClick={() => handleAnswer(option.value)}
-                      className={`w-full p-4 text-left border-2 transition-all font-base ${
+                      className={`w-full p-4 text-left border-2 transition-all font-base cursor-pointer ${
                         answers[currentQuestion] === option.value
                           ? 'bg-chart-3 border-border shadow-shadow'
                           : 'bg-secondary-background border-border hover:shadow-shadow'
@@ -357,7 +426,7 @@ export default function TestPage({ test }: TestPageProps) {
             <ChevronLeft className="w-4 h-4 mr-1" />
             Назад
           </Button>
-          
+
           <div className="text-sm text-foreground/60 flex items-center font-bold uppercase">
             Вопрос {currentQuestion + 1} из {questions.length}
           </div>
@@ -365,13 +434,18 @@ export default function TestPage({ test }: TestPageProps) {
           <Button
             variant="outline"
             onClick={() => {
-              if (answers[currentQuestion] !== undefined && currentQuestion < questions.length - 1) {
+              if (
+                answers[currentQuestion] !== undefined &&
+                currentQuestion < questions.length - 1
+              ) {
                 setAnimationDirection(1);
                 setCurrentQuestion(currentQuestion + 1);
                 saveProgress(answers, currentQuestion + 1);
               }
             }}
-            disabled={answers[currentQuestion] === undefined || currentQuestion === questions.length - 1}
+            disabled={
+              answers[currentQuestion] === undefined || currentQuestion === questions.length - 1
+            }
             className="flex items-center uppercase font-bold"
           >
             Далее

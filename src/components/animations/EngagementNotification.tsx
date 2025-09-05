@@ -27,30 +27,30 @@ const messages: NotificationMessage[] = [
     description: 'Изучаете внимательно? Отлично! Попробуйте пройти тест.',
     action: {
       text: 'Выбрать тест',
-      href: '/tests'
-    }
+      href: '/tests',
+    },
   },
   {
     title: 'Находите что-то интересное?',
     description: 'У нас 58 тестов в трёх категориях. Найдите свой!',
     action: {
       text: 'К каталогу',
-      href: '/tests'
-    }
+      href: '/tests',
+    },
   },
   {
     title: 'Отличное внимание к деталям!',
     description: 'Такая внимательность пригодится в наших тестах.',
     action: {
       text: 'Начать тест',
-      href: '/tests'
-    }
-  }
+      href: '/tests',
+    },
+  },
 ];
 
-export function EngagementNotification({ 
+export function EngagementNotification({
   timeThreshold = 300000, // 5 минут по умолчанию
-  position = 'bottom-right' 
+  position = 'bottom-right',
 }: EngagementNotificationProps) {
   const [showNotification, setShowNotification] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
@@ -59,7 +59,7 @@ export function EngagementNotification({
   useEffect(() => {
     // Проверяем, показывали ли уже уведомление в этой сессии
     const shownInSession = sessionStorage.getItem('engagement-notification-shown');
-    
+
     if (shownInSession) {
       setHasBeenShown(true);
       return;
@@ -92,7 +92,7 @@ export function EngagementNotification({
     'bottom-right': 'bottom-6 right-6',
     'bottom-left': 'bottom-6 left-6',
     'top-right': 'top-6 right-6',
-    'top-left': 'top-6 left-6'
+    'top-left': 'top-6 left-6',
   };
 
   const currentMessage = messages[messageIndex];
@@ -101,48 +101,47 @@ export function EngagementNotification({
     <AnimatePresence>
       {showNotification && (
         <motion.div
-          className={cn(
-            "fixed z-50 max-w-sm",
-            positionClasses[position]
-          )}
-          initial={{ 
-            opacity: 0, 
+          className={cn('fixed z-50 max-w-sm', positionClasses[position])}
+          initial={{
+            opacity: 0,
             y: position.includes('bottom') ? 100 : -100,
-            scale: 0.8 
+            scale: 0.8,
           }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             y: 0,
-            scale: 1 
+            scale: 1,
           }}
-          exit={{ 
-            opacity: 0, 
+          exit={{
+            opacity: 0,
             y: position.includes('bottom') ? 100 : -100,
-            scale: 0.8 
+            scale: 0.8,
           }}
-          transition={{ 
-            type: "spring", 
+          transition={{
+            type: 'spring',
             duration: 0.6,
-            bounce: 0.3
+            bounce: 0.3,
           }}
         >
-          <div className={cn(
-            "relative p-6 bg-chart-1",
-            "border-2 border-border",
-            "shadow-[6px_6px_0px_0px_theme(colors.border)]"
-          )}>
+          <div
+            className={cn(
+              'relative p-6 bg-chart-1',
+              'border-2 border-border',
+              'shadow-[6px_6px_0px_0px_theme(colors.border)]'
+            )}
+          >
             {/* Кнопка закрытия */}
             <button
               onClick={handleClose}
               className={cn(
-                "absolute -top-2 -right-2",
-                "w-8 h-8 bg-secondary-background",
-                "border-2 border-border",
-                "shadow-[2px_2px_0px_0px_theme(colors.border)]",
-                "flex items-center justify-center",
-                "hover:translate-x-0.5 hover:translate-y-0.5",
-                "hover:shadow-[1px_1px_0px_0px_theme(colors.border)]",
-                "transition-all duration-200"
+                'absolute -top-2 -right-2',
+                'w-8 h-8 bg-secondary-background',
+                'border-2 border-border',
+                'shadow-[2px_2px_0px_0px_theme(colors.border)]',
+                'flex items-center justify-center cursor-pointer',
+                'hover:translate-x-0.5 hover:translate-y-0.5',
+                'hover:shadow-[1px_1px_0px_0px_theme(colors.border)]',
+                'transition-all duration-200'
               )}
               aria-label="Закрыть уведомление"
             >
@@ -151,21 +150,13 @@ export function EngagementNotification({
 
             {/* Контент */}
             <div className="space-y-3">
-              <h3 className="text-lg font-heading font-bold uppercase">
-                {currentMessage.title}
-              </h3>
-              
-              <p className="text-sm text-foreground/80">
-                {currentMessage.description}
-              </p>
+              <h3 className="text-lg font-heading font-bold uppercase">{currentMessage.title}</h3>
+
+              <p className="text-sm text-foreground/80">{currentMessage.description}</p>
 
               {currentMessage.action && (
                 <Link href={currentMessage.action.href}>
-                  <NeoBrutalButton
-                    variant="secondary"
-                    size="sm"
-                    className="w-full mt-4"
-                  >
+                  <NeoBrutalButton variant="secondary" size="sm" className="w-full mt-4">
                     {currentMessage.action.text}
                   </NeoBrutalButton>
                 </Link>
@@ -187,13 +178,13 @@ export function showEngagementToast() {
   const messages = [
     'Спасибо за интерес к нашим тестам!',
     'Находите что-то интересное? Попробуйте пройти тест!',
-    'Отличное внимание к деталям! Это пригодится в наших тестах.'
+    'Отличное внимание к деталям! Это пригодится в наших тестах.',
   ];
-  
+
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-  
+
   // Здесь можно вызвать toast из Sonner
   // toast(randomMessage, { ... });
-  
+
   return randomMessage;
 }
