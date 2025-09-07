@@ -68,21 +68,28 @@ export function TestCard({ test, variant = 'default', showStats = true, onHover 
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-2">
-            {test.featured && (
-              <NeoBadge color="yellow" className="text-xs">
-                <Award className="w-3 h-3 mr-1" />
-                Популярный
-              </NeoBadge>
-            )}
-            {test.new && (
-              <NeoBadge color="green" className="text-xs">
-                Новый
-              </NeoBadge>
-            )}
-            {test.status === 'in_development' && (
+            {test.status === 'in_development' ? (
               <NeoBadge color="orange" className="text-xs">
                 В разработке
               </NeoBadge>
+            ) : test.status === 'planned' ? (
+              <NeoBadge color="blue" className="text-xs">
+                Запланирован
+              </NeoBadge>
+            ) : (
+              <>
+                {test.featured && (
+                  <NeoBadge color="yellow" className="text-xs">
+                    <Award className="w-3 h-3 mr-1" />
+                    Популярный
+                  </NeoBadge>
+                )}
+                {test.new && !test.featured && (
+                  <NeoBadge color="green" className="text-xs">
+                    Новый
+                  </NeoBadge>
+                )}
+              </>
             )}
           </div>
           <NeoBadge color={category.color} className="text-xs">

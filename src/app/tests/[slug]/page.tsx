@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const test = getTestBySlug(slug);
-  
+
   if (!test) {
     return {
       title: 'Тест не найден',
@@ -46,15 +46,16 @@ export default async function TestPageRoute({ params }: Props) {
   }
 
   // Для реализованных тестов используем специальный компонент
-  if (test.slug === 'digital-wellness-persona') {
-    return <TestPage test={test} />;
-  }
+  const implementedTests = [
+    'digital-wellness-persona',
+    'personality-type',
+    'emotional-intelligence',
+    'impostor-syndrome',
+    'mental-resilience',
+    'dopamine-detox-need',
+  ];
 
-  if (test.slug === 'personality-type') {
-    return <TestPage test={test} />;
-  }
-
-  if (test.slug === 'emotional-intelligence') {
+  if (implementedTests.includes(test.slug)) {
     return <TestPage test={test} />;
   }
 

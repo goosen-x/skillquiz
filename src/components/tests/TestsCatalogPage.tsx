@@ -44,11 +44,14 @@ function TestsCatalogContent() {
 
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [visibleCount, setVisibleCount] = useState<number>(9);
 
   useEffect(() => {
     if (categoryParam && testCategories.some((cat) => cat.id === categoryParam)) {
       setActiveCategory(categoryParam);
     }
+    // Сброс видимого количества при смене категории
+    setVisibleCount(9);
   }, [categoryParam]);
 
   const filteredTests = useMemo(() => {
@@ -68,6 +71,12 @@ function TestsCatalogContent() {
           test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(query))
       );
     }
+
+    // Сортировка: сначала готовые тесты, потом в разработке, потом запланированные
+    tests = tests.sort((a, b) => {
+      const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+      return statusOrder[a.status] - statusOrder[b.status];
+    });
 
     return tests;
   }, [activeCategory, searchQuery]);
@@ -117,7 +126,16 @@ function TestsCatalogContent() {
           className="text-center mb-12"
         >
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-black text-foreground mb-6 uppercase">
-            Каталог <span className="text-main">тестов</span>
+            Каталог{' '}
+            <span
+              className="text-main"
+              style={{
+                textShadow:
+                  '2px 2px 0px #000, -2px 2px 0px #000, 2px -2px 0px #000, -2px -2px 0px #000',
+              }}
+            >
+              тестов
+            </span>
           </h1>
           <p className="text-xl sm:text-2xl text-foreground max-w-4xl mx-auto mb-8 font-base">
             Откройте свой потенциал с научными{' '}
@@ -234,7 +252,10 @@ function TestsCatalogContent() {
                 Все тесты
               </h2>
 
-              <TabsList className="grid grid-cols-2 lg:grid-cols-4 w-full lg:w-auto gap-2 bg-transparent p-0">
+              <TabsList
+                className="grid grid-cols-2 lg:grid-cols-4 w-full lg:w-auto gap-2 bg-transparent p-0"
+                onClick={() => setVisibleCount(9)}
+              >
                 <TabsTrigger
                   value="all"
                   className="border-2 border-border bg-secondary-background data-[state=active]:bg-main data-[state=active]:text-main-foreground shadow-shadow data-[state=active]:shadow-[4px_4px_0px_0px_theme(colors.border)] font-bold uppercase"
@@ -266,30 +287,68 @@ function TestsCatalogContent() {
                 type="text"
                 placeholder="Поиск тестов..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setVisibleCount(9); // Сброс видимого количества при поиске
+                }}
                 className="w-full pl-12 pr-4 py-4 text-lg border-2 border-border bg-secondary-background focus:shadow-[4px_4px_0px_0px_theme(colors.border)] focus:-translate-x-[2px] focus:-translate-y-[2px] transition-all duration-300 shadow-shadow font-base placeholder:uppercase"
               />
             </div>
 
             <TabsContent value="all" className="mt-0">
-              <TestGrid tests={filteredTests} />
+              <TestGrid tests={filteredTests} visibleCount={visibleCount} />
+              {filteredTests.length > visibleCount && (
+                <div className="text-center mt-8">
+                  <Button
+                    onClick={() => setVisibleCount((prev) => prev + 6)}
+                    size="lg"
+                    className="uppercase font-bold"
+                  >
+                    Показать ещё
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
+              )}
             </TabsContent>
 
             {testCategories.map((category) => (
               <TabsContent key={category.id} value={category.id} className="mt-0">
                 <CategoryHeader category={category} />
-                <TestGrid
-                  tests={getTestsByCategory(category.id).filter((test) => {
-                    if (!searchQuery.trim()) return true;
-                    const query = searchQuery.toLowerCase().trim();
-                    return (
-                      test.title.toLowerCase().includes(query) ||
-                      test.description.toLowerCase().includes(query) ||
-                      test.tags.some((tag) => tag.toLowerCase().includes(query)) ||
-                      test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(query))
-                    );
-                  })}
-                />
+                {(() => {
+                  const categoryTests = getTestsByCategory(category.id)
+                    .filter((test) => {
+                      if (!searchQuery.trim()) return true;
+                      const query = searchQuery.toLowerCase().trim();
+                      return (
+                        test.title.toLowerCase().includes(query) ||
+                        test.description.toLowerCase().includes(query) ||
+                        test.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+                        test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(query))
+                      );
+                    })
+                    .sort((a, b) => {
+                      const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+                      return statusOrder[a.status] - statusOrder[b.status];
+                    });
+
+                  return (
+                    <>
+                      <TestGrid tests={categoryTests} visibleCount={visibleCount} />
+                      {categoryTests.length > visibleCount && (
+                        <div className="text-center mt-8">
+                          <Button
+                            onClick={() => setVisibleCount((prev) => prev + 6)}
+                            size="lg"
+                            className="uppercase font-bold"
+                          >
+                            Показать ещё
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </div>
+                      )}
+                    </>
+                  );
+                })()}
               </TabsContent>
             ))}
           </Tabs>
@@ -420,7 +479,7 @@ function CategoryHeader({ category }: { category: TestCategory }) {
   );
 }
 
-function TestGrid({ tests }: { tests: TestData[] }) {
+function TestGrid({ tests, visibleCount }: { tests: TestData[]; visibleCount: number }) {
   if (tests.length === 0) {
     return (
       <div className="text-center py-16">
@@ -448,7 +507,7 @@ function TestGrid({ tests }: { tests: TestData[] }) {
       animate="visible"
       className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
     >
-      {tests.map((test, index) => (
+      {tests.slice(0, visibleCount).map((test, index) => (
         <TestCard key={test.id} test={test} index={index} />
       ))}
     </motion.div>

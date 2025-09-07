@@ -13,7 +13,7 @@ export function SocialProof() {
       rating: 5,
       text: 'Прошла тест на тип личности и была поражена точностью результатов! Наконец-то поняла, почему мне так подходит творческая работа. Рекомендую всем, кто ищет себя.',
       testType: 'Тест на личность',
-      avatar: 'AK'
+      avatar: 'AK',
     },
     {
       name: 'Михаил С.',
@@ -22,7 +22,7 @@ export function SocialProof() {
       rating: 5,
       text: 'Благодаря тесту на профессию выбрал IT-направление. Сейчас изучаю программирование и чувствую, что это действительно моё призвание. Спасибо за помощь!',
       testType: 'Тест на профессию',
-      avatar: 'МС'
+      avatar: 'МС',
     },
     {
       name: 'Елена В.',
@@ -31,17 +31,17 @@ export function SocialProof() {
       rating: 5,
       text: 'Использую тесты для подбора сотрудников. Качество и достоверность результатов на высоком уровне. Коллегам тоже советую для понимания команды.',
       testType: 'Психологические тесты',
-      avatar: 'ЕВ'
+      avatar: 'ЕВ',
     },
     {
       name: 'Дмитрий Л.',
-      role: 'Предприниматель',  
+      role: 'Предприниматель',
       age: 31,
       rating: 5,
       text: 'Тест на продуктивность помог оптимизировать рабочий день. Узнал, что я "жаворонок" и теперь планирую важные дела на утро. Продуктивность выросла в 2 раза!',
       testType: 'Тест продуктивности',
-      avatar: 'ДЛ'
-    }
+      avatar: 'ДЛ',
+    },
   ];
 
   const stats = [
@@ -49,26 +49,26 @@ export function SocialProof() {
       icon: Users,
       value: '50,000+',
       label: 'Довольных пользователей',
-      neoColor: 'yellow' as const
+      neoColor: 'yellow' as const,
     },
     {
       icon: Award,
       value: '98%',
       label: 'Точность результатов',
-      neoColor: 'green' as const
+      neoColor: 'green' as const,
     },
     {
       icon: TrendingUp,
       value: '15+',
       label: 'Типов тестов',
-      neoColor: 'purple' as const
+      neoColor: 'purple' as const,
     },
     {
       icon: Star,
       value: '4.9/5',
       label: 'Средняя оценка',
-      neoColor: 'orange' as const
-    }
+      neoColor: 'orange' as const,
+    },
   ];
 
   const containerVariants = {
@@ -76,9 +76,9 @@ export function SocialProof() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -87,23 +87,15 @@ export function SocialProof() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
-      }
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   return (
     <section className="py-20 bg-secondary-background relative overflow-hidden">
-      {/* Geometric pattern background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-48 h-48 border-2 border-border transform rotate-12" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-chart-1 rounded-full transform -translate-x-1/2 translate-y-1/2" />
-        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-chart-2" />
-        <div className="absolute bottom-1/4 right-1/3 w-24 h-24 border-2 border-border rounded-full" />
-      </div>
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,13 +106,14 @@ export function SocialProof() {
             Что говорят наши пользователи
           </h2>
           <p className="text-xl text-foreground max-w-3xl mx-auto font-base">
-            Тысячи людей уже прошли наши <strong className="font-bold">психологические тесты</strong> и получили 
-            ценные инсайты о своей личности и карьерном пути
+            Тысячи людей уже прошли наши{' '}
+            <strong className="font-bold">психологические тесты</strong> и получили ценные инсайты о
+            своей личности и карьерном пути
           </p>
         </motion.div>
 
         {/* Статистика */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           variants={containerVariants}
           initial="hidden"
@@ -143,7 +136,7 @@ export function SocialProof() {
         </motion.div>
 
         {/* Отзывы */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -156,13 +149,9 @@ export function SocialProof() {
                 <NeoCardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-3">
-                      <motion.div 
-                        className="w-12 h-12 bg-chart-5 border-2 border-border shadow-shadow flex items-center justify-center font-heading font-bold text-foreground"
-                        whileHover={{ rotate: [0, -5, 5, 0] }}
-                        transition={{ duration: 0.3 }}
-                      >
+                      <div className="w-12 h-12 bg-chart-5 border-2 border-border shadow-shadow flex items-center justify-center font-heading font-bold text-foreground">
                         {testimonial.avatar}
-                      </motion.div>
+                      </div>
                       <div>
                         <h4 className="font-heading font-bold text-foreground uppercase">
                           {testimonial.name}
@@ -203,7 +192,7 @@ export function SocialProof() {
         </motion.div>
 
         {/* Additional information */}
-        <motion.div 
+        <motion.div
           className="mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -216,17 +205,18 @@ export function SocialProof() {
                 Присоединяйтесь к тысячам довольных пользователей
               </h3>
               <p className="text-foreground leading-relaxed max-w-3xl mx-auto mb-8 font-base">
-                Каждый день сотни людей проходят наши <strong className="font-bold">тесты на личность</strong> и 
-                <strong className="font-bold"> профориентацию</strong>, получая точные результаты и персональные 
-                рекомендации. Станьте частью нашего сообщества саморазвития!
+                Каждый день сотни людей проходят наши{' '}
+                <strong className="font-bold">тесты на личность</strong> и
+                <strong className="font-bold"> профориентацию</strong>, получая точные результаты и
+                персональные рекомендации. Станьте частью нашего сообщества саморазвития!
               </p>
-              
+
               <div className="flex flex-wrap items-center justify-center gap-4">
                 {[
                   'Бесплатные тесты',
                   'Мгновенные результаты',
                   'Научная достоверность',
-                  'Персональные рекомендации'
+                  'Персональные рекомендации',
                 ].map((feature, index) => (
                   <motion.div
                     key={index}
@@ -245,20 +235,20 @@ export function SocialProof() {
             </NeoCardContent>
           </NeoCard>
         </motion.div>
-        
+
         {/* Geometric separator */}
         <div className="flex justify-center mt-16 gap-4">
-          <motion.div 
+          <motion.div
             className="w-4 h-4 bg-chart-5 border-2 border-border"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
-          <motion.div 
+          <motion.div
             className="w-4 h-4 bg-chart-4 border-2 border-border rounded-full"
             animate={{ scale: [1, 1.3, 1] }}
             transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
           />
-          <motion.div 
+          <motion.div
             className="w-4 h-4 bg-chart-3 border-2 border-border"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, delay: 1 }}

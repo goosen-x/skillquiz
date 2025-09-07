@@ -3,27 +3,48 @@
 import { TestResult as PersonalityTestResult } from '@/data/personality-type-test';
 import { DigitalPersona } from '@/data/digital-wellness-test';
 import { TestResult as EmotionalTestResult } from '@/data/emotional-intelligence-test';
+import { TestResult as ImpostorTestResult } from '@/data/impostor-syndrome-test';
+import { TestResult as ResilienceTestResult } from '@/data/mental-resilience-test';
+import { TestResult as DopamineTestResult } from '@/data/dopamine-detox-test';
 
 // Генерация короткой ссылки для просмотра результата
 export function generateShortResultUrl(
   testSlug: string,
-  result: PersonalityTestResult | DigitalPersona | EmotionalTestResult | { id?: string; name: string },
+  result:
+    | PersonalityTestResult
+    | DigitalPersona
+    | EmotionalTestResult
+    | ImpostorTestResult
+    | ResilienceTestResult
+    | DopamineTestResult
+    | { id?: string; name: string },
   scores?: { [key: string]: number }
 ): string {
   const params = new URLSearchParams();
-  
+
   // Добавляем тип результата
-  params.set('r', result.id || result.name);
-  
+  let resultId = '';
+  if (result.id) {
+    resultId = result.id;
+  } else if ('name' in result) {
+    resultId = result.name;
+  } else if ('title' in result) {
+    // Only ImpostorTestResult uses 'title' instead of 'name'
+    resultId = (result as ImpostorTestResult).title;
+  }
+  params.set('r', resultId);
+
   // Для тестов с оценками добавляем их в сжатом формате
   if (scores) {
-    const scoreValues = Object.values(scores).map(s => Math.round(s)).join(',');
+    const scoreValues = Object.values(scores)
+      .map((s) => Math.round(s))
+      .join(',');
     params.set('s', scoreValues);
   }
-  
+
   // Добавляем временную метку для уникальности
   params.set('t', Date.now().toString(36));
-  
+
   return `/tests/${testSlug}/result?${params.toString()}`;
 }
 
@@ -38,15 +59,15 @@ export function parseShortUrl(searchParams: URLSearchParams): ShortUrlData | nul
   const resultType = searchParams.get('r');
   const scoresParam = searchParams.get('s');
   const timestamp = searchParams.get('t');
-  
+
   if (!resultType) {
     return null;
   }
-  
+
   return {
     resultType,
     scores: scoresParam ? scoresParam.split(',').map(Number) : undefined,
-    timestamp: timestamp || undefined
+    timestamp: timestamp || undefined,
   };
 }
 
@@ -72,7 +93,7 @@ export function generateFullResultUrl(
     // Используем существующую систему base64 для полной ссылки
     return `/tests/${testSlug}/results/full?data=${btoa(JSON.stringify(answers))}`;
   }
-  
+
   // Компактная версия с сжатыми ответами
   const compressed = compressAnswers(answers);
   return `/tests/${testSlug}/results/full?a=${compressed}`;

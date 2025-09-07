@@ -86,6 +86,73 @@ interface UniversalTestResultsProps {
   answers: number[];
 }
 
+// Helper function to get custom metrics for specific tests
+function getCustomMetricsForTest(testSlug: string, result: UniversalTestResult) {
+  switch (testSlug) {
+    case 'impostor-syndrome':
+      return [
+        {
+          label: 'Уровень синдрома',
+          value: result.name.includes('отсутствует')
+            ? 'Минимальный'
+            : result.name.includes('Легкий')
+              ? 'Легкий'
+              : result.name.includes('Умеренный')
+                ? 'Умеренный'
+                : 'Выраженный',
+          color: result.name.includes('отсутствует')
+            ? 'green'
+            : result.name.includes('Легкий')
+              ? 'yellow'
+              : result.name.includes('Умеренный')
+                ? 'orange'
+                : 'orange',
+          sublabel: 'текущий статус',
+        } as const,
+        {
+          label: 'Факторов риска',
+          value:
+            (result.chartData as Array<{ score?: number }>)?.filter((d) => (d.score ?? 0) > 50)
+              .length || 0,
+          color: 'blue' as const,
+          sublabel: 'выше среднего',
+        },
+      ];
+    case 'mental-resilience':
+      return [
+        {
+          label: 'Устойчивость',
+          value: result.percentage > 70 ? 'Высокая' : result.percentage > 40 ? 'Средняя' : 'Низкая',
+          color: result.percentage > 70 ? 'green' : result.percentage > 40 ? 'yellow' : 'orange',
+          sublabel: 'общий уровень',
+        } as const,
+      ];
+    case 'dopamine-detox-need':
+      return [
+        {
+          label: 'Детокс нужен',
+          value: result.name.includes('срочно')
+            ? 'Срочно!'
+            : result.name.includes('желателен')
+              ? 'Желательно'
+              : result.name.includes('не требуется')
+                ? 'Не требуется'
+                : 'Рекомендован',
+          color: result.name.includes('срочно')
+            ? 'orange'
+            : result.name.includes('желателен')
+              ? 'orange'
+              : result.name.includes('не требуется')
+                ? 'green'
+                : 'yellow',
+          sublabel: 'рекомендация',
+        } as const,
+      ];
+    default:
+      return undefined;
+  }
+}
+
 export default function UniversalTestResults({ test, result }: UniversalTestResultsProps) {
   const [copied, setCopied] = useState(false);
   const [showConfetti, setShowConfetti] = useState(true);
@@ -223,7 +290,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8"
         >
-          <h1 className="text-3xl font-heading font-black mb-2 uppercase">Ваш результат готов!</h1>
+          <h1 className="text-3xl font-heading mb-2 uppercase">Ваш результат готов!</h1>
           <p className="text-foreground/80 font-base">Тест &quot;{test.title}&quot; пройден</p>
         </motion.div>
 
@@ -238,9 +305,19 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
               color: result.color,
               traits: result.characteristics?.slice(0, 4),
               strengths: result.characteristics,
-              compatibleTypes: ['Аналитик', 'Лидер', 'Творец'],
+              compatibleTypes:
+                test.slug === 'personality-type' ? ['Аналитик', 'Лидер', 'Творец'] : undefined,
+              characteristics: result.characteristics,
             }}
             test={test}
+            metadata={{
+              showCompatibility:
+                test.slug === 'personality-type' || test.slug === 'emotional-intelligence',
+              showPopularity: false, // Remove hard-coded popularity
+              showStrengthsCount: true,
+              showRarity: true,
+              customMetrics: getCustomMetricsForTest(test.slug, result),
+            }}
           />
         </div>
 
@@ -258,7 +335,15 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                   <div className="w-8 h-8 bg-chart-1 border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-3">
                     <BarChart3 className="w-4 h-4 text-foreground" />
                   </div>
-                  {result.chartType === 'radar' ? 'Профиль личности Big Five' : 'Детальный анализ'}
+                  {test.slug === 'personality-type'
+                    ? 'Профиль личности Big Five'
+                    : test.slug === 'impostor-syndrome'
+                      ? 'Анализ факторов синдрома'
+                      : test.slug === 'mental-resilience'
+                        ? 'Компоненты психологической устойчивости'
+                        : test.slug === 'dopamine-detox-need'
+                          ? 'Профиль дофаминовой зависимости'
+                          : 'Детальный анализ'}
                 </h3>
                 {result.chartType === 'radar' && (
                   <p className="text-sm text-foreground/60 mb-4">

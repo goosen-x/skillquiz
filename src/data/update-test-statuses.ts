@@ -23,35 +23,38 @@ export const testStatuses = {
   'digital-wellness-persona': { status: 'completed' as const },
   'personality-type': { status: 'completed' as const },
   'emotional-intelligence': { status: 'completed' as const },
-  
+  'impostor-syndrome': { status: 'completed' as const },
+  'mental-resilience': { status: 'completed' as const },
+  'dopamine-detox-need': { status: 'completed' as const },
+
   // В разработке (приоритет 1)
-  'career-test': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Февраль 2025' 
+  'career-test': {
+    status: 'in_development' as const,
+    expectedDate: 'Февраль 2025',
   },
-  'chronotype': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Январь 2025' 
+  chronotype: {
+    status: 'in_development' as const,
+    expectedDate: 'Январь 2025',
   },
-  'productivity-test': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Январь 2025' 
+  'productivity-test': {
+    status: 'in_development' as const,
+    expectedDate: 'Январь 2025',
   },
-  
+
   // В разработке (приоритет 2)
-  'temperament': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Февраль 2025' 
+  temperament: {
+    status: 'in_development' as const,
+    expectedDate: 'Февраль 2025',
   },
-  'leadership-test': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Февраль 2025' 
+  'leadership-test': {
+    status: 'in_development' as const,
+    expectedDate: 'Февраль 2025',
   },
-  'lark-owl': { 
-    status: 'in_development' as const, 
-    expectedDate: 'Февраль 2025' 
+  'lark-owl': {
+    status: 'in_development' as const,
+    expectedDate: 'Февраль 2025',
   },
-  
+
   // Планируются (приоритет 3)
   'introvert-extrovert': { status: 'planned' as const },
   'stress-level': { status: 'planned' as const },
@@ -71,7 +74,7 @@ export const testStatuses = {
   'self-esteem': { status: 'planned' as const },
   'conflict-style': { status: 'planned' as const },
   'anxiety-level': { status: 'planned' as const },
-  'perfectionism': { status: 'planned' as const },
+  perfectionism: { status: 'planned' as const },
   'cognitive-style': { status: 'planned' as const },
   'emotional-stability': { status: 'planned' as const },
   'social-intelligence': { status: 'planned' as const },
@@ -83,7 +86,7 @@ export const testStatuses = {
   'work-motivation': { status: 'planned' as const },
   'management-style': { status: 'planned' as const },
   'sales-potential': { status: 'planned' as const },
-  'entrepreneurship': { status: 'planned' as const },
+  entrepreneurship: { status: 'planned' as const },
   'negotiation-skills': { status: 'planned' as const },
   'workplace-personality': { status: 'planned' as const },
   'innovation-style': { status: 'planned' as const },
@@ -104,7 +107,7 @@ export const testStatuses = {
   'relationship-readiness': { status: 'planned' as const },
   'friendship-quality': { status: 'planned' as const },
   'happiness-level': { status: 'planned' as const },
-  'procrastination': { status: 'planned' as const },
+  procrastination: { status: 'planned' as const },
   'digital-detox-readiness': { status: 'planned' as const },
   'mindfulness-level': { status: 'planned' as const },
   'goal-setting-style': { status: 'planned' as const },
@@ -152,6 +155,8 @@ export function updateTestWithStatus(test: BaseTestData) {
   return {
     ...test,
     status: statusInfo?.status || 'planned',
-    ...(statusInfo && 'expectedDate' in statusInfo ? { expectedDate: statusInfo.expectedDate } : {})
+    ...(statusInfo && 'expectedDate' in statusInfo
+      ? { expectedDate: statusInfo.expectedDate }
+      : {}),
   };
 }

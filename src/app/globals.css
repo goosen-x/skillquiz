@@ -118,6 +118,9 @@
   --shadow-shadow: var(--shadow);
   --font-weight-base: 500;
   --font-weight-heading: 900;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee2: marquee2 40s linear infinite;
 }
 
 @layer base {
@@ -369,4 +372,22 @@
 [data-close-button]:hover {
   background: var(--foreground) !important;
   color: var(--background) !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }

@@ -4,9 +4,11 @@ import { TestCategories } from '@/components/landing/TestCategories';
 import { SocialProof } from '@/components/landing/SocialProof';
 import { CTA, FinalCTA } from '@/components/landing/CTA';
 import { WebsiteSchema, OrganizationSchema, FAQSchema } from '@/components/seo/StructuredData';
-import { GeometricSeparator } from '@/components/ui/geometric-separator';
 import RecentResults from '@/components/landing/RecentResults';
 import { Footer } from '@/components/shared/Footer';
+import { MarqueeHome } from '@/components/landing/MarqueeHome';
+import { TestsCarousel } from '@/components/landing/TestsCarousel';
+import { CustomTestBlock } from '@/components/landing/CustomTestBlock';
 
 export default function Home() {
   return (
@@ -17,35 +19,15 @@ export default function Home() {
       <FAQSchema />
 
       <main className="min-h-screen">
-        {/* Hero секция с H1 и основным value proposition */}
         <Hero />
-
-        <GeometricSeparator variant="animated" />
-
-        {/* Преимущества психологических тестов */}
+        <MarqueeHome />
         <Benefits />
-
-        <GeometricSeparator variant="complex" />
-
-        {/* Категории тестов с LSI словами */}
+        <TestsCarousel />
         <TestCategories />
-
-        <GeometricSeparator variant="animated" />
-
-        {/* Социальные доказательства и отзывы */}
         <SocialProof />
-
-        <GeometricSeparator variant="simple" />
-
-        {/* Последние результаты пользователя */}
+        <CustomTestBlock />
         <RecentResults />
-
-        {/* Главная CTA секция */}
         <CTA />
-
-        <GeometricSeparator variant="complex" />
-
-        {/* Финальная CTA */}
         <FinalCTA />
       </main>
 

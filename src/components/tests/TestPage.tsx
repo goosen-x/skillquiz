@@ -72,6 +72,21 @@ import {
   Activity,
   Magnet,
   Settings,
+  Grid,
+  Route,
+  HandHeart,
+  CheckSquare,
+  PlayCircle,
+  Play,
+  Wifi,
+  ShoppingCart,
+  Timer,
+  CreditCard,
+  Monitor,
+  ArrowLeftRight,
+  Bell,
+  Coffee,
+  Focus,
 } from 'lucide-react';
 import { TestData } from '@/data/tests';
 import {
@@ -89,6 +104,21 @@ import {
   TestResult as EITestResult,
   calculateEmotionalIntelligenceResult,
 } from '@/data/emotional-intelligence-test';
+import {
+  impostorSyndromeQuestions,
+  TestResult as ISTestResult,
+  calculateImpostorSyndromeResult,
+} from '@/data/impostor-syndrome-test';
+import {
+  psychologicalResilienceQuestions,
+  TestResult as PRTestResult,
+  calculatePsychologicalResilienceResult,
+} from '@/data/mental-resilience-test';
+import {
+  dopamineDetoxQuestions,
+  TestResult as DDTestResult,
+  calculateDopamineDetoxResult,
+} from '@/data/dopamine-detox-test';
 // Removed unused imports
 // import { saveResultToHistory } from '@/lib/results-storage';
 import { generateShortResultUrl } from '@/lib/short-urls';
@@ -171,6 +201,44 @@ const renderIcon = (iconName: string, className: string = 'w-12 h-12 text-foregr
     Activity,
     Magnet,
     Settings,
+
+    // Psychological Resilience icons
+    Grid,
+    Route,
+    HandHeart,
+
+    // Dopamine Detox icons
+    Play,
+    Wifi,
+    ShoppingCart,
+    Timer,
+    CreditCard,
+    Monitor,
+    ArrowLeftRight,
+    Bell,
+    Coffee,
+    CheckSquare,
+    PlayCircle,
+    Focus,
+
+    // Icon name mappings (lowercase)
+    trophy: Trophy,
+    brain: Brain,
+    star: Star,
+    eye: Eye,
+    scale: Balance,
+    'user-x': UserX,
+    clover: Lightbulb, // Using lightbulb as substitute for clover
+    compass: Compass,
+    users2: Users2,
+    'alert-triangle': AlertTriangle,
+    redo: Shuffle, // Using shuffle as substitute for redo
+    target: Target,
+    'calendar-x': Calendar, // Using calendar as substitute for calendar-x
+    balance: Balance,
+    briefcase: FolderOpen, // Using folder-open as substitute for briefcase
+    'shield-x': ShieldAlert, // Using shield-alert as substitute for shield-x
+    'user-check': UserCheck,
   };
 
   const IconComponent = iconMap[iconName] || Brain;
@@ -181,7 +249,9 @@ export default function TestPage({ test }: TestPageProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [showResults] = useState(false);
-  const [result, setResult] = useState<DigitalPersona | TestResult | EITestResult | null>(null);
+  const [result, setResult] = useState<
+    DigitalPersona | TestResult | EITestResult | ISTestResult | PRTestResult | DDTestResult | null
+  >(null);
   const [isLoading, setIsLoading] = useState(false);
   const [animationDirection, setAnimationDirection] = useState(0); // 1 for forward, -1 for backward
   const router = useRouter();
@@ -194,7 +264,13 @@ export default function TestPage({ test }: TestPageProps) {
         ? personalityTypeQuestions
         : test.slug === 'emotional-intelligence'
           ? emotionalIntelligenceQuestions
-          : digitalWellnessQuestions;
+          : test.slug === 'impostor-syndrome'
+            ? impostorSyndromeQuestions
+            : test.slug === 'mental-resilience'
+              ? psychologicalResilienceQuestions
+              : test.slug === 'dopamine-detox-need'
+                ? dopamineDetoxQuestions
+                : digitalWellnessQuestions;
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   useEffect(() => {
@@ -243,6 +319,12 @@ export default function TestPage({ test }: TestPageProps) {
       testResult = calculatePersonalityTypeResult(finalAnswers);
     } else if (test.slug === 'emotional-intelligence') {
       testResult = calculateEmotionalIntelligenceResult(finalAnswers);
+    } else if (test.slug === 'impostor-syndrome') {
+      testResult = calculateImpostorSyndromeResult(finalAnswers);
+    } else if (test.slug === 'mental-resilience') {
+      testResult = calculatePsychologicalResilienceResult(finalAnswers);
+    } else if (test.slug === 'dopamine-detox-need') {
+      testResult = calculateDopamineDetoxResult(finalAnswers);
     } else {
       testResult = calculateDigitalPersona(finalAnswers); // Fallback
     }

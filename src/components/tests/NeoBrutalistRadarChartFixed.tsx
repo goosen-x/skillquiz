@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 import {
   RadarChart,
   PolarGrid,
@@ -9,7 +9,7 @@ import {
   Radar,
   ResponsiveContainer,
   Tooltip,
-} from "recharts";
+} from 'recharts';
 
 interface ChartDataPoint {
   factor: string;
@@ -26,49 +26,70 @@ const CustomAngleTick = ({ x, y, payload, cx, cy }: any) => {
   if (!payload?.value) return <g />;
 
   const text = payload.value;
-  
+
   // Calculate angle and distance from center
   const angle = Math.atan2(y - cy, x - cx);
   const distance = 40; // Increased distance from chart
-  
+
   // Calculate offset position
   const offsetX = x + Math.cos(angle) * distance;
   const offsetY = y + Math.sin(angle) * distance;
-  
-  // Determine text dimensions based on content
+
+  // Universal text wrapping logic
   let lines: string[] = [];
   let boxWidth = 90;
   let boxHeight = 20;
-  
-  // Split long text into multiple lines
-  if (text === "Доброжелательность") {
-    lines = ["Доброжела-", "тельность"];
-    boxWidth = 95;
-    boxHeight = 28;
-  } else if (text === "Эмоциональная стабильность") {
-    lines = ["Эмоциональная", "стабильность"];
-    boxWidth = 110;
-    boxHeight = 28;
-  } else if (text === "Открытость опыту") {
-    lines = ["Открытость", "опыту"];
-    boxWidth = 90;
-    boxHeight = 28;
-  } else if (text === "Экстраверсия") {
+
+  const words = text.split(' ');
+  const maxCharsPerLine = 16; // Maximum characters per line
+
+  if (words.length === 1) {
+    // Single word - no split possible
     lines = [text];
-    boxWidth = 95;
-  } else if (text === "Добросовестность") {
+    boxWidth = Math.max(90, Math.min(130, text.length * 7));
+  } else if (text.length <= maxCharsPerLine) {
+    // Short text - single line
     lines = [text];
-    boxWidth = 110;
+    boxWidth = Math.max(90, Math.min(130, text.length * 7));
   } else {
-    lines = [text];
+    // Multi-word text that needs splitting
+    // Find optimal split point
+    let bestSplit = 1;
+    let minDiff = Infinity;
+
+    for (let i = 1; i < words.length; i++) {
+      const line1 = words.slice(0, i).join(' ');
+      const line2 = words.slice(i).join(' ');
+
+      // Check if both lines fit within max chars
+      if (line1.length <= maxCharsPerLine && line2.length <= maxCharsPerLine) {
+        const diff = Math.abs(line1.length - line2.length);
+        if (diff < minDiff) {
+          minDiff = diff;
+          bestSplit = i;
+        }
+      }
+    }
+
+    lines = [words.slice(0, bestSplit).join(' '), words.slice(bestSplit).join(' ')];
+    boxHeight = 28;
+
+    // Set box width based on longest line
+    const maxLineLength = Math.max(lines[0].length, lines[1].length);
+    boxWidth = Math.max(90, Math.min(130, maxLineLength * 7));
   }
-  
+
+  // If we have 2 lines and they're still too long, adjust height
+  if (lines.length === 2 && (lines[0].length > 15 || lines[1].length > 15)) {
+    boxHeight = 32;
+  }
+
   return (
     <g transform={`translate(${offsetX},${offsetY})`}>
       {/* Background rectangle */}
       <rect
-        x={-boxWidth/2}
-        y={-boxHeight/2}
+        x={-boxWidth / 2}
+        y={-boxHeight / 2}
         width={boxWidth}
         height={boxHeight}
         fill="#FFD23F"
@@ -78,8 +99,8 @@ const CustomAngleTick = ({ x, y, payload, cx, cy }: any) => {
       />
       {/* Shadow */}
       <rect
-        x={-boxWidth/2 + 2}
-        y={-boxHeight/2 + 2}
+        x={-boxWidth / 2 + 2}
+        y={-boxHeight / 2 + 2}
         width={boxWidth}
         height={boxHeight}
         fill="#000000"
@@ -95,7 +116,7 @@ const CustomAngleTick = ({ x, y, payload, cx, cy }: any) => {
           textAnchor="middle"
           dominantBaseline="central"
           className="font-heading font-bold uppercase"
-          style={{ fontSize: "8px" }}
+          style={{ fontSize: '8px' }}
         >
           {lines[0]}
         </text>
@@ -109,7 +130,7 @@ const CustomAngleTick = ({ x, y, payload, cx, cy }: any) => {
             textAnchor="middle"
             dominantBaseline="central"
             className="font-heading font-bold uppercase"
-            style={{ fontSize: "7px" }}
+            style={{ fontSize: '8px' }}
           >
             {line}
           </text>
@@ -129,9 +150,7 @@ const CustomTooltip = ({ active, payload }: any) => {
           <p className="font-heading font-bold text-sm uppercase text-black">
             {payload[0].payload.factor}
           </p>
-          <p className="font-heading font-black text-2xl text-black">
-            {payload[0].value}%
-          </p>
+          <p className="font-heading font-black text-2xl text-black">{payload[0].value}%</p>
         </div>
         <div className="absolute top-1 left-1 w-full h-full bg-black -z-10" />
       </div>
@@ -140,59 +159,66 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-export default function NeoBrutalistRadarChartFixed({
-  data,
-}: NeoBrutalistRadarChartProps) {
-  
+export default function NeoBrutalistRadarChartFixed({ data }: NeoBrutalistRadarChartProps) {
   // Fallback data if no data provided
   const fallbackData = [
-    { factor: "Экстраверсия", value: 50 },
-    { factor: "Доброжелательность", value: 50 },
-    { factor: "Добросовестность", value: 50 },
-    { factor: "Эмоциональная стабильность", value: 50 },
-    { factor: "Открытость опыту", value: 50 }
+    { factor: 'Экстраверсия', value: 50 },
+    { factor: 'Доброжелательность', value: 50 },
+    { factor: 'Добросовестность', value: 50 },
+    { factor: 'Эмоциональная стабильность', value: 50 },
+    { factor: 'Открытость опыту', value: 50 },
   ];
 
-  const chartData = (!data || !Array.isArray(data) || data.length === 0) ? fallbackData : data;
-  
+  const chartData = !data || !Array.isArray(data) || data.length === 0 ? fallbackData : data;
+
   return (
     <div className="relative w-full">
-
       {/* Main chart container */}
-      <div className="bg-background border-2 border-border p-4 shadow-shadow">
+      <div
+        className="bg-background border-2 border-border p-4 shadow-shadow outline-none [&_*]:outline-none select-none"
+        style={{ WebkitTapHighlightColor: 'transparent' }}
+      >
         <ResponsiveContainer width="100%" height={600}>
-          <RadarChart
-            data={chartData}
-            margin={{ top: 120, right: 140, bottom: 120, left: 140 }}
-          >
+          <RadarChart data={chartData} margin={{ top: 140, right: 160, bottom: 140, left: 160 }}>
             {/* Grid */}
             <PolarGrid
               stroke="#000000"
               strokeWidth={2}
+              strokeDasharray="none"
               radialLines={true}
               gridType="polygon"
             />
 
             {/* Angle axis with custom labels */}
-            <PolarAngleAxis 
-              dataKey="factor" 
-              tick={CustomAngleTick}
-              className="font-heading"
-            />
+            <PolarAngleAxis dataKey="factor" tick={CustomAngleTick} className="font-heading" />
 
             {/* Radius axis */}
             <PolarRadiusAxis
               domain={[0, 100]}
-              tick={{ 
-                fontSize: 10, 
-                fontWeight: "bold", 
-                fill: "#000000",
-                fontFamily: "var(--font-heading)"
+              tick={(props) => {
+                const { x, y, payload } = props;
+                return (
+                  <g transform={`translate(${x + 25},${y})`}>
+                    <text
+                      x={0}
+                      y={0}
+                      fill="#000000"
+                      stroke="#FFFFFF"
+                      strokeWidth="3"
+                      paintOrder="stroke"
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      className="font-heading"
+                      style={{ fontSize: '10px', fontWeight: 'bold' }}
+                    >
+                      {payload.value}%
+                    </text>
+                  </g>
+                );
               }}
               tickCount={6}
               axisLine={false}
               angle={90}
-              tickFormatter={(value) => `${value}%`}
             />
 
             {/* Radar area */}
@@ -203,11 +229,11 @@ export default function NeoBrutalistRadarChartFixed({
               fill="#FF6B35"
               fillOpacity={0.3}
               strokeWidth={3}
-              dot={{ 
-                fill: "#FF6B35", 
-                stroke: "#000000",
-                strokeWidth: 2, 
-                r: 4 
+              dot={{
+                fill: '#FF6B35',
+                stroke: '#000000',
+                strokeWidth: 2,
+                r: 4,
               }}
             />
 
@@ -221,7 +247,7 @@ export default function NeoBrutalistRadarChartFixed({
       <div className="absolute -top-2 left-4">
         <div className="bg-[#FFD23F] border-2 border-black px-4 py-2 shadow-[3px_3px_0px_0px_#000000]">
           <span className="font-heading font-bold text-sm uppercase text-black">
-            Big Five Профиль
+            График результатов теста
           </span>
         </div>
       </div>

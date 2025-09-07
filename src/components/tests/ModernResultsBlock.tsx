@@ -3,8 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
-import { Users, TrendingUp, Award, Sparkles, Star, Trophy, BarChart3 } from 'lucide-react';
+import { Award, Star, BarChart3 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import Star2 from '../ui/star2';
 
 interface ModernResultsBlockProps {
   result: {
@@ -16,6 +17,7 @@ interface ModernResultsBlockProps {
     traits?: string[];
     strengths?: string[];
     compatibleTypes?: string[];
+    characteristics?: string[];
   };
   test: {
     title: string;
@@ -24,6 +26,20 @@ interface ModernResultsBlockProps {
     name: string;
     value: number;
   }>;
+  // Optional metadata for controlling what to show
+  metadata?: {
+    showCompatibility?: boolean;
+    showPopularity?: boolean;
+    showStrengthsCount?: boolean;
+    showRarity?: boolean;
+    customMetrics?: Array<{
+      label: string;
+      value: string | number;
+      sublabel?: string;
+      color?: 'yellow' | 'blue' | 'green' | 'orange' | 'purple';
+      trend?: string;
+    }>;
+  };
 }
 
 // Neobrutalist colors for charts
@@ -79,7 +95,22 @@ const traitEmojis: { [key: string]: string } = {
   способност: '🌟',
 };
 
-export default function ModernResultsBlock({ result, allTypesData }: ModernResultsBlockProps) {
+export default function ModernResultsBlock({
+  result,
+  allTypesData,
+  metadata,
+}: ModernResultsBlockProps) {
+  // Count visible default metrics
+  const getVisibleDefaultMetricsCount = () => {
+    let count = 0;
+    if (metadata?.showRarity !== false) count++;
+    if (metadata?.showStrengthsCount !== false) count++;
+    if (metadata?.showCompatibility !== false && result.compatibleTypes) count++;
+    if (metadata?.showPopularity !== false && !metadata?.customMetrics) count++;
+    return count;
+  };
+
+  const visibleMetricsCount = metadata?.customMetrics?.length || getVisibleDefaultMetricsCount();
   // Calculate rarity level based on percentage
   const getRarityLevel = (percentage: number) => {
     if (percentage < 5) return { label: 'Очень редкий', color: 'purple' };
@@ -98,8 +129,13 @@ export default function ModernResultsBlock({ result, allTypesData }: ModernResul
   ];
 
   // Default traits if not provided
-  const defaultTraits = ['analytical', 'creative', 'empathetic', 'strategic'];
-  const traits = result.traits || defaultTraits;
+  // Extract traits from result
+  const getTraits = () => {
+    if (result.traits) return result.traits.slice(0, 4);
+    if (result.characteristics) return result.characteristics.slice(0, 4);
+    return ['analytical', 'creative', 'empathetic', 'strategic'];
+  };
+  const traits = getTraits();
 
   const containerAnimation = {
     hidden: { opacity: 0 },
@@ -138,7 +174,20 @@ export default function ModernResultsBlock({ result, allTypesData }: ModernResul
               {/* Rarity badge */}
               <div className="absolute top-0 right-0">
                 <NeoBadge
-                  color={rarity.color as 'yellow' | 'blue' | 'orange' | 'green' | 'purple'}
+                  color={
+                    // Use contrasting color if badge color matches card color
+                    result.color === 'green' && rarity.color === 'green'
+                      ? 'yellow'
+                      : result.color === 'yellow' && rarity.color === 'yellow'
+                        ? 'blue'
+                        : result.color === 'blue' && rarity.color === 'blue'
+                          ? 'orange'
+                          : result.color === 'orange' && rarity.color === 'orange'
+                            ? 'purple'
+                            : result.color === 'purple' && rarity.color === 'purple'
+                              ? 'green'
+                              : (rarity.color as 'yellow' | 'blue' | 'orange' | 'green' | 'purple')
+                  }
                   className="shadow-[2px_2px_0px_0px_#000000]"
                 >
                   <Award className="w-3 h-3 mr-1" />
@@ -174,19 +223,22 @@ export default function ModernResultsBlock({ result, allTypesData }: ModernResul
                 <p className="text-sm leading-relaxed mb-3">{result.description}</p>
 
                 {/* Key points */}
+                {/* Key points from characteristics */}
                 <div className="space-y-1">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-border mr-2" />
-                    <span className="text-xs">Адаптивность к изменениям</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-border mr-2" />
-                    <span className="text-xs">Баланс логики и эмоций</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-border mr-2" />
-                    <span className="text-xs">Гибкость в общении</span>
-                  </div>
+                  {(
+                    result.characteristics || [
+                      'Адаптивность к изменениям',
+                      'Баланс логики и эмоций',
+                      'Гибкость в общении',
+                    ]
+                  )
+                    .slice(0, 3)
+                    .map((characteristic, idx) => (
+                      <div key={idx} className="flex items-center">
+                        <div className="w-2 h-2 bg-border mr-2" />
+                        <span className="text-xs">{characteristic}</span>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -196,74 +248,134 @@ export default function ModernResultsBlock({ result, allTypesData }: ModernResul
 
       {/* Quick Stats Grid - 2x2 */}
       <motion.div variants={itemAnimation} className="col-span-4 md:col-span-2">
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full auto-rows-fr">
-          <NeoCard color="yellow" hover={false} className="relative overflow-hidden h-full">
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-sm font-bold uppercase text-foreground/80">Редкость</h3>
-                  <p className="text-3xl font-heading mt-2">Топ {result.percentage}%</p>
+        <div
+          className={`grid ${visibleMetricsCount === 1 ? 'grid-cols-1' : visibleMetricsCount === 2 ? 'grid-cols-1' : 'grid-cols-2'} gap-4 h-full auto-rows-fr`}
+        >
+          {/* Use custom metrics if provided, otherwise default metrics */}
+          {metadata?.customMetrics ? (
+            metadata.customMetrics.map((metric, index) => (
+              <NeoCard
+                key={index}
+                color={
+                  metric.color ||
+                  (['yellow', 'blue', 'green', 'orange'][index % 4] as
+                    | 'yellow'
+                    | 'blue'
+                    | 'green'
+                    | 'orange')
+                }
+                hover={false}
+                className="relative overflow-hidden h-full"
+              >
+                <div className="p-6 h-full flex flex-col">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-sm font-bold uppercase text-foreground/80">
+                        {metric.label}
+                      </h3>
+                      <p className="text-3xl font-heading mt-2">{metric.value}</p>
+                    </div>
+                  </div>
+                  {metric.sublabel && (
+                    <p className="text-sm text-foreground/60">{metric.sublabel}</p>
+                  )}
+                  {metric.trend && <div className="text-sm font-bold mt-2">{metric.trend}</div>}
                 </div>
-                <div className="text-2xl opacity-80">
-                  <Trophy />
-                </div>
-              </div>
-              <p className="text-sm text-foreground/60">среди всех типов</p>
-              <div className="text-sm font-bold mt-2 text-chart-4">↑ Уникальный</div>
-            </div>
-            <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
-          </NeoCard>
+                {index % 3 === 2 ? (
+                  <Star2
+                    color="blue"
+                    stroke="black"
+                    size={50}
+                    strokeWidth={8}
+                    className="absolute -bottom-4 -right-4 rotate-45"
+                  />
+                ) : (
+                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                )}
+              </NeoCard>
+            ))
+          ) : (
+            <>
+              {/* Default metrics */}
+              {metadata?.showRarity !== false && (
+                <NeoCard color="yellow" hover={false} className="relative overflow-hidden h-full">
+                  <div className="p-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">Редкость</h3>
+                        <p className="text-3xl font-heading mt-2">Топ {result.percentage}%</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/60">среди всех типов</p>
+                    <div className="text-sm font-bold mt-2 text-chart-4">↑ Уникальный</div>
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                </NeoCard>
+              )}
 
-          <NeoCard color="blue" hover={false} className="relative overflow-hidden h-full">
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-sm font-bold uppercase text-foreground/80">Сильных сторон</h3>
-                  <p className="text-3xl font-heading mt-2">{result.strengths?.length || 5}</p>
-                </div>
-                <div className="text-2xl opacity-80">
-                  <Sparkles />
-                </div>
-              </div>
-              <p className="text-sm text-foreground/60">ключевых качеств</p>
-            </div>
-            <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
-          </NeoCard>
+              {metadata?.showStrengthsCount !== false && (
+                <NeoCard color="blue" hover={false} className="relative overflow-hidden h-full">
+                  <div className="p-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">
+                          Сильных сторон
+                        </h3>
+                        <p className="text-3xl font-heading mt-2">
+                          {result.strengths?.length || result.characteristics?.length || 5}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/60">ключевых качеств</p>
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                </NeoCard>
+              )}
 
-          <NeoCard color="green" hover={false} className="relative overflow-hidden h-full">
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-sm font-bold uppercase text-foreground/80">Совместимость</h3>
-                  <p className="text-3xl font-heading mt-2">
-                    {result.compatibleTypes?.length || 3}
-                  </p>
-                </div>
-                <div className="text-2xl opacity-80">
-                  <Users />
-                </div>
-              </div>
-              <p className="text-sm text-foreground/60">подходящих типа</p>
-            </div>
-            <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
-          </NeoCard>
+              {metadata?.showCompatibility !== false && result.compatibleTypes && (
+                <NeoCard color="green" hover={false} className="relative overflow-hidden h-full">
+                  <div className="p-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">
+                          Совместимость
+                        </h3>
+                        <p className="text-3xl font-heading mt-2">
+                          {result.compatibleTypes?.length || 3}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/60">подходящих типа</p>
+                  </div>
+                  <Star2
+                    color="blue"
+                    stroke="black"
+                    size={50}
+                    strokeWidth={8}
+                    className="absolute -bottom-4 -right-4 rotate-45"
+                  />
+                </NeoCard>
+              )}
 
-          <NeoCard color="orange" hover={false} className="relative overflow-hidden h-full">
-            <div className="p-6 h-full flex flex-col">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-sm font-bold uppercase text-foreground/80">Популярность</h3>
-                  <p className="text-3xl font-heading mt-2">#3</p>
-                </div>
-                <div className="text-2xl opacity-80">
-                  <TrendingUp />
-                </div>
-              </div>
-              <p className="text-sm text-foreground/60">по встречаемости</p>
-              <div className="text-sm font-bold mt-2 text-foreground">→ Стабильно</div>
-            </div>
-            <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
-          </NeoCard>
+              {metadata?.showPopularity !== false && !metadata?.customMetrics && (
+                <NeoCard color="orange" hover={false} className="relative overflow-hidden h-full">
+                  <div className="p-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">
+                          Популярность
+                        </h3>
+                        <p className="text-3xl font-heading mt-2">#3</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-foreground/60">по встречаемости</p>
+                    <div className="text-sm font-bold mt-2 text-foreground">→ Стабильно</div>
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                </NeoCard>
+              )}
+            </>
+          )}
         </div>
       </motion.div>
 
@@ -329,57 +441,19 @@ export default function ModernResultsBlock({ result, allTypesData }: ModernResul
               </div>
               Ключевые черты
             </h3>
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 flex-1">
+            <div className="space-y-3 flex-1">
               {traits.map((trait, index) => (
-                <div key={trait} className="relative h-full">
-                  <div
-                    className={`
-                    border-2 border-border rounded-[15px] p-4 h-full
-                    bg-${['chart-1', 'chart-2', 'chart-3', 'chart-4', 'chart-5'][index % 5]}
-                    shadow-[2px_2px_0px_0px_#000000]
-                    flex flex-col items-center justify-center gap-2
-                  `}
-                  >
-                    <span className="text-2xl">
-                      {traitEmojis[trait] ||
-                        traitEmojis[trait.toLowerCase()] ||
-                        Object.entries(traitEmojis).find(([key]) =>
-                          trait.toLowerCase().includes(key.toLowerCase())
-                        )?.[1] ||
-                        '🌟'}
-                    </span>
-                    <span className="text-xs uppercase text-center">{trait}</span>
-                  </div>
-                </div>
+                <motion.div
+                  key={trait}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  className="flex items-center"
+                >
+                  <Star className="w-5 h-5 text-main mr-3 flex-shrink-0" />
+                  <span className="text-sm font-medium">{trait}</span>
+                </motion.div>
               ))}
-            </div>
-          </NeoCardContent>
-        </NeoCard>
-      </motion.div>
-
-      {/* Bottom comparison card - full width */}
-      <motion.div variants={itemAnimation} className="col-span-4">
-        <NeoCard color="white" hover={false}>
-          <NeoCardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-main border-2 border-border rounded-[15px] shadow-shadow flex items-center justify-center mr-4">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-heading font-bold uppercase">Ваша уникальность</h3>
-                  <p className="text-sm text-foreground/60">
-                    Только {result.percentage}% людей имеют такой же психологический профиль
-                  </p>
-                </div>
-              </div>
-              <motion.div
-                animate={{ x: [-5, 5, -5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-4xl"
-              >
-                🎯
-              </motion.div>
             </div>
           </NeoCardContent>
         </NeoCard>

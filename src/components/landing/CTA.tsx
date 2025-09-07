@@ -3,45 +3,36 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { NeoCard, NeoCardContent } from '@/components/ui/neo-card';
-import { 
-  Play, 
-  ArrowRight, 
-  CheckCircle, 
-  Clock, 
-  Users, 
-  Sparkles,
-  Gift,
-  Zap
-} from 'lucide-react';
+import { Play, ArrowRight, CheckCircle, Clock, Users, Sparkles, Gift, Zap } from 'lucide-react';
 
 export function CTA() {
   const features = [
     {
       icon: Clock,
       text: 'Результат за 5-15 минут',
-      color: 'bg-chart-1'
+      color: 'bg-chart-1',
     },
     {
       icon: CheckCircle,
       text: 'Научно обоснованные методики',
-      color: 'bg-chart-2'
+      color: 'bg-chart-2',
     },
     {
       icon: Users,
       text: 'Более 50,000 довольных пользователей',
-      color: 'bg-chart-3'
+      color: 'bg-chart-3',
     },
     {
       icon: Gift,
       text: '100% бесплатно, без регистрации',
-      color: 'bg-chart-4'
-    }
+      color: 'bg-chart-4',
+    },
   ];
 
   const urgencyFactors = [
     'Узнайте свой истинный потенциал уже сегодня',
     'Найдите профессию мечты за несколько минут',
-    'Получите персональные рекомендации от экспертов'
+    'Получите персональные рекомендации от экспертов',
   ];
 
   return (
@@ -53,7 +44,7 @@ export function CTA() {
         <div className="absolute top-1/3 right-1/4 w-32 h-32 border-4 border-border" />
         <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-chart-3 transform rotate-12" />
       </div>
-      
+
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -62,7 +53,7 @@ export function CTA() {
           transition={{ duration: 0.6 }}
         >
           {/* Специальное предложение */}
-          <motion.div 
+          <motion.div
             className="mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -76,7 +67,7 @@ export function CTA() {
           </motion.div>
 
           {/* Основной заголовок */}
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-main-foreground mb-6 leading-tight uppercase"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,24 +75,26 @@ export function CTA() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Откройте секреты своей{' '}
-            <span className="text-foreground bg-chart-1 px-2 inline-block transform -rotate-1">личности</span>{' '}
+            <span className="text-foreground bg-chart-1 px-2 inline-block transform -rotate-1">
+              личности
+            </span>{' '}
             прямо сейчас!
           </motion.h2>
 
           {/* Подзаголовок */}
-          <motion.p 
+          <motion.p
             className="text-xl sm:text-2xl text-main-foreground mb-8 leading-relaxed font-base"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Пройдите <strong className="font-bold">психологический тест</strong> и получите 
+            Пройдите <strong className="font-bold">психологический тест</strong> и получите
             персональную карту личности с рекомендациями по карьере
           </motion.p>
 
           {/* Факторы срочности */}
-          <motion.div 
+          <motion.div
             className="mb-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +103,7 @@ export function CTA() {
           >
             <div className="space-y-3">
               {urgencyFactors.map((factor, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="flex items-center justify-center text-main-foreground"
                   initial={{ opacity: 0, x: -20 }}
@@ -128,7 +121,7 @@ export function CTA() {
           </motion.div>
 
           {/* Основные CTA кнопки */}
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-6 items-center justify-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +129,7 @@ export function CTA() {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <motion.div whileTap={{ scale: 0.98 }}>
-              <Button 
+              <Button
                 size="lg"
                 className="bg-chart-1 text-foreground border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-6 text-lg font-heading uppercase"
               >
@@ -145,7 +138,7 @@ export function CTA() {
               </Button>
             </motion.div>
             <motion.div whileTap={{ scale: 0.98 }}>
-              <Button 
+              <Button
                 size="lg"
                 variant="outline"
                 className="bg-background text-foreground border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-6 text-lg font-heading uppercase"
@@ -157,7 +150,7 @@ export function CTA() {
           </motion.div>
 
           {/* Преимущества */}
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +160,7 @@ export function CTA() {
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="flex flex-col items-center text-center"
                   initial={{ opacity: 0, y: 20 }}
@@ -175,15 +168,11 @@ export function CTA() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                 >
-                  <motion.div 
+                  <div
                     className={`w-16 h-16 ${feature.color} border-2 border-border shadow-shadow flex items-center justify-center mb-3`}
-                    whileHover={{ 
-                      rotate: [0, -10, 10, 0],
-                      transition: { duration: 0.3 }
-                    }}
                   >
                     <IconComponent className="w-8 h-8 text-foreground" />
-                  </motion.div>
+                  </div>
                   <span className="text-main-foreground text-sm font-bold uppercase">
                     {feature.text}
                   </span>
@@ -193,7 +182,7 @@ export function CTA() {
           </motion.div>
 
           {/* Гарантия */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -208,9 +197,9 @@ export function CTA() {
                   </span>
                 </div>
                 <p className="text-foreground text-sm font-base">
-                  Все наши <strong className="font-bold">психологические тесты</strong> основаны на научных 
-                  исследованиях и проверены тысячами пользователей. Если результат вам не подойдет - 
-                  мы поможем подобрать альтернативный тест
+                  Все наши <strong className="font-bold">психологические тесты</strong> основаны на
+                  научных исследованиях и проверены тысячами пользователей. Если результат вам не
+                  подойдет - мы поможем подобрать альтернативный тест
                 </p>
               </NeoCardContent>
             </NeoCard>
@@ -230,7 +219,7 @@ export function FinalCTA() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-background border-2 border-background transform rotate-45" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-chart-5 rounded-full" />
       </div>
-      
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -244,10 +233,10 @@ export function FinalCTA() {
           <p className="text-background/80 mb-8 text-lg font-base">
             Присоединяйтесь к тысячам людей, которые уже нашли свой путь с помощью наших тестов
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <motion.div whileTap={{ scale: 0.98 }}>
-              <Button 
+              <Button
                 size="lg"
                 className="bg-chart-5 text-foreground border-2 border-background shadow-[4px_4px_0px_0px_theme(colors.background)] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-3 text-base font-heading uppercase"
               >

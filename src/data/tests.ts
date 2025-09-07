@@ -35,13 +35,22 @@ export const testCategories: TestCategory[] = [
   {
     id: 'psychology',
     name: 'Психологические тесты',
-    description: 'Узнайте свой тип личности, темперамент и психологические особенности для лучшего самопонимания',
+    description:
+      'Узнайте свой тип личности, темперамент и психологические особенности для лучшего самопонимания',
     icon: 'Brain',
     color: 'blue',
     seoTitle: 'Психологические тесты онлайн бесплатно - определить тип личности',
-    seoDescription: 'Пройдите психологический тест онлайн бесплатно. Узнайте свой тип личности, темперамент, характер. Точные результаты с расшифровкой.',
-    keywords: ['психологический тест', 'тест на личность', 'тип личности', 'темперамент', 'характер', 'эмоциональный интеллект'],
-    testsCount: 32
+    seoDescription:
+      'Пройдите психологический тест онлайн бесплатно. Узнайте свой тип личности, темперамент, характер. Точные результаты с расшифровкой.',
+    keywords: [
+      'психологический тест',
+      'тест на личность',
+      'тип личности',
+      'темперамент',
+      'характер',
+      'эмоциональный интеллект',
+    ],
+    testsCount: 37,
   },
   {
     id: 'career',
@@ -50,9 +59,17 @@ export const testCategories: TestCategory[] = [
     icon: 'Briefcase',
     color: 'green',
     seoTitle: 'Тест на профессию онлайн - профориентация бесплатно',
-    seoDescription: 'Пройдите тест на профессию онлайн бесплатно. Профориентация для подростков и взрослых. Определите подходящую специальность.',
-    keywords: ['тест на профессию', 'профориентация', 'выбор профессии', 'карьера', 'лидерские качества', 'навыки'],
-    testsCount: 25
+    seoDescription:
+      'Пройдите тест на профессию онлайн бесплатно. Профориентация для подростков и взрослых. Определите подходящую специальность.',
+    keywords: [
+      'тест на профессию',
+      'профориентация',
+      'выбор профессии',
+      'карьера',
+      'лидерские качества',
+      'навыки',
+    ],
+    testsCount: 28,
   },
   {
     id: 'lifestyle',
@@ -61,10 +78,18 @@ export const testCategories: TestCategory[] = [
     icon: 'Heart',
     color: 'purple',
     seoTitle: 'Тесты образа жизни - продуктивность и хронотип онлайн',
-    seoDescription: 'Тест на продуктивность, определение хронотипа жаворонок или сова, баланс работы и жизни. Улучшите качество жизни.',
-    keywords: ['тест на продуктивность', 'хронотип', 'жаворонок или сова', 'баланс работы', 'образ жизни', 'эффективность'],
-    testsCount: 41
-  }
+    seoDescription:
+      'Тест на продуктивность, определение хронотипа жаворонок или сова, баланс работы и жизни. Улучшите качество жизни.',
+    keywords: [
+      'тест на продуктивность',
+      'хронотип',
+      'жаворонок или сова',
+      'баланс работы',
+      'образ жизни',
+      'эффективность',
+    ],
+    testsCount: 48,
+  },
 ];
 
 const baseTests = [
@@ -72,7 +97,8 @@ const baseTests = [
   {
     id: 'personality-type',
     title: 'Тест на тип личности',
-    description: 'Определите свой психологический тип личности по научно обоснованной методике. Узнайте свои сильные стороны и особенности характера.',
+    description:
+      'Определите свой психологический тип личности по научно обоснованной методике. Узнайте свои сильные стороны и особенности характера.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -80,15 +106,21 @@ const baseTests = [
     usersCount: '45K+',
     popularity: 5,
     tags: ['личность', 'характер', 'психотип', 'самопознание'],
-    seoKeywords: ['тест на тип личности', 'определить тип личности', 'психологический тест личности', 'тест характера'],
+    seoKeywords: [
+      'тест на тип личности',
+      'определить тип личности',
+      'психологический тест личности',
+      'тест характера',
+    ],
     featured: true,
     new: false,
-    slug: 'personality-type'
+    slug: 'personality-type',
   },
   {
     id: 'emotional-intelligence',
     title: 'Тест эмоциональный интеллект',
-    description: 'Оцените свою способность понимать и управлять эмоциями. Узнайте уровень эмпатии и социальных навыков.',
+    description:
+      'Оцените свою способность понимать и управлять эмоциями. Узнайте уровень эмпатии и социальных навыков.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -96,15 +128,42 @@ const baseTests = [
     usersCount: '32K+',
     popularity: 4,
     tags: ['эмоции', 'эмпатия', 'интеллект', 'социальные навыки'],
-    seoKeywords: ['тест эмоциональный интеллект', 'эмоциональный интеллект тест', 'тест на эмпатию'],
+    seoKeywords: [
+      'тест эмоциональный интеллект',
+      'эмоциональный интеллект тест',
+      'тест на эмпатию',
+    ],
     featured: true,
     new: false,
-    slug: 'emotional-intelligence'
+    slug: 'emotional-intelligence',
+  },
+  {
+    id: 'impostor-syndrome',
+    title: 'Тест на синдром самозванца',
+    description:
+      'Определите степень проявления синдрома самозванца в вашей жизни. Узнайте, как самосомнения влияют на ваш профессиональный рост.',
+    category: 'psychology' as const,
+    difficulty: 'Средний' as const,
+    duration: '5 мин',
+    questionsCount: 20,
+    usersCount: '2K+',
+    popularity: 4,
+    tags: ['самооценка', 'уверенность', 'профессиональное развитие', 'психология успеха'],
+    seoKeywords: [
+      'синдром самозванца тест',
+      'тест на неуверенность в себе',
+      'как избавиться от синдрома самозванца',
+      'профессиональная самооценка',
+    ],
+    featured: true,
+    new: true,
+    slug: 'impostor-syndrome',
   },
   {
     id: 'temperament',
     title: 'Определить темперамент',
-    description: 'Выявите свой темперамент: холерик, сангвиник, флегматик или меланхолик. Поймите особенности своего поведения.',
+    description:
+      'Выявите свой темперамент: холерик, сангвиник, флегматик или меланхолик. Поймите особенности своего поведения.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -112,15 +171,20 @@ const baseTests = [
     usersCount: '28K+',
     popularity: 4,
     tags: ['темперамент', 'холерик', 'сангвиник', 'флегматик', 'меланхолик'],
-    seoKeywords: ['определить темперамент', 'тест на темперамент', 'холерик сангвиник флегматик меланхолик'],
+    seoKeywords: [
+      'определить темперамент',
+      'тест на темперамент',
+      'холерик сангвиник флегматик меланхолик',
+    ],
     featured: false,
     new: false,
-    slug: 'temperament'
+    slug: 'temperament',
   },
   {
     id: 'introvert-extrovert',
     title: 'Тест на интроверсию',
-    description: 'Определите, являетесь ли вы интровертом, экстравертом или амбивертом. Поймите свои коммуникативные предпочтения.',
+    description:
+      'Определите, являетесь ли вы интровертом, экстравертом или амбивертом. Поймите свои коммуникативные предпочтения.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '5 мин',
@@ -128,15 +192,20 @@ const baseTests = [
     usersCount: '24K+',
     popularity: 3,
     tags: ['интроверт', 'экстраверт', 'амбиверт', 'общение'],
-    seoKeywords: ['тест на интроверсию', 'интроверт или экстраверт тест', 'тест интроверт экстраверт'],
+    seoKeywords: [
+      'тест на интроверсию',
+      'интроверт или экстраверт тест',
+      'тест интроверт экстраверт',
+    ],
     featured: false,
     new: false,
-    slug: 'introvert-extrovert'
+    slug: 'introvert-extrovert',
   },
   {
     id: 'stress-level',
     title: 'Оценка уровня стресса',
-    description: 'Определите свой текущий уровень стресса и получите рекомендации по его снижению и профилактике.',
+    description:
+      'Определите свой текущий уровень стресса и получите рекомендации по его снижению и профилактике.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -147,12 +216,13 @@ const baseTests = [
     seoKeywords: ['тест на стресс', 'уровень стресса тест', 'оценить стресс онлайн'],
     featured: false,
     new: true,
-    slug: 'stress-level'
+    slug: 'stress-level',
   },
   {
     id: 'digital-burnout',
     title: 'Цифровое выгорание тест',
-    description: 'Современный тест на цифровое выгорание. Узнайте, как технологии влияют на ваше психическое состояние.',
+    description:
+      'Современный тест на цифровое выгорание. Узнайте, как технологии влияют на ваше психическое состояние.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -160,17 +230,22 @@ const baseTests = [
     usersCount: '12K+',
     popularity: 2,
     tags: ['цифровое выгорание', 'технологии', 'психическое здоровье', 'зависимость'],
-    seoKeywords: ['цифровое выгорание тест', 'тест на цифровую зависимость', 'выгорание от технологий'],
+    seoKeywords: [
+      'цифровое выгорание тест',
+      'тест на цифровую зависимость',
+      'выгорание от технологий',
+    ],
     featured: false,
     new: true,
-    slug: 'digital-burnout'
+    slug: 'digital-burnout',
   },
 
   // Карьерные тесты
   {
     id: 'career-test',
     title: 'Тест на профессию',
-    description: 'Определите подходящую профессию на основе ваших интересов, навыков и личностных особенностей.',
+    description:
+      'Определите подходящую профессию на основе ваших интересов, навыков и личностных особенностей.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -178,15 +253,21 @@ const baseTests = [
     usersCount: '38K+',
     popularity: 5,
     tags: ['профессия', 'карьера', 'профориентация', 'выбор специальности'],
-    seoKeywords: ['тест на профессию', 'выбор профессии тест', 'профориентация онлайн', 'какая профессия подходит'],
+    seoKeywords: [
+      'тест на профессию',
+      'выбор профессии тест',
+      'профориентация онлайн',
+      'какая профессия подходит',
+    ],
     featured: true,
     new: false,
-    slug: 'career-test'
+    slug: 'career-test',
   },
   {
     id: 'career-orientation',
     title: 'Профориентация онлайн',
-    description: 'Комплексная профориентация для подростков и взрослых. Выявите склонности к различным видам деятельности.',
+    description:
+      'Комплексная профориентация для подростков и взрослых. Выявите склонности к различным видам деятельности.',
     category: 'career' as const,
     difficulty: 'Сложный' as const,
     duration: '15 мин',
@@ -194,15 +275,20 @@ const baseTests = [
     usersCount: '29K+',
     popularity: 4,
     tags: ['профориентация', 'склонности', 'способности', 'деятельность'],
-    seoKeywords: ['профориентация онлайн бесплатно', 'профориентация тест', 'определить склонности'],
+    seoKeywords: [
+      'профориентация онлайн бесплатно',
+      'профориентация тест',
+      'определить склонности',
+    ],
     featured: true,
     new: false,
-    slug: 'career-orientation'
+    slug: 'career-orientation',
   },
   {
     id: 'leadership-test',
     title: 'Тест лидерские качества',
-    description: 'Оцените свой лидерский потенциал и управленческие способности. Узнайте свой стиль руководства.',
+    description:
+      'Оцените свой лидерский потенциал и управленческие способности. Узнайте свой стиль руководства.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -213,12 +299,13 @@ const baseTests = [
     seoKeywords: ['тест на лидерские качества', 'лидерский потенциал тест', 'тест лидера'],
     featured: false,
     new: false,
-    slug: 'leadership-test'
+    slug: 'leadership-test',
   },
   {
     id: 'strengths-test',
     title: 'Определить сильные стороны',
-    description: 'Выявите свои главные сильные стороны и таланты для успешного карьерного развития.',
+    description:
+      'Выявите свои главные сильные стороны и таланты для успешного карьерного развития.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -229,12 +316,13 @@ const baseTests = [
     seoKeywords: ['определить сильные стороны тест', 'тест на сильные стороны', 'выявить таланты'],
     featured: false,
     new: false,
-    slug: 'strengths-test'
+    slug: 'strengths-test',
   },
   {
     id: 'team-role',
     title: 'Роль в команде',
-    description: 'Определите свою идеальную роль в команде по методике Белбина. Узнайте, как эффективнее работать в группе.',
+    description:
+      'Определите свою идеальную роль в команде по методике Белбина. Узнайте, как эффективнее работать в группе.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -245,12 +333,13 @@ const baseTests = [
     seoKeywords: ['роль в команде тест', 'тест белбина', 'командная роль'],
     featured: false,
     new: false,
-    slug: 'team-role'
+    slug: 'team-role',
   },
   {
     id: 'professional-burnout',
     title: 'Тест на профессиональное выгорание',
-    description: 'Оцените риск профессионального выгорания и получите рекомендации по восстановлению мотивации.',
+    description:
+      'Оцените риск профессионального выгорания и получите рекомендации по восстановлению мотивации.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -258,17 +347,22 @@ const baseTests = [
     usersCount: '13K+',
     popularity: 2,
     tags: ['выгорание', 'мотивация', 'карьера', 'работа'],
-    seoKeywords: ['тест на профессиональное выгорание', 'профессиональное выгорание тест', 'выгорание на работе'],
+    seoKeywords: [
+      'тест на профессиональное выгорание',
+      'профессиональное выгорание тест',
+      'выгорание на работе',
+    ],
     featured: false,
     new: true,
-    slug: 'professional-burnout'
+    slug: 'professional-burnout',
   },
 
   // Тесты образа жизни
   {
     id: 'productivity-test',
     title: 'Тест на продуктивность',
-    description: 'Оцените свою продуктивность и эффективность. Получите персональные рекомендации по улучшению результатов.',
+    description:
+      'Оцените свою продуктивность и эффективность. Получите персональные рекомендации по улучшению результатов.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '7 мин',
@@ -279,12 +373,13 @@ const baseTests = [
     seoKeywords: ['тест на продуктивность', 'продуктивность тест', 'эффективность тест'],
     featured: true,
     new: false,
-    slug: 'productivity-test'
+    slug: 'productivity-test',
   },
   {
     id: 'chronotype',
     title: 'Определить хронотип',
-    description: 'Узнайте свой биологический хронотип для оптимизации режима дня и повышения работоспособности.',
+    description:
+      'Узнайте свой биологический хронотип для оптимизации режима дня и повышения работоспособности.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -295,12 +390,13 @@ const baseTests = [
     seoKeywords: ['определить хронотип тест', 'хронотип тест', 'биоритмы тест'],
     featured: true,
     new: false,
-    slug: 'chronotype'
+    slug: 'chronotype',
   },
   {
     id: 'lark-owl',
     title: 'Тест жаворонок или сова',
-    description: 'Классический тест для определения вашего циркадного ритма. Жаворонок, сова или голубь?',
+    description:
+      'Классический тест для определения вашего циркадного ритма. Жаворонок, сова или голубь?',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '5 мин',
@@ -311,12 +407,13 @@ const baseTests = [
     seoKeywords: ['тест жаворонок или сова', 'жаворонок сова тест', 'определить жаворонок сова'],
     featured: false,
     new: false,
-    slug: 'lark-owl'
+    slug: 'lark-owl',
   },
   {
     id: 'work-life-balance',
     title: 'Баланс работа-жизнь',
-    description: 'Оцените баланс между работой и личной жизнью. Получите советы по гармонизации всех сфер жизни.',
+    description:
+      'Оцените баланс между работой и личной жизнью. Получите советы по гармонизации всех сфер жизни.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -324,15 +421,20 @@ const baseTests = [
     usersCount: '17K+',
     popularity: 3,
     tags: ['баланс', 'работа', 'жизнь', 'гармония'],
-    seoKeywords: ['баланс работа жизнь тест', 'тест баланс работы и жизни', 'work life balance тест'],
+    seoKeywords: [
+      'баланс работа жизнь тест',
+      'тест баланс работы и жизни',
+      'work life balance тест',
+    ],
     featured: false,
     new: false,
-    slug: 'work-life-balance'
+    slug: 'work-life-balance',
   },
   {
     id: 'bad-habits',
     title: 'Тест на вредные привычки',
-    description: 'Проанализируйте свои привычки и определите, какие из них мешают достижению целей.',
+    description:
+      'Проанализируйте свои привычки и определите, какие из них мешают достижению целей.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '8 мин',
@@ -343,12 +445,13 @@ const baseTests = [
     seoKeywords: ['тест на вредные привычки', 'вредные привычки тест', 'анализ привычек'],
     featured: false,
     new: false,
-    slug: 'bad-habits'
+    slug: 'bad-habits',
   },
   {
     id: 'motivation-level',
     title: 'Уровень мотивации',
-    description: 'Определите свой уровень внутренней мотивации и узнайте, что вас действительно вдохновляет.',
+    description:
+      'Определите свой уровень внутренней мотивации и узнайте, что вас действительно вдохновляет.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -359,12 +462,13 @@ const baseTests = [
     seoKeywords: ['тест уровень мотивации', 'мотивация тест', 'внутренняя мотивация тест'],
     featured: false,
     new: true,
-    slug: 'motivation-level'
+    slug: 'motivation-level',
   },
   {
     id: 'digital-wellness-persona',
     title: 'Твоя цифровая личность',
-    description: 'Узнайте свой тип цифрового поведения и получите персональные рекомендации по здоровому использованию технологий. Определите, Digital Minimalist вы или Tech Overwhelmed.',
+    description:
+      'Узнайте свой тип цифрового поведения и получите персональные рекомендации по здоровому использованию технологий. Определите, Digital Minimalist вы или Tech Overwhelmed.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -372,17 +476,24 @@ const baseTests = [
     usersCount: '8K+',
     popularity: 4,
     tags: ['цифровое здоровье', 'технологии', 'баланс', 'экранное время', 'социальные сети'],
-    seoKeywords: ['цифровая личность тест', 'цифровое здоровье', 'экранное время тест', 'digital wellness', 'цифровой детокс'],
+    seoKeywords: [
+      'цифровая личность тест',
+      'цифровое здоровье',
+      'экранное время тест',
+      'digital wellness',
+      'цифровой детокс',
+    ],
     featured: true,
     new: true,
-    slug: 'digital-wellness-persona'
+    slug: 'digital-wellness-persona',
   },
 
   // Дополнительные психологические тесты
   {
     id: 'love-language',
     title: 'Тест языки любви',
-    description: 'Определите свой основной язык любви по методике Гэри Чепмена. Улучшите отношения через понимание потребностей.',
+    description:
+      'Определите свой основной язык любви по методике Гэри Чепмена. Улучшите отношения через понимание потребностей.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -393,12 +504,13 @@ const baseTests = [
     seoKeywords: ['языки любви тест', 'тест языки любви чепмен', '5 языков любви тест'],
     featured: true,
     new: false,
-    slug: 'love-language'
+    slug: 'love-language',
   },
   {
     id: 'attachment-style',
     title: 'Тип привязанности',
-    description: 'Определите свой стиль привязанности в отношениях: надёжный, избегающий, тревожный или дезорганизованный.',
+    description:
+      'Определите свой стиль привязанности в отношениях: надёжный, избегающий, тревожный или дезорганизованный.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -409,12 +521,13 @@ const baseTests = [
     seoKeywords: ['тип привязанности тест', 'стиль привязанности', 'тревожная привязанность'],
     featured: false,
     new: false,
-    slug: 'attachment-style'
+    slug: 'attachment-style',
   },
   {
     id: 'communication-style',
     title: 'Стиль общения',
-    description: 'Узнайте свой доминирующий стиль коммуникации: ассертивный, пассивный, агрессивный или пассивно-агрессивный.',
+    description:
+      'Узнайте свой доминирующий стиль коммуникации: ассертивный, пассивный, агрессивный или пассивно-агрессивный.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -425,12 +538,13 @@ const baseTests = [
     seoKeywords: ['стиль общения тест', 'коммуникация тест', 'ассертивность тест'],
     featured: false,
     new: false,
-    slug: 'communication-style'
+    slug: 'communication-style',
   },
   {
     id: 'self-esteem',
     title: 'Уровень самооценки',
-    description: 'Оцените уровень своей самооценки и получите рекомендации по её укреплению и развитию уверенности.',
+    description:
+      'Оцените уровень своей самооценки и получите рекомендации по её укреплению и развитию уверенности.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -441,12 +555,13 @@ const baseTests = [
     seoKeywords: ['тест самооценка', 'уровень самооценки тест', 'самооценка онлайн'],
     featured: false,
     new: true,
-    slug: 'self-esteem'
+    slug: 'self-esteem',
   },
   {
     id: 'conflict-style',
     title: 'Стиль поведения в конфликте',
-    description: 'Определите свою стратегию поведения в конфликтных ситуациях по модели Томаса-Килманна.',
+    description:
+      'Определите свою стратегию поведения в конфликтных ситуациях по модели Томаса-Килманна.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -457,12 +572,13 @@ const baseTests = [
     seoKeywords: ['стиль поведения в конфликте', 'конфликт тест', 'решение конфликтов'],
     featured: false,
     new: false,
-    slug: 'conflict-style'
+    slug: 'conflict-style',
   },
   {
     id: 'anxiety-level',
     title: 'Уровень тревожности',
-    description: 'Измерьте уровень личностной и ситуативной тревожности. Получите рекомендации по управлению беспокойством.',
+    description:
+      'Измерьте уровень личностной и ситуативной тревожности. Получите рекомендации по управлению беспокойством.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -473,12 +589,13 @@ const baseTests = [
     seoKeywords: ['тест на тревожность', 'уровень тревоги', 'тревожность онлайн'],
     featured: false,
     new: false,
-    slug: 'anxiety-level'
+    slug: 'anxiety-level',
   },
   {
     id: 'perfectionism',
     title: 'Тест на перфекционизм',
-    description: 'Определите уровень и тип перфекционизма. Узнайте, помогает ли он вам или создаёт препятствия.',
+    description:
+      'Определите уровень и тип перфекционизма. Узнайте, помогает ли он вам или создаёт препятствия.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -489,12 +606,13 @@ const baseTests = [
     seoKeywords: ['тест на перфекционизм', 'перфекционист тест', 'перфекционизм онлайн'],
     featured: false,
     new: true,
-    slug: 'perfectionism'
+    slug: 'perfectionism',
   },
   {
     id: 'cognitive-style',
     title: 'Когнитивный стиль мышления',
-    description: 'Узнайте свой стиль обработки информации: аналитический, интуитивный, критический или творческий.',
+    description:
+      'Узнайте свой стиль обработки информации: аналитический, интуитивный, критический или творческий.',
     category: 'psychology' as const,
     difficulty: 'Сложный' as const,
     duration: '15 мин',
@@ -505,12 +623,13 @@ const baseTests = [
     seoKeywords: ['когнитивный стиль тест', 'стиль мышления', 'тип мышления тест'],
     featured: false,
     new: false,
-    slug: 'cognitive-style'
+    slug: 'cognitive-style',
   },
   {
     id: 'emotional-stability',
     title: 'Эмоциональная устойчивость',
-    description: 'Оцените свою способность справляться с эмоциональными вызовами и стрессовыми ситуациями.',
+    description:
+      'Оцените свою способность справляться с эмоциональными вызовами и стрессовыми ситуациями.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -518,15 +637,20 @@ const baseTests = [
     usersCount: '19K+',
     popularity: 3,
     tags: ['эмоции', 'устойчивость', 'стабильность', 'саморегуляция'],
-    seoKeywords: ['эмоциональная устойчивость тест', 'эмоциональная стабильность', 'стрессоустойчивость'],
+    seoKeywords: [
+      'эмоциональная устойчивость тест',
+      'эмоциональная стабильность',
+      'стрессоустойчивость',
+    ],
     featured: false,
     new: false,
-    slug: 'emotional-stability'
+    slug: 'emotional-stability',
   },
   {
     id: 'social-intelligence',
     title: 'Социальный интеллект',
-    description: 'Измерьте способность понимать людей, считывать социальные сигналы и эффективно взаимодействовать.',
+    description:
+      'Измерьте способность понимать людей, считывать социальные сигналы и эффективно взаимодействовать.',
     category: 'psychology' as const,
     difficulty: 'Сложный' as const,
     duration: '18 мин',
@@ -537,12 +661,13 @@ const baseTests = [
     seoKeywords: ['социальный интеллект тест', 'социальные навыки тест', 'эмпатия тест'],
     featured: false,
     new: false,
-    slug: 'social-intelligence'
+    slug: 'social-intelligence',
   },
   {
     id: 'creativity-test',
     title: 'Тест креативности',
-    description: 'Определите свой уровень творческого мышления и способность генерировать оригинальные идеи.',
+    description:
+      'Определите свой уровень творческого мышления и способность генерировать оригинальные идеи.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '13 мин',
@@ -553,12 +678,13 @@ const baseTests = [
     seoKeywords: ['тест креативности', 'креативность онлайн', 'творческое мышление тест'],
     featured: false,
     new: false,
-    slug: 'creativity-test'
+    slug: 'creativity-test',
   },
   {
     id: 'decision-making',
     title: 'Стиль принятия решений',
-    description: 'Узнайте, как вы принимаете решения: рационально, интуитивно, избегая или спонтанно.',
+    description:
+      'Узнайте, как вы принимаете решения: рационально, интуитивно, избегая или спонтанно.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -569,12 +695,13 @@ const baseTests = [
     seoKeywords: ['стиль принятия решений', 'принятие решений тест', 'как принимать решения'],
     featured: false,
     new: false,
-    slug: 'decision-making'
+    slug: 'decision-making',
   },
   {
     id: 'memory-type',
     title: 'Тип памяти',
-    description: 'Определите доминирующий тип памяти: визуальная, аудиальная, кинестетическая или смешанная.',
+    description:
+      'Определите доминирующий тип памяти: визуальная, аудиальная, кинестетическая или смешанная.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -585,7 +712,7 @@ const baseTests = [
     seoKeywords: ['тип памяти тест', 'визуальная память', 'аудиальная память'],
     featured: false,
     new: false,
-    slug: 'memory-type'
+    slug: 'memory-type',
   },
   {
     id: 'learning-style',
@@ -601,12 +728,13 @@ const baseTests = [
     seoKeywords: ['стиль обучения тест', 'как лучше учиться', 'методы обучения'],
     featured: false,
     new: false,
-    slug: 'learning-style'
+    slug: 'learning-style',
   },
   {
     id: 'risk-tolerance',
     title: 'Склонность к риску',
-    description: 'Оцените свою готовность идти на риск в различных сферах жизни и принятии решений.',
+    description:
+      'Оцените свою готовность идти на риск в различных сферах жизни и принятии решений.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -617,14 +745,15 @@ const baseTests = [
     seoKeywords: ['склонность к риску тест', 'готовность к риску', 'рискованность тест'],
     featured: false,
     new: false,
-    slug: 'risk-tolerance'
+    slug: 'risk-tolerance',
   },
 
   // Карьерные тесты (продолжение)
   {
     id: 'work-motivation',
     title: 'Мотивация к работе',
-    description: 'Определите, что вас больше всего мотивирует в работе: деньги, признание, развитие или стабильность.',
+    description:
+      'Определите, что вас больше всего мотивирует в работе: деньги, признание, развитие или стабильность.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -635,12 +764,13 @@ const baseTests = [
     seoKeywords: ['мотивация к работе тест', 'рабочая мотивация', 'что мотивирует'],
     featured: false,
     new: false,
-    slug: 'work-motivation'
+    slug: 'work-motivation',
   },
   {
     id: 'management-style',
     title: 'Стиль управления',
-    description: 'Выявите свой управленческий стиль: демократичный, авторитарный, попустительский или ситуационный.',
+    description:
+      'Выявите свой управленческий стиль: демократичный, авторитарный, попустительский или ситуационный.',
     category: 'career' as const,
     difficulty: 'Сложный' as const,
     duration: '14 мин',
@@ -651,12 +781,13 @@ const baseTests = [
     seoKeywords: ['стиль управления тест', 'управленческий стиль', 'менеджмент тест'],
     featured: false,
     new: false,
-    slug: 'management-style'
+    slug: 'management-style',
   },
   {
     id: 'sales-potential',
     title: 'Потенциал в продажах',
-    description: 'Оцените свои способности к продажам и работе с клиентами. Узнайте сильные стороны продавца.',
+    description:
+      'Оцените свои способности к продажам и работе с клиентами. Узнайте сильные стороны продавца.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -667,7 +798,7 @@ const baseTests = [
     seoKeywords: ['потенциал в продажах', 'тест продавца', 'способности к продажам'],
     featured: false,
     new: false,
-    slug: 'sales-potential'
+    slug: 'sales-potential',
   },
   {
     id: 'entrepreneurship',
@@ -680,15 +811,20 @@ const baseTests = [
     usersCount: '14K+',
     popularity: 2,
     tags: ['предпринимательство', 'бизнес', 'инновации', 'риск'],
-    seoKeywords: ['предпринимательские способности тест', 'тест на бизнес', 'предпринимательство тест'],
+    seoKeywords: [
+      'предпринимательские способности тест',
+      'тест на бизнес',
+      'предпринимательство тест',
+    ],
     featured: false,
     new: false,
-    slug: 'entrepreneurship'
+    slug: 'entrepreneurship',
   },
   {
     id: 'negotiation-skills',
     title: 'Навыки переговоров',
-    description: 'Оцените свои способности к ведению переговоров и достижению взаимовыгодных решений.',
+    description:
+      'Оцените свои способности к ведению переговоров и достижению взаимовыгодных решений.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -699,12 +835,13 @@ const baseTests = [
     seoKeywords: ['навыки переговоров тест', 'переговоры тест', 'переговорщик тест'],
     featured: false,
     new: false,
-    slug: 'negotiation-skills'
+    slug: 'negotiation-skills',
   },
   {
     id: 'workplace-personality',
     title: 'Личность на работе',
-    description: 'Узнайте, как ваша личность проявляется в рабочей среде и как это влияет на карьеру.',
+    description:
+      'Узнайте, как ваша личность проявляется в рабочей среде и как это влияет на карьеру.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -715,12 +852,13 @@ const baseTests = [
     seoKeywords: ['личность на работе', 'рабочая личность тест', 'поведение на работе'],
     featured: false,
     new: false,
-    slug: 'workplace-personality'
+    slug: 'workplace-personality',
   },
   {
     id: 'innovation-style',
     title: 'Стиль инноваций',
-    description: 'Определите свой подход к инновациям: генератор идей, адаптор, реализатор или критик.',
+    description:
+      'Определите свой подход к инновациям: генератор идей, адаптор, реализатор или критик.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -731,7 +869,7 @@ const baseTests = [
     seoKeywords: ['стиль инноваций тест', 'инновационное мышление', 'генерация идей'],
     featured: false,
     new: false,
-    slug: 'innovation-style'
+    slug: 'innovation-style',
   },
   {
     id: 'delegation-skills',
@@ -747,12 +885,13 @@ const baseTests = [
     seoKeywords: ['умение делегировать тест', 'делегирование навыки', 'управление командой'],
     featured: false,
     new: false,
-    slug: 'delegation-skills'
+    slug: 'delegation-skills',
   },
   {
     id: 'career-values',
     title: 'Карьерные ценности',
-    description: 'Определите свои главные ценности в работе: безопасность, автономия, служение или вызов.',
+    description:
+      'Определите свои главные ценности в работе: безопасность, автономия, служение или вызов.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '13 мин',
@@ -763,7 +902,7 @@ const baseTests = [
     seoKeywords: ['карьерные ценности тест', 'ценности в работе', 'рабочие приоритеты'],
     featured: false,
     new: false,
-    slug: 'career-values'
+    slug: 'career-values',
   },
   {
     id: 'remote-work-fit',
@@ -779,7 +918,7 @@ const baseTests = [
     seoKeywords: ['готовность к удаленной работе', 'удаленная работа тест', 'фриланс тест'],
     featured: true,
     new: true,
-    slug: 'remote-work-fit'
+    slug: 'remote-work-fit',
   },
 
   // Тесты образа жизни (продолжение)
@@ -797,12 +936,13 @@ const baseTests = [
     seoKeywords: ['качество сна тест', 'тест сна', 'нарушения сна'],
     featured: false,
     new: false,
-    slug: 'sleep-quality'
+    slug: 'sleep-quality',
   },
   {
     id: 'nutrition-habits',
     title: 'Пищевые привычки',
-    description: 'Проанализируйте свои пищевые привычки и получите персональные рекомендации по питанию.',
+    description:
+      'Проанализируйте свои пищевые привычки и получите персональные рекомендации по питанию.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '8 мин',
@@ -813,12 +953,13 @@ const baseTests = [
     seoKeywords: ['пищевые привычки тест', 'питание тест', 'здоровое питание'],
     featured: false,
     new: false,
-    slug: 'nutrition-habits'
+    slug: 'nutrition-habits',
   },
   {
     id: 'exercise-motivation',
     title: 'Мотивация к спорту',
-    description: 'Определите, что вас мотивирует заниматься спортом, и найдите подходящие виды физической активности.',
+    description:
+      'Определите, что вас мотивирует заниматься спортом, и найдите подходящие виды физической активности.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -829,12 +970,13 @@ const baseTests = [
     seoKeywords: ['мотивация к спорту тест', 'фитнес мотивация', 'спорт тест'],
     featured: false,
     new: false,
-    slug: 'exercise-motivation'
+    slug: 'exercise-motivation',
   },
   {
     id: 'time-management',
     title: 'Управление временем',
-    description: 'Оцените свои навыки тайм-менеджмента и получите стратегии повышения эффективности.',
+    description:
+      'Оцените свои навыки тайм-менеджмента и получите стратегии повышения эффективности.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -845,12 +987,13 @@ const baseTests = [
     seoKeywords: ['управление временем тест', 'тайм менеджмент тест', 'планирование времени'],
     featured: false,
     new: false,
-    slug: 'time-management'
+    slug: 'time-management',
   },
   {
     id: 'money-mindset',
     title: 'Отношение к деньгам',
-    description: 'Узнайте свой тип отношения к деньгам: накопитель, трата, инвестор или избегатель.',
+    description:
+      'Узнайте свой тип отношения к деньгам: накопитель, трата, инвестор или избегатель.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -861,12 +1004,13 @@ const baseTests = [
     seoKeywords: ['отношение к деньгам тест', 'денежное мышление', 'финансовая психология'],
     featured: false,
     new: false,
-    slug: 'money-mindset'
+    slug: 'money-mindset',
   },
   {
     id: 'social-media-usage',
     title: 'Использование соцсетей',
-    description: 'Проанализируйте своё поведение в социальных сетях и влияние на психическое здоровье.',
+    description:
+      'Проанализируйте своё поведение в социальных сетях и влияние на психическое здоровье.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -877,12 +1021,13 @@ const baseTests = [
     seoKeywords: ['соцсети тест', 'зависимость от соцсетей', 'социальные сети влияние'],
     featured: false,
     new: true,
-    slug: 'social-media-usage'
+    slug: 'social-media-usage',
   },
   {
     id: 'travel-style',
     title: 'Стиль путешествий',
-    description: 'Определите свой идеальный стиль путешествий: авантюрист, планировщик, культурный исследователь или релаксатор.',
+    description:
+      'Определите свой идеальный стиль путешествий: авантюрист, планировщик, культурный исследователь или релаксатор.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -893,7 +1038,7 @@ const baseTests = [
     seoKeywords: ['стиль путешествий тест', 'как путешествовать', 'тип туриста'],
     featured: false,
     new: false,
-    slug: 'travel-style'
+    slug: 'travel-style',
   },
   {
     id: 'minimalism-tendency',
@@ -909,12 +1054,13 @@ const baseTests = [
     seoKeywords: ['минимализм тест', 'склонность к минимализму', 'минималистский образ жизни'],
     featured: false,
     new: false,
-    slug: 'minimalism-tendency'
+    slug: 'minimalism-tendency',
   },
   {
     id: 'hobby-matcher',
     title: 'Подбор хобби',
-    description: 'Найдите идеальное хобби, которое соответствует вашим интересам, темпераменту и образу жизни.',
+    description:
+      'Найдите идеальное хобби, которое соответствует вашим интересам, темпераменту и образу жизни.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -925,12 +1071,13 @@ const baseTests = [
     seoKeywords: ['подбор хобби тест', 'какое хобби выбрать', 'увлечения тест'],
     featured: false,
     new: false,
-    slug: 'hobby-matcher'
+    slug: 'hobby-matcher',
   },
   {
     id: 'environmental-consciousness',
     title: 'Экологическое сознание',
-    description: 'Оцените уровень экологического сознания и получите советы по более устойчивому образу жизни.',
+    description:
+      'Оцените уровень экологического сознания и получите советы по более устойчивому образу жизни.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -941,14 +1088,15 @@ const baseTests = [
     seoKeywords: ['экологическое сознание тест', 'эко тест', 'экологичность тест'],
     featured: false,
     new: false,
-    slug: 'environmental-consciousness'
+    slug: 'environmental-consciousness',
   },
 
   // Специализированные тесты
   {
     id: 'parenting-style',
     title: 'Стиль воспитания',
-    description: 'Определите свой стиль воспитания детей: авторитетный, авторитарный, попустительский или пренебрегающий.',
+    description:
+      'Определите свой стиль воспитания детей: авторитетный, авторитарный, попустительский или пренебрегающий.',
     category: 'psychology' as const,
     difficulty: 'Сложный' as const,
     duration: '15 мин',
@@ -959,7 +1107,7 @@ const baseTests = [
     seoKeywords: ['стиль воспитания тест', 'родительство тест', 'воспитание детей'],
     featured: false,
     new: false,
-    slug: 'parenting-style'
+    slug: 'parenting-style',
   },
   {
     id: 'relationship-readiness',
@@ -975,7 +1123,7 @@ const baseTests = [
     seoKeywords: ['готовность к отношениям тест', 'отношения тест', 'любовь тест'],
     featured: false,
     new: false,
-    slug: 'relationship-readiness'
+    slug: 'relationship-readiness',
   },
   {
     id: 'friendship-quality',
@@ -991,12 +1139,13 @@ const baseTests = [
     seoKeywords: ['дружба тест', 'качество дружбы', 'хороший друг тест'],
     featured: false,
     new: false,
-    slug: 'friendship-quality'
+    slug: 'friendship-quality',
   },
   {
     id: 'happiness-level',
     title: 'Уровень счастья',
-    description: 'Измерьте уровень субъективного благополучия и получите рекомендации по повышению счастья.',
+    description:
+      'Измерьте уровень субъективного благополучия и получите рекомендации по повышению счастья.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -1007,12 +1156,13 @@ const baseTests = [
     seoKeywords: ['уровень счастья тест', 'тест на счастье', 'субъективное благополучие'],
     featured: true,
     new: false,
-    slug: 'happiness-level'
+    slug: 'happiness-level',
   },
   {
     id: 'procrastination',
     title: 'Склонность к прокрастинации',
-    description: 'Определите уровень прокрастинации и получите стратегии преодоления откладывания дел.',
+    description:
+      'Определите уровень прокрастинации и получите стратегии преодоления откладывания дел.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -1023,7 +1173,7 @@ const baseTests = [
     seoKeywords: ['прокрастинация тест', 'тест на откладывание', 'лень тест'],
     featured: false,
     new: false,
-    slug: 'procrastination'
+    slug: 'procrastination',
   },
   {
     id: 'digital-detox-readiness',
@@ -1039,7 +1189,7 @@ const baseTests = [
     seoKeywords: ['цифровой детокс тест', 'зависимость от технологий', 'digital detox'],
     featured: false,
     new: true,
-    slug: 'digital-detox-readiness'
+    slug: 'digital-detox-readiness',
   },
   {
     id: 'mindfulness-level',
@@ -1055,12 +1205,13 @@ const baseTests = [
     seoKeywords: ['осознанность тест', 'mindfulness тест', 'медитация тест'],
     featured: false,
     new: false,
-    slug: 'mindfulness-level'
+    slug: 'mindfulness-level',
   },
   {
     id: 'goal-setting-style',
     title: 'Стиль постановки целей',
-    description: 'Определите свой подход к целеполаганию: SMART-цели, мечты, процессы или интуитивный.',
+    description:
+      'Определите свой подход к целеполаганию: SMART-цели, мечты, процессы или интуитивный.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '10 мин',
@@ -1071,12 +1222,13 @@ const baseTests = [
     seoKeywords: ['постановка целей тест', 'целеполагание тест', 'как ставить цели'],
     featured: false,
     new: false,
-    slug: 'goal-setting-style'
+    slug: 'goal-setting-style',
   },
   {
     id: 'energy-management',
     title: 'Управление энергией',
-    description: 'Узнайте, как лучше управлять своей энергией в течение дня для максимальной продуктивности.',
+    description:
+      'Узнайте, как лучше управлять своей энергией в течение дня для максимальной продуктивности.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -1087,12 +1239,13 @@ const baseTests = [
     seoKeywords: ['управление энергией тест', 'энергетический менеджмент', 'энергия тест'],
     featured: false,
     new: false,
-    slug: 'energy-management'
+    slug: 'energy-management',
   },
   {
     id: 'organization-skills',
     title: 'Навыки организации',
-    description: 'Оцените способность организовывать пространство, время и задачи для достижения целей.',
+    description:
+      'Оцените способность организовывать пространство, время и задачи для достижения целей.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -1103,12 +1256,13 @@ const baseTests = [
     seoKeywords: ['навыки организации тест', 'организованность тест', 'порядок тест'],
     featured: false,
     new: false,
-    slug: 'organization-skills'
+    slug: 'organization-skills',
   },
   {
     id: 'focus-ability',
     title: 'Способность к концентрации',
-    description: 'Измерьте способность к длительной концентрации и получите техники улучшения внимания.',
+    description:
+      'Измерьте способность к длительной концентрации и получите техники улучшения внимания.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -1119,12 +1273,13 @@ const baseTests = [
     seoKeywords: ['концентрация тест', 'внимание тест', 'способность к фокусу'],
     featured: false,
     new: false,
-    slug: 'focus-ability'
+    slug: 'focus-ability',
   },
   {
     id: 'change-adaptability',
     title: 'Адаптация к изменениям',
-    description: 'Оцените свою способность адаптироваться к жизненным изменениям и неопределённости.',
+    description:
+      'Оцените свою способность адаптироваться к жизненным изменениям и неопределённости.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -1135,12 +1290,13 @@ const baseTests = [
     seoKeywords: ['адаптация к изменениям тест', 'гибкость тест', 'изменения тест'],
     featured: false,
     new: false,
-    slug: 'change-adaptability'
+    slug: 'change-adaptability',
   },
   {
     id: 'life-satisfaction',
     title: 'Удовлетворённость жизнью',
-    description: 'Комплексная оценка удовлетворённости различными сферами жизни с рекомендациями по улучшению.',
+    description:
+      'Комплексная оценка удовлетворённости различными сферами жизни с рекомендациями по улучшению.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '13 мин',
@@ -1151,14 +1307,15 @@ const baseTests = [
     seoKeywords: ['удовлетворённость жизнью тест', 'качество жизни тест', 'жизненное счастье'],
     featured: false,
     new: false,
-    slug: 'life-satisfaction'
+    slug: 'life-satisfaction',
   },
 
   // Специальные и тематические тесты
   {
     id: 'generation-gap',
     title: 'Поколенческие различия',
-    description: 'Определите, к какому поколению вы принадлежите по ценностям: бумер, X, миллениал или зумер.',
+    description:
+      'Определите, к какому поколению вы принадлежите по ценностям: бумер, X, миллениал или зумер.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1169,12 +1326,13 @@ const baseTests = [
     seoKeywords: ['поколенческие различия тест', 'тест поколений', 'миллениал зумер тест'],
     featured: false,
     new: true,
-    slug: 'generation-gap'
+    slug: 'generation-gap',
   },
   {
     id: 'humor-style',
     title: 'Стиль юмора',
-    description: 'Определите свой стиль юмора: самоподдерживающий, агрессивный, социальный или саморазрушающий.',
+    description:
+      'Определите свой стиль юмора: самоподдерживающий, агрессивный, социальный или саморазрушающий.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -1185,12 +1343,13 @@ const baseTests = [
     seoKeywords: ['стиль юмора тест', 'чувство юмора тест', 'юмор тест'],
     featured: false,
     new: false,
-    slug: 'humor-style'
+    slug: 'humor-style',
   },
   {
     id: 'music-personality',
     title: 'Музыкальная личность',
-    description: 'Узнайте, как музыкальные предпочтения отражают вашу личность и эмоциональные потребности.',
+    description:
+      'Узнайте, как музыкальные предпочтения отражают вашу личность и эмоциональные потребности.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '8 мин',
@@ -1201,7 +1360,7 @@ const baseTests = [
     seoKeywords: ['музыкальная личность тест', 'музыкальный вкус', 'музыка и характер'],
     featured: false,
     new: false,
-    slug: 'music-personality'
+    slug: 'music-personality',
   },
   {
     id: 'color-psychology',
@@ -1217,7 +1376,7 @@ const baseTests = [
     seoKeywords: ['психология цвета тест', 'влияние цветов', 'цветовые предпочтения'],
     featured: false,
     new: false,
-    slug: 'color-psychology'
+    slug: 'color-psychology',
   },
   {
     id: 'personal-brand',
@@ -1233,7 +1392,7 @@ const baseTests = [
     seoKeywords: ['личный бренд тест', 'персональный бренд', 'репутация тест'],
     featured: false,
     new: false,
-    slug: 'personal-brand'
+    slug: 'personal-brand',
   },
   {
     id: 'networking-style',
@@ -1249,7 +1408,7 @@ const baseTests = [
     seoKeywords: ['нетворкинг тест', 'профессиональные связи', 'деловое общение'],
     featured: false,
     new: false,
-    slug: 'networking-style'
+    slug: 'networking-style',
   },
   {
     id: 'presentation-skills',
@@ -1265,7 +1424,7 @@ const baseTests = [
     seoKeywords: ['навыки презентации тест', 'публичные выступления', 'ораторские способности'],
     featured: false,
     new: false,
-    slug: 'presentation-skills'
+    slug: 'presentation-skills',
   },
 
   // Тренды и современные темы
@@ -1283,12 +1442,13 @@ const baseTests = [
     seoKeywords: ['готовность к ИИ тест', 'искусственный интеллект тест', 'AI тест'],
     featured: false,
     new: true,
-    slug: 'ai-readiness'
+    slug: 'ai-readiness',
   },
   {
     id: 'crypto-mindset',
     title: 'Крипто-мышление',
-    description: 'Определите свой подход к криптовалютам и блокчейн-технологиям: скептик, энтузиаст или прагматик.',
+    description:
+      'Определите свой подход к криптовалютам и блокчейн-технологиям: скептик, энтузиаст или прагматик.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '8 мин',
@@ -1299,12 +1459,13 @@ const baseTests = [
     seoKeywords: ['крипто тест', 'криптовалюты отношение', 'блокчейн мышление'],
     featured: false,
     new: true,
-    slug: 'crypto-mindset'
+    slug: 'crypto-mindset',
   },
   {
     id: 'sustainability-lifestyle',
     title: 'Устойчивый образ жизни',
-    description: 'Оцените уровень экологичности вашего образа жизни и получите советы по устойчивому развитию.',
+    description:
+      'Оцените уровень экологичности вашего образа жизни и получите советы по устойчивому развитию.',
     category: 'lifestyle' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -1315,12 +1476,13 @@ const baseTests = [
     seoKeywords: ['устойчивый образ жизни тест', 'экологичность тест', 'sustainability тест'],
     featured: false,
     new: false,
-    slug: 'sustainability-lifestyle'
+    slug: 'sustainability-lifestyle',
   },
   {
     id: 'influencer-potential',
     title: 'Потенциал инфлюенсера',
-    description: 'Определите свой потенциал для влияния в социальных сетях и создания личного бренда.',
+    description:
+      'Определите свой потенциал для влияния в социальных сетях и создания личного бренда.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '11 мин',
@@ -1331,14 +1493,15 @@ const baseTests = [
     seoKeywords: ['потенциал инфлюенсера тест', 'инфлюенсер тест', 'блогер тест'],
     featured: false,
     new: true,
-    slug: 'influencer-potential'
+    slug: 'influencer-potential',
   },
 
   // Узкоспециальные тесты
   {
     id: 'gaming-personality',
     title: 'Геймерская личность',
-    description: 'Определите свой геймерский архетип: исследователь, достиженец, социальный игрок или киллер.',
+    description:
+      'Определите свой геймерский архетип: исследователь, достиженец, социальный игрок или киллер.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -1349,12 +1512,13 @@ const baseTests = [
     seoKeywords: ['геймерская личность тест', 'тип геймера', 'игровой стиль'],
     featured: false,
     new: false,
-    slug: 'gaming-personality'
+    slug: 'gaming-personality',
   },
   {
     id: 'shopping-behavior',
     title: 'Стиль шопинга',
-    description: 'Узнайте свой стиль потребления: минималист, импульсивный, исследователь или статусный покупатель.',
+    description:
+      'Узнайте свой стиль потребления: минималист, импульсивный, исследователь или статусный покупатель.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1365,12 +1529,13 @@ const baseTests = [
     seoKeywords: ['стиль шопинга тест', 'поведение потребителя', 'покупательское поведение'],
     featured: false,
     new: false,
-    slug: 'shopping-behavior'
+    slug: 'shopping-behavior',
   },
   {
     id: 'home-personality',
     title: 'Домашняя личность',
-    description: 'Определите, какая домашняя атмосфера вам подходит: минимализм, уют, функциональность или эклектика.',
+    description:
+      'Определите, какая домашняя атмосфера вам подходит: минимализм, уют, функциональность или эклектика.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '8 мин',
@@ -1381,7 +1546,7 @@ const baseTests = [
     seoKeywords: ['домашняя личность тест', 'стиль дома', 'интерьер личности'],
     featured: false,
     new: false,
-    slug: 'home-personality'
+    slug: 'home-personality',
   },
   {
     id: 'weather-mood',
@@ -1397,12 +1562,13 @@ const baseTests = [
     seoKeywords: ['погода и настроение тест', 'сезонная депрессия', 'метеозависимость'],
     featured: false,
     new: false,
-    slug: 'weather-mood'
+    slug: 'weather-mood',
   },
   {
     id: 'pet-compatibility',
     title: 'Совместимость с питомцами',
-    description: 'Определите, какое домашнее животное лучше всего подходит вашему образу жизни и характеру.',
+    description:
+      'Определите, какое домашнее животное лучше всего подходит вашему образу жизни и характеру.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1413,14 +1579,15 @@ const baseTests = [
     seoKeywords: ['какого питомца завести', 'совместимость с животными', 'домашние животные тест'],
     featured: false,
     new: false,
-    slug: 'pet-compatibility'
+    slug: 'pet-compatibility',
   },
 
   // Профессиональные специализированные тесты
   {
     id: 'tech-role-fit',
     title: 'Роль в IT команде',
-    description: 'Определите оптимальную роль в технологической команде: разработчик, аналитик, дизайнер или менеджер.',
+    description:
+      'Определите оптимальную роль в технологической команде: разработчик, аналитик, дизайнер или менеджер.',
     category: 'career' as const,
     difficulty: 'Сложный' as const,
     duration: '15 мин',
@@ -1431,12 +1598,13 @@ const baseTests = [
     seoKeywords: ['IT роль тест', 'роль в команде разработки', 'технологическая команда'],
     featured: false,
     new: true,
-    slug: 'tech-role-fit'
+    slug: 'tech-role-fit',
   },
   {
     id: 'creative-role-fit',
     title: 'Творческая профессия',
-    description: 'Найдите свою нишу в творческих индустриях: дизайн, медиа, искусство или развлечения.',
+    description:
+      'Найдите свою нишу в творческих индустриях: дизайн, медиа, искусство или развлечения.',
     category: 'career' as const,
     difficulty: 'Средний' as const,
     duration: '12 мин',
@@ -1447,12 +1615,13 @@ const baseTests = [
     seoKeywords: ['творческая профессия тест', 'креативная карьера', 'искусство профессия'],
     featured: false,
     new: false,
-    slug: 'creative-role-fit'
+    slug: 'creative-role-fit',
   },
   {
     id: 'consulting-aptitude',
     title: 'Способности к консалтингу',
-    description: 'Оцените потенциал для работы в консалтинге: аналитика, решение проблем, клиентская работа.',
+    description:
+      'Оцените потенциал для работы в консалтинге: аналитика, решение проблем, клиентская работа.',
     category: 'career' as const,
     difficulty: 'Сложный' as const,
     duration: '13 мин',
@@ -1463,7 +1632,7 @@ const baseTests = [
     seoKeywords: ['консалтинг тест', 'способности консультанта', 'карьера в консалтинге'],
     featured: false,
     new: false,
-    slug: 'consulting-aptitude'
+    slug: 'consulting-aptitude',
   },
   {
     id: 'teaching-potential',
@@ -1479,14 +1648,15 @@ const baseTests = [
     seoKeywords: ['педагогические способности тест', 'учитель тест', 'способности к обучению'],
     featured: false,
     new: false,
-    slug: 'teaching-potential'
+    slug: 'teaching-potential',
   },
 
   // Современные lifestyle тесты
   {
     id: 'social-battery',
     title: 'Социальная батарейка',
-    description: 'Определите ёмкость вашей социальной энергии и оптимальный баланс общения и одиночества.',
+    description:
+      'Определите ёмкость вашей социальной энергии и оптимальный баланс общения и одиночества.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -1497,12 +1667,13 @@ const baseTests = [
     seoKeywords: ['социальная батарейка тест', 'социальная энергия', 'общение тест'],
     featured: true,
     new: true,
-    slug: 'social-battery'
+    slug: 'social-battery',
   },
   {
     id: 'weekend-archetype',
     title: 'Архетип выходных',
-    description: 'Узнайте свой идеальный стиль проведения выходных: активист, домосед, исследователь или творец.',
+    description:
+      'Узнайте свой идеальный стиль проведения выходных: активист, домосед, исследователь или творец.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '5 мин',
@@ -1513,12 +1684,13 @@ const baseTests = [
     seoKeywords: ['как провести выходные', 'стиль отдыха тест', 'выходные тест'],
     featured: false,
     new: false,
-    slug: 'weekend-archetype'
+    slug: 'weekend-archetype',
   },
   {
     id: 'morning-routine',
     title: 'Утренняя рутина',
-    description: 'Определите идеальную утреннюю рутину для максимальной продуктивности и хорошего настроения.',
+    description:
+      'Определите идеальную утреннюю рутину для максимальной продуктивности и хорошего настроения.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1529,12 +1701,13 @@ const baseTests = [
     seoKeywords: ['утренняя рутина тест', 'утренние привычки', 'продуктивное утро'],
     featured: false,
     new: false,
-    slug: 'morning-routine'
+    slug: 'morning-routine',
   },
   {
     id: 'vacation-style',
     title: 'Стиль отпуска',
-    description: 'Выберите идеальный формат отпуска: активный отдых, культурный туризм, релакс или приключения.',
+    description:
+      'Выберите идеальный формат отпуска: активный отдых, культурный туризм, релакс или приключения.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -1545,7 +1718,7 @@ const baseTests = [
     seoKeywords: ['стиль отпуска тест', 'как отдыхать', 'идеальный отпуск'],
     featured: false,
     new: false,
-    slug: 'vacation-style'
+    slug: 'vacation-style',
   },
   {
     id: 'reading-personality',
@@ -1561,14 +1734,15 @@ const baseTests = [
     seoKeywords: ['читательская личность тест', 'тип читателя', 'книжные предпочтения'],
     featured: false,
     new: false,
-    slug: 'reading-personality'
+    slug: 'reading-personality',
   },
 
   // Финальные специальные тесты
   {
     id: 'city-country-preference',
     title: 'Город или деревня',
-    description: 'Определите идеальную среду обитания: мегаполис, небольшой город, пригород или сельская местность.',
+    description:
+      'Определите идеальную среду обитания: мегаполис, небольшой город, пригород или сельская местность.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1579,12 +1753,13 @@ const baseTests = [
     seoKeywords: ['город или деревня тест', 'где лучше жить', 'место жительства тест'],
     featured: false,
     new: false,
-    slug: 'city-country-preference'
+    slug: 'city-country-preference',
   },
   {
     id: 'social-media-personality',
     title: 'Личность в соцсетях',
-    description: 'Узнайте свой тип поведения в социальных сетях: лурker, шарер, создатель или влиятель.',
+    description:
+      'Узнайте свой тип поведения в социальных сетях: лурker, шарер, создатель или влиятель.',
     category: 'lifestyle' as const,
     difficulty: 'Легкий' as const,
     duration: '7 мин',
@@ -1595,12 +1770,13 @@ const baseTests = [
     seoKeywords: ['личность в соцсетях тест', 'поведение в соцсетях', 'социальные сети тип'],
     featured: false,
     new: true,
-    slug: 'social-media-personality'
+    slug: 'social-media-personality',
   },
   {
     id: 'generation-z-traits',
     title: 'Черты поколения Z',
-    description: 'Определите, насколько вам присущи характерные черты поколения Z независимо от возраста.',
+    description:
+      'Определите, насколько вам присущи характерные черты поколения Z независимо от возраста.',
     category: 'psychology' as const,
     difficulty: 'Легкий' as const,
     duration: '6 мин',
@@ -1611,12 +1787,13 @@ const baseTests = [
     seoKeywords: ['поколение Z тест', 'зумер тест', 'черты поколения Z'],
     featured: false,
     new: true,
-    slug: 'generation-z-traits'
+    slug: 'generation-z-traits',
   },
   {
     id: 'mindset-type',
     title: 'Тип мышления',
-    description: 'Определите свой мindset по Кэрол Двек: установка на рост или фиксированная установка.',
+    description:
+      'Определите свой мindset по Кэрол Двек: установка на рост или фиксированная установка.',
     category: 'psychology' as const,
     difficulty: 'Средний' as const,
     duration: '9 мин',
@@ -1627,12 +1804,13 @@ const baseTests = [
     seoKeywords: ['тип мышления тест', 'growth mindset', 'установка на рост'],
     featured: false,
     new: false,
-    slug: 'mindset-type'
+    slug: 'mindset-type',
   },
   {
     id: 'life-priorities',
     title: 'Жизненные приоритеты',
-    description: 'Определите свои главные жизненные ценности и приоритеты для осознанного планирования.',
+    description:
+      'Определите свои главные жизненные ценности и приоритеты для осознанного планирования.',
     category: 'lifestyle' as const,
     difficulty: 'Сложный' as const,
     duration: '16 мин',
@@ -1643,7 +1821,7 @@ const baseTests = [
     seoKeywords: ['жизненные приоритеты тест', 'ценности тест', 'жизненные ценности'],
     featured: false,
     new: false,
-    slug: 'life-priorities'
+    slug: 'life-priorities',
   },
   {
     id: 'future-readiness',
@@ -1659,54 +1837,310 @@ const baseTests = [
     seoKeywords: ['готовность к будущему тест', 'адаптация к изменениям', 'будущее тест'],
     featured: false,
     new: true,
-    slug: 'future-readiness'
-  }
+    slug: 'future-readiness',
+  },
+
+  // Новые современные тесты 2025
+  {
+    id: 'mental-resilience',
+    title: 'Психологическая устойчивость',
+    description:
+      'Измерьте способность восстанавливаться после стрессовых ситуаций и жизненных трудностей.',
+    category: 'psychology' as const,
+    difficulty: 'Средний' as const,
+    duration: '12 мин',
+    questionsCount: 60,
+    usersCount: '22K+',
+    popularity: 4,
+    tags: ['резилентность', 'устойчивость', 'стресс', 'восстановление'],
+    seoKeywords: ['психологическая устойчивость тест', 'резилентность тест', 'стрессоустойчивость'],
+    featured: false,
+    new: true,
+    slug: 'mental-resilience',
+  },
+  {
+    id: 'dopamine-detox-need',
+    title: 'Нужен ли дофаминовый детокс',
+    description:
+      'Определите, нужна ли вам дофаминовая перезагрузка для восстановления чувствительности к удовольствиям.',
+    category: 'lifestyle' as const,
+    difficulty: 'Легкий' as const,
+    duration: '7 мин',
+    questionsCount: 35,
+    usersCount: '18K+',
+    popularity: 4,
+    tags: ['дофамин', 'детокс', 'удовольствие', 'зависимость'],
+    seoKeywords: ['дофаминовый детокс тест', 'нужен ли детокс', 'дофамин тест'],
+    featured: true,
+    new: true,
+    slug: 'dopamine-detox-need',
+  },
+  {
+    id: 'multitasking-ability',
+    title: 'Способность к многозадачности',
+    description: 'Оцените реальную способность эффективно выполнять несколько задач одновременно.',
+    category: 'career' as const,
+    difficulty: 'Средний' as const,
+    duration: '9 мин',
+    questionsCount: 45,
+    usersCount: '16K+',
+    popularity: 3,
+    tags: ['многозадачность', 'продуктивность', 'концентрация', 'эффективность'],
+    seoKeywords: ['многозадачность тест', 'способность к многозадачности', 'мультитаскинг тест'],
+    featured: false,
+    new: true,
+    slug: 'multitasking-ability',
+  },
+  {
+    id: 'financial-personality',
+    title: 'Финансовая личность',
+    description:
+      'Узнайте свой финансовый архетип и получите персональные советы по управлению деньгами.',
+    category: 'lifestyle' as const,
+    difficulty: 'Средний' as const,
+    duration: '11 мин',
+    questionsCount: 55,
+    usersCount: '24K+',
+    popularity: 4,
+    tags: ['деньги', 'финансы', 'инвестиции', 'накопления'],
+    seoKeywords: ['финансовая личность тест', 'финансовый архетип', 'деньги психология тест'],
+    featured: false,
+    new: true,
+    slug: 'financial-personality',
+  },
+  {
+    id: 'zoom-fatigue',
+    title: 'Усталость от видеозвонков',
+    description:
+      'Измерьте уровень усталости от онлайн-встреч и получите рекомендации по снижению нагрузки.',
+    category: 'career' as const,
+    difficulty: 'Легкий' as const,
+    duration: '6 мин',
+    questionsCount: 30,
+    usersCount: '15K+',
+    popularity: 3,
+    tags: ['zoom', 'видеозвонки', 'усталость', 'удалёнка'],
+    seoKeywords: ['zoom усталость тест', 'видеозвонки усталость', 'онлайн встречи стресс'],
+    featured: false,
+    new: true,
+    slug: 'zoom-fatigue',
+  },
+  {
+    id: 'climate-anxiety',
+    title: 'Климатическая тревожность',
+    description:
+      'Оцените уровень экологической тревожности и найдите способы конструктивного действия.',
+    category: 'psychology' as const,
+    difficulty: 'Средний' as const,
+    duration: '10 мин',
+    questionsCount: 50,
+    usersCount: '12K+',
+    popularity: 3,
+    tags: ['климат', 'экология', 'тревожность', 'будущее'],
+    seoKeywords: ['климатическая тревожность тест', 'эко тревога', 'экологическая тревожность'],
+    featured: false,
+    new: true,
+    slug: 'climate-anxiety',
+  },
+  {
+    id: 'hybrid-work-preference',
+    title: 'Предпочтения гибридной работы',
+    description:
+      'Определите оптимальный баланс между офисом и домом для максимальной продуктивности.',
+    category: 'career' as const,
+    difficulty: 'Легкий' as const,
+    duration: '8 мин',
+    questionsCount: 40,
+    usersCount: '20K+',
+    popularity: 4,
+    tags: ['гибрид', 'офис', 'удалёнка', 'баланс'],
+    seoKeywords: ['гибридная работа тест', 'офис или дом', 'гибридный формат'],
+    featured: true,
+    new: true,
+    slug: 'hybrid-work-preference',
+  },
+  {
+    id: 'information-diet',
+    title: 'Информационная диета',
+    description: 'Проанализируйте своё информационное потребление и оптимизируйте медиа-рацион.',
+    category: 'lifestyle' as const,
+    difficulty: 'Средний' as const,
+    duration: '9 мин',
+    questionsCount: 45,
+    usersCount: '17K+',
+    popularity: 3,
+    tags: ['информация', 'новости', 'медиа', 'диета'],
+    seoKeywords: ['информационная диета тест', 'медиа потребление', 'новостная зависимость'],
+    featured: false,
+    new: true,
+    slug: 'information-diet',
+  },
+  {
+    id: 'personal-boundaries',
+    title: 'Личные границы',
+    description:
+      'Оцените способность устанавливать и поддерживать здоровые личные границы в отношениях.',
+    category: 'psychology' as const,
+    difficulty: 'Средний' as const,
+    duration: '11 мин',
+    questionsCount: 55,
+    usersCount: '26K+',
+    popularity: 5,
+    tags: ['границы', 'отношения', 'ассертивность', 'защита'],
+    seoKeywords: ['личные границы тест', 'границы в отношениях', 'здоровые границы'],
+    featured: true,
+    new: true,
+    slug: 'personal-boundaries',
+  },
+  {
+    id: 'career-pivot-readiness',
+    title: 'Готовность к смене карьеры',
+    description:
+      'Определите психологическую и практическую готовность к кардинальной смене профессии.',
+    category: 'career' as const,
+    difficulty: 'Сложный' as const,
+    duration: '15 мин',
+    questionsCount: 75,
+    usersCount: '19K+',
+    popularity: 4,
+    tags: ['карьера', 'изменения', 'переход', 'профессия'],
+    seoKeywords: ['смена карьеры тест', 'готовность к переходу', 'новая профессия'],
+    featured: false,
+    new: true,
+    slug: 'career-pivot-readiness',
+  },
+  {
+    id: 'attention-span',
+    title: 'Продолжительность внимания',
+    description:
+      'Измерьте текущую способность к длительной концентрации в эпоху цифровых отвлечений.',
+    category: 'psychology' as const,
+    difficulty: 'Средний' as const,
+    duration: '8 мин',
+    questionsCount: 40,
+    usersCount: '21K+',
+    popularity: 4,
+    tags: ['внимание', 'концентрация', 'фокус', 'отвлечения'],
+    seoKeywords: ['продолжительность внимания тест', 'концентрация внимания', 'фокус тест'],
+    featured: false,
+    new: true,
+    slug: 'attention-span',
+  },
+  {
+    id: 'passive-income-mindset',
+    title: 'Мышление пассивного дохода',
+    description: 'Оцените готовность и способность создавать источники пассивного дохода.',
+    category: 'lifestyle' as const,
+    difficulty: 'Средний' as const,
+    duration: '10 мин',
+    questionsCount: 50,
+    usersCount: '14K+',
+    popularity: 3,
+    tags: ['пассивный доход', 'финансы', 'инвестиции', 'мышление'],
+    seoKeywords: ['пассивный доход тест', 'финансовая независимость', 'инвестор тест'],
+    featured: false,
+    new: true,
+    slug: 'passive-income-mindset',
+  },
+  {
+    id: 'sleep-chronotype-advanced',
+    title: 'Расширенный тест хронотипа',
+    description:
+      'Детальное определение хронотипа с учётом современных исследований: лев, медведь, волк или дельфин.',
+    category: 'lifestyle' as const,
+    difficulty: 'Средний' as const,
+    duration: '12 мин',
+    questionsCount: 60,
+    usersCount: '30K+',
+    popularity: 5,
+    tags: ['хронотип', 'сон', 'биоритмы', 'продуктивность'],
+    seoKeywords: ['расширенный хронотип тест', 'лев медведь волк дельфин', 'детальный хронотип'],
+    featured: true,
+    new: true,
+    slug: 'sleep-chronotype-advanced',
+  },
+  {
+    id: 'digital-nomad-readiness',
+    title: 'Готовность к кочевой жизни',
+    description: 'Узнайте, подходит ли вам lifestyle цифрового кочевника и работа из разных стран.',
+    category: 'lifestyle' as const,
+    difficulty: 'Средний' as const,
+    duration: '11 мин',
+    questionsCount: 55,
+    usersCount: '13K+',
+    popularity: 3,
+    tags: ['путешествия', 'удалёнка', 'номад', 'свобода'],
+    seoKeywords: ['цифровой кочевник тест', 'digital nomad готовность', 'работа в путешествиях'],
+    featured: false,
+    new: true,
+    slug: 'digital-nomad-readiness',
+  },
 ];
 
-// Применяем статусы ко всем тестам
-export const allTests: TestData[] = baseTests.map(test => updateTestWithStatus(test));
+// Применяем статусы ко всем тестам и сортируем
+export const allTests: TestData[] = baseTests
+  .map((test) => updateTestWithStatus(test))
+  .sort((a, b) => {
+    const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+    return statusOrder[a.status] - statusOrder[b.status];
+  });
 
 // Функции для работы с данными
 export const getTestsByCategory = (category: string): TestData[] => {
-  return allTests.filter(test => test.category === category);
+  return allTests
+    .filter((test) => test.category === category)
+    .sort((a, b) => {
+      const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+      return statusOrder[a.status] - statusOrder[b.status];
+    });
 };
 
 export const getFeaturedTests = (): TestData[] => {
-  return allTests.filter(test => test.featured);
+  return allTests
+    .filter((test) => test.featured)
+    .sort((a, b) => {
+      const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+      return statusOrder[a.status] - statusOrder[b.status];
+    });
 };
 
 export const getPopularTests = (limit: number = 10): TestData[] => {
   return allTests
+    .filter((test) => test.status === 'completed') // Только готовые тесты
     .sort((a, b) => b.popularity - a.popularity)
     .slice(0, limit);
 };
 
 export const getNewTests = (): TestData[] => {
-  return allTests.filter(test => test.new);
+  return allTests.filter((test) => test.new);
 };
 
 export const getAllTests = (): TestData[] => {
-  return allTests;
+  return allTests.sort((a, b) => {
+    const statusOrder = { completed: 0, in_development: 1, planned: 2 };
+    return statusOrder[a.status] - statusOrder[b.status];
+  });
 };
 
 export const getTestById = (id: string): TestData | undefined => {
-  return allTests.find(test => test.id === id);
+  return allTests.find((test) => test.id === id);
 };
 
 export const getTestBySlug = (slug: string): TestData | undefined => {
-  return allTests.find(test => test.slug === slug);
+  return allTests.find((test) => test.slug === slug);
 };
 
 export const searchTests = (query: string): TestData[] => {
   const lowercaseQuery = query.toLowerCase();
-  return allTests.filter(test => 
-    test.title.toLowerCase().includes(lowercaseQuery) ||
-    test.description.toLowerCase().includes(lowercaseQuery) ||
-    test.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery)) ||
-    test.seoKeywords.some(keyword => keyword.toLowerCase().includes(lowercaseQuery))
+  return allTests.filter(
+    (test) =>
+      test.title.toLowerCase().includes(lowercaseQuery) ||
+      test.description.toLowerCase().includes(lowercaseQuery) ||
+      test.tags.some((tag) => tag.toLowerCase().includes(lowercaseQuery)) ||
+      test.seoKeywords.some((keyword) => keyword.toLowerCase().includes(lowercaseQuery))
   );
 };
 
 export const getCategoryById = (id: string): TestCategory | undefined => {
-  return testCategories.find(category => category.id === id);
+  return testCategories.find((category) => category.id === id);
 };
