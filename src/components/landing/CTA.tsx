@@ -2,207 +2,363 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { NeoCard, NeoCardContent } from '@/components/ui/neo-card';
-import { Play, ArrowRight, CheckCircle, Clock, Users, Sparkles, Gift, Zap } from 'lucide-react';
+import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
+import Link from 'next/link';
+import {
+  ArrowRight,
+  Sparkles,
+  Target,
+  Brain,
+  Trophy,
+  Rocket,
+  Shield,
+  Star,
+  TrendingUp,
+  Lightbulb,
+  Heart,
+  Award,
+  MousePointer,
+  Clock,
+  Gift,
+} from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { cn } from '@/lib/utils';
 
 export function CTA() {
+  const [activeStat, setActiveStat] = useState(0);
+
+  const stats = [
+    {
+      number: '73,482',
+      label: 'пользователей',
+      icon: Heart,
+      color: 'bg-[#FF6B35]',
+    },
+    {
+      number: '250K+',
+      label: 'тестов пройдено',
+      icon: Trophy,
+      color: 'bg-[#4ECDC4]',
+    },
+    {
+      number: '94.7%',
+      label: 'точность',
+      icon: Target,
+      color: 'bg-[#FFD23F]',
+    },
+    {
+      number: '4.8/5',
+      label: 'рейтинг',
+      icon: Star,
+      color: 'bg-[#AA96DA]',
+    },
+  ];
+
   const features = [
     {
-      icon: Clock,
-      text: 'Результат за 5-15 минут',
-      color: 'bg-chart-1',
+      icon: Rocket,
+      title: 'Мгновенный старт',
+      text: 'Без регистрации и SMS',
     },
     {
-      icon: CheckCircle,
-      text: 'Научно обоснованные методики',
-      color: 'bg-chart-2',
+      icon: Brain,
+      title: 'Научная база',
+      text: 'Проверенные методики',
     },
     {
-      icon: Users,
-      text: 'Более 50,000 довольных пользователей',
-      color: 'bg-chart-3',
-    },
-    {
-      icon: Gift,
-      text: '100% бесплатно, без регистрации',
-      color: 'bg-chart-4',
+      icon: Shield,
+      title: 'Конфиденциально',
+      text: 'Данные защищены',
     },
   ];
 
-  const urgencyFactors = [
-    'Узнайте свой истинный потенциал уже сегодня',
-    'Найдите профессию мечты за несколько минут',
-    'Получите персональные рекомендации от экспертов',
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStat((prev) => (prev + 1) % stats.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [stats.length]);
 
   return (
-    <section className="py-20 bg-main relative overflow-hidden">
-      {/* Geometric pattern background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-48 h-48 bg-chart-1 rotate-45 transform -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-chart-2 rounded-full transform translate-x-1/2 translate-y-1/2" />
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 border-4 border-border" />
-        <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-chart-3 transform rotate-12" />
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Dynamic background pattern */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 50px, #000 50px, #000 51px),
+                           repeating-linear-gradient(0deg, transparent, transparent 50px, #000 50px, #000 51px)`,
+            opacity: 0.02,
+          }}
+        />
+
+        {/* Floating shapes */}
+        <motion.div
+          className="absolute top-20 left-20 w-32 h-32 bg-[#FFD23F] opacity-20"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-24 h-24 bg-[#4ECDC4] rounded-full opacity-20"
+          animate={{ y: [0, -20, 0] }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Специальное предложение */}
+          {/* Animated badge */}
           <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex justify-center mb-8"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <div className="inline-flex items-center px-6 py-3 bg-chart-1 border-2 border-border shadow-shadow text-foreground font-bold uppercase">
-              <Sparkles className="w-4 h-4 mr-2" />
-              СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ
-            </div>
+            <NeoBadge color="yellow" className="text-sm">
+              <Sparkles className="w-4 h-4 mr-1" />
+              ВРЕМЯ ДЕЙСТВОВАТЬ
+            </NeoBadge>
           </motion.div>
 
-          {/* Основной заголовок */}
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-main-foreground mb-6 leading-tight uppercase"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Откройте секреты своей{' '}
-            <span className="text-foreground bg-chart-1 px-2 inline-block transform -rotate-1">
-              личности
-            </span>{' '}
-            прямо сейчас!
-          </motion.h2>
+          {/* Main heading */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-black text-center mb-8 uppercase">
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              Твоя личность —
+            </motion.span>
+            <motion.span
+              className="relative inline-block"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className="relative z-10">твоя суперсила</span>
+              <motion.div
+                className="absolute inset-0 bg-[#FFD23F] -rotate-2 z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              />
+            </motion.span>
+          </h2>
 
-          {/* Подзаголовок */}
-          <motion.p
-            className="text-xl sm:text-2xl text-main-foreground mb-8 leading-relaxed font-base"
-            initial={{ opacity: 0, y: 30 }}
+          {/* Dynamic stats */}
+          <motion.div
+            className="flex justify-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Пройдите <strong className="font-bold">психологический тест</strong> и получите
-            персональную карту личности с рекомендациями по карьере
-          </motion.p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl w-full">
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    className={cn(
+                      'relative p-4 border-2 border-border shadow-[4px_4px_0px_0px_#000000] transition-all hover:shadow-[6px_6px_0px_0px_#000000]',
+                      activeStat === index ? stat.color : 'bg-white'
+                    )}
+                    whileHover={{ y: -4 }}
+                  >
+                    <div className="flex flex-col items-center">
+                      <IconComponent
+                        className={cn(
+                          'w-8 h-8 mb-2',
+                          activeStat === index ? 'text-white' : 'text-foreground'
+                        )}
+                      />
+                      <div
+                        className={cn(
+                          'text-2xl font-heading font-black',
+                          activeStat === index ? 'text-white' : 'text-foreground'
+                        )}
+                      >
+                        {stat.number}
+                      </div>
+                      <div
+                        className={cn(
+                          'text-xs uppercase font-bold',
+                          activeStat === index ? 'text-white' : 'text-foreground/60'
+                        )}
+                      >
+                        {stat.label}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
 
-          {/* Факторы срочности */}
+          {/* Interactive CTA section */}
           <motion.div
-            className="mb-10"
+            className="relative mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="space-y-3">
-              {urgencyFactors.map((factor, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-center justify-center text-main-foreground"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                >
-                  <div className="w-8 h-8 bg-chart-1 border-2 border-border shadow-shadow flex items-center justify-center mr-3">
-                    <Zap className="w-4 h-4 text-foreground" />
+            <NeoCard className="overflow-hidden bg-gradient-to-br from-[#FFD23F]/10 to-[#FF6B35]/10">
+              <NeoCardContent className="p-8 md:p-12">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  {/* Left side - Text content */}
+                  <div className="text-center md:text-left">
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                    >
+                      <h3 className="text-2xl md:text-3xl font-heading font-black mb-4 uppercase">
+                        Раскрой свой потенциал за <span className="text-[#FF6B35]">10 минут</span>
+                      </h3>
+                      <p className="text-foreground/80 mb-6 leading-relaxed">
+                        Получи детальный анализ личности, рекомендации по карьере и развитию. Узнай,
+                        что делает тебя уникальным!
+                      </p>
+                    </motion.div>
+
+                    {/* Features list */}
+                    <div className="space-y-3 mb-8">
+                      {features.map((feature, index) => {
+                        const IconComponent = feature.icon;
+                        return (
+                          <motion.div
+                            key={index}
+                            className="flex items-start gap-3"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                          >
+                            <div className="w-10 h-10 bg-white border-2 border-border shadow-[2px_2px_0px_0px_#000000] flex items-center justify-center flex-shrink-0">
+                              <IconComponent className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <div className="font-heading font-bold text-sm uppercase">
+                                {feature.title}
+                              </div>
+                              <div className="text-sm text-foreground/70">{feature.text}</div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
                   </div>
-                  <span className="font-base">{factor}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Основные CTA кнопки */}
-          <motion.div
-            className="flex flex-col sm:flex-row gap-6 items-center justify-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            <motion.div whileTap={{ scale: 0.98 }}>
-              <Button
-                size="lg"
-                className="bg-chart-1 text-foreground border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-6 text-lg font-heading uppercase"
-              >
-                <Play className="w-5 h-5 mr-2" />
-                Начать тест на личность
-              </Button>
-            </motion.div>
-            <motion.div whileTap={{ scale: 0.98 }}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-background text-foreground border-2 border-border shadow-shadow hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-6 text-lg font-heading uppercase"
-              >
-                Выбрать профессию
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </motion.div>
-          </motion.div>
+                  {/* Right side - Action area */}
+                  <div className="flex flex-col items-center justify-center">
+                    <motion.div
+                      className="relative"
+                      animate={{ rotate: [0, -5, 5, -5, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                    >
+                      <div className="absolute inset-0 bg-[#FFD23F] blur-xl opacity-50" />
+                      <div className="relative bg-white border-2 border-border shadow-[6px_6px_0px_0px_#000000] p-8 text-center">
+                        <Award className="w-16 h-16 text-[#FF6B35] mx-auto mb-4" />
+                        <div className="text-3xl font-heading font-black mb-2">БЕСПЛАТНО</div>
+                        <div className="text-sm text-foreground/60 uppercase">
+                          Навсегда • Без рекламы
+                        </div>
+                      </div>
+                    </motion.div>
 
-          {/* Преимущества */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="flex flex-col items-center text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                >
-                  <div
-                    className={`w-16 h-16 ${feature.color} border-2 border-border shadow-shadow flex items-center justify-center mb-3`}
-                  >
-                    <IconComponent className="w-8 h-8 text-foreground" />
+                    {/* CTA Buttons */}
+                    <div className="mt-8 space-y-4 w-full max-w-sm">
+                      <Link href="/tests/personality-type">
+                        <motion.div whileTap={{ scale: 0.98 }} className="relative group">
+                          <div className="absolute inset-0 bg-[#FF6B35] group-hover:bg-[#FFD23F] transition-colors" />
+                          <Button
+                            size="lg"
+                            className="relative w-full bg-[#FFD23F] hover:bg-[#FFD23F] text-foreground border-2 border-border shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all py-6 text-lg font-heading uppercase group"
+                          >
+                            <Brain className="w-5 h-5 mr-2" />
+                            Начать тест
+                            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                        </motion.div>
+                      </Link>
+
+                      <Link href="/tests">
+                        <Button
+                          size="lg"
+                          variant="outline"
+                          className="w-full border-2 hover:bg-foreground hover:text-background transition-all py-5 font-heading uppercase"
+                        >
+                          Все тесты
+                          <TrendingUp className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
+                    </div>
+
+                    {/* Trust indicator */}
+                    <motion.div
+                      className="mt-6 flex items-center gap-2 text-sm text-foreground/60"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                    >
+                      <Shield className="w-4 h-4 text-[#4ECDC4]" />
+                      <span>Защищено SSL • Анонимно</span>
+                    </motion.div>
                   </div>
-                  <span className="text-main-foreground text-sm font-bold uppercase">
-                    {feature.text}
-                  </span>
-                </motion.div>
-              );
-            })}
+                </div>
+              </NeoCardContent>
+            </NeoCard>
+
+            {/* Animated cursor pointer */}
+            <motion.div
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="bg-[#FF6B35] border-2 border-border shadow-[3px_3px_0px_0px_#000000] p-3 rounded-full">
+                <MousePointer className="w-6 h-6 text-white" />
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Гарантия */}
+          {/* Bottom message */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.9 }}
           >
-            <NeoCard className="bg-chart-4" hover={false}>
-              <NeoCardContent className="p-6">
-                <div className="flex items-center justify-center mb-3">
-                  <CheckCircle className="w-6 h-6 text-foreground mr-2" />
-                  <span className="text-foreground font-heading font-bold uppercase">
-                    Гарантия точности результатов
-                  </span>
-                </div>
-                <p className="text-foreground text-sm font-base">
-                  Все наши <strong className="font-bold">психологические тесты</strong> основаны на
-                  научных исследованиях и проверены тысячами пользователей. Если результат вам не
-                  подойдет - мы поможем подобрать альтернативный тест
-                </p>
-              </NeoCardContent>
-            </NeoCard>
+            <p className="text-foreground/60 text-sm mb-2">
+              Присоединяйся к тысячам людей, которые уже открыли свой потенциал
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center gap-1">
+                <Lightbulb className="w-4 h-4 text-[#FFD23F]" />
+                <span className="text-xs font-bold uppercase">Инсайты</span>
+              </div>
+              <span className="text-foreground/30">•</span>
+              <div className="flex items-center gap-1">
+                <Target className="w-4 h-4 text-[#FF6B35]" />
+                <span className="text-xs font-bold uppercase">Цели</span>
+              </div>
+              <span className="text-foreground/30">•</span>
+              <div className="flex items-center gap-1">
+                <TrendingUp className="w-4 h-4 text-[#4ECDC4]" />
+                <span className="text-xs font-bold uppercase">Рост</span>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
@@ -212,54 +368,201 @@ export function CTA() {
 
 // Дополнительный компонент для финальной CTA в конце страницы
 export function FinalCTA() {
-  return (
-    <section className="py-16 bg-foreground relative overflow-hidden">
-      {/* Geometric pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-background border-2 border-background transform rotate-45" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-chart-5 rounded-full" />
-      </div>
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: ((e.clientX - rect.left) / rect.width - 0.5) * 20,
+      y: ((e.clientY - rect.top) / rect.height - 0.5) * 20,
+    });
+  };
+
+  return (
+    <section className="py-20 bg-[#FF6B35] relative overflow-hidden" onMouseMove={handleMouseMove}>
+      {/* Dynamic gradient background */}
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: `radial-gradient(circle at ${50 + mousePosition.x}% ${50 + mousePosition.y}%, #FFD23F, transparent 50%)`,
+        }}
+      />
+
+      {/* Geometric shapes */}
+      <motion.div
+        className="absolute top-10 left-10 w-20 h-20 bg-[#FFD23F] border-2 border-border"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+      />
+      <motion.div
+        className="absolute bottom-10 right-10 w-16 h-16 bg-[#4ECDC4] rounded-full border-2 border-border"
+        animate={{ y: [0, -20, 0] }}
+        transition={{ duration: 3, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute top-1/2 left-20 w-12 h-12 bg-[#AA96DA] border-2 border-border transform -rotate-12"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 uppercase text-background">
-            Готовы узнать себя лучше?
-          </h2>
-          <p className="text-background/80 mb-8 text-lg font-base">
-            Присоединяйтесь к тысячам людей, которые уже нашли свой путь с помощью наших тестов
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <motion.div whileTap={{ scale: 0.98 }}>
-              <Button
-                size="lg"
-                className="bg-chart-5 text-foreground border-2 border-background shadow-[4px_4px_0px_0px_theme(colors.background)] hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none px-8 py-3 text-base font-heading uppercase"
+          {/* Central card */}
+          <NeoCard className="bg-white overflow-hidden relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#FFD23F]/5 to-[#4ECDC4]/5" />
+            <NeoCardContent className="p-8 md:p-12 text-center relative">
+              {/* Animated badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="flex justify-center mb-6"
               >
-                <Play className="w-4 h-4 mr-2" />
-                Пройти тест сейчас
-              </Button>
-            </motion.div>
-            <div className="flex items-center gap-2 text-sm text-background/80 font-bold uppercase">
-              <div className="flex items-center gap-1">
-                <div className="w-6 h-6 bg-chart-1 border-2 border-background shadow-[2px_2px_0px_0px_theme(colors.background)] flex items-center justify-center">
-                  <span className="text-xs">⚡</span>
+                <div className="bg-[#FFD23F] border-2 border-border shadow-[3px_3px_0px_0px_#000000] px-4 py-2 transform -rotate-3">
+                  <span className="text-sm font-heading font-black uppercase">
+                    Последний шанс сегодня
+                  </span>
                 </div>
-                <span>Результат за 5 минут</span>
-              </div>
-              <span className="text-background">•</span>
-              <div className="flex items-center gap-1">
-                <div className="w-6 h-6 bg-chart-4 border-2 border-background shadow-[2px_2px_0px_0px_theme(colors.background)] flex items-center justify-center">
-                  <span className="text-xs">✓</span>
+              </motion.div>
+
+              {/* Heading */}
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-heading font-black mb-6 uppercase"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                Не упусти возможность{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10">изменить жизнь</span>
+                  <motion.div
+                    className="absolute inset-0 bg-[#4ECDC4] -rotate-1 z-0"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                  />
+                </span>
+              </motion.h2>
+
+              {/* Subtext */}
+              <motion.p
+                className="text-xl text-foreground/80 mb-8 max-w-2xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                Каждый день откладывая тест, ты теряешь возможность лучше понять себя и найти свой
+                идеальный путь развития
+              </motion.p>
+
+              {/* Stats row */}
+              <motion.div
+                className="grid grid-cols-3 gap-4 md:gap-8 mb-8 max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-heading font-black text-[#FF6B35]">
+                    89%
+                  </div>
+                  <div className="text-xs uppercase text-foreground/60">Находят призвание</div>
                 </div>
-                <span>Абсолютно бесплатно</span>
-              </div>
-            </div>
-          </div>
+                <div className="text-center border-x-2 border-border">
+                  <div className="text-3xl md:text-4xl font-heading font-black text-[#4ECDC4]">
+                    10
+                  </div>
+                  <div className="text-xs uppercase text-foreground/60">Минут на тест</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-heading font-black text-[#AA96DA]">
+                    24/7
+                  </div>
+                  <div className="text-xs uppercase text-foreground/60">Доступ к результатам</div>
+                </div>
+              </motion.div>
+
+              {/* CTA buttons */}
+              <motion.div
+                className="flex flex-col md:flex-row gap-4 items-center justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <Link href="/tests/personality-type">
+                  <motion.div
+                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ y: -2 }}
+                    className="relative group"
+                  >
+                    <div className="absolute inset-0 bg-[#FFD23F] group-hover:bg-[#FF6B35] transition-colors" />
+                    <Button
+                      size="lg"
+                      className="relative bg-[#FF6B35] hover:bg-[#FF6B35] text-white border-2 border-border shadow-[4px_4px_0px_0px_#000000] hover:shadow-[6px_6px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all py-6 px-10 text-lg font-heading uppercase group"
+                    >
+                      <Rocket className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                      Начать прямо сейчас
+                    </Button>
+                  </motion.div>
+                </Link>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  className="flex items-center gap-2 text-sm"
+                >
+                  <Target className="w-4 h-4 text-[#4ECDC4]" />
+                  <span className="font-bold uppercase">Точность 94.7%</span>
+                  <span className="text-foreground/60">•</span>
+                  <Gift className="w-4 h-4 text-[#FFD23F]" />
+                  <span className="font-bold uppercase">100% Бесплатно</span>
+                </motion.div>
+              </motion.div>
+
+              {/* Timer effect */}
+              <motion.div
+                className="mt-8 inline-flex items-center gap-2 px-4 py-2 bg-[#FFD23F]/10 border-2 border-[#FFD23F] text-sm font-bold"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                <Clock className="w-4 h-4 text-[#FF6B35]" />
+                <span className="uppercase">Среднее время принятия решения: 3 минуты</span>
+              </motion.div>
+            </NeoCardContent>
+          </NeoCard>
+
+          {/* Bottom decorative elements */}
+          <motion.div
+            className="flex justify-center mt-8 gap-2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            {[1, 2, 3, 4, 5].map((i) => (
+              <motion.div
+                key={i}
+                className="w-2 h-2 bg-white border border-border"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 1.5, delay: i * 0.1, repeat: Infinity }}
+              />
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>

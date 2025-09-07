@@ -238,7 +238,7 @@ export function TestCategories() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <NeoCard className="overflow-hidden" hover={false}>
+          <NeoCard className="overflow-hidden relative" hover={false}>
             {/* Pattern background */}
             <div
               className="absolute inset-0 opacity-10"
