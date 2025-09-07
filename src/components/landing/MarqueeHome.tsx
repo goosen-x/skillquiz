@@ -15,5 +15,12 @@ export const MarqueeHome = () => {
     '🚀 Быстрое прохождение',
     '💎 Бесплатный доступ',
   ];
-  return <Marquee items={items} />;
+  return (
+    <div className="bg-background">
+      <Marquee
+        className="h-30 rotate-[-2deg] ml-[-5%] mr-[-5%] w-[110%] -translate-7"
+        items={items}
+      />
+    </div>
+  );
 };

@@ -25,7 +25,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative bg-background overflow-hidden">
+    <section className="relative bg-background overflow-hidden pb-20">
       {/* Grid pattern background */}
       <div
         className="absolute inset-0"
