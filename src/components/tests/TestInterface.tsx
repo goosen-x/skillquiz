@@ -10,6 +10,7 @@ import { TestData } from '@/data/tests';
 import { TestQuestion } from '@/data/digital-wellness-test';
 import { useSoundEffects } from '@/components/animations/SoundEffects';
 import { MilestoneToast } from '@/components/animations/ConfettiEffect';
+import { YandexAd } from '@/components/shared/YandexAd';
 
 interface TestInterfaceProps {
   test: TestData;
@@ -100,7 +101,7 @@ export function TestInterface({
     <div className="min-h-screen flex flex-col">
       {/* Header with progress */}
       <div className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-lg font-semibold text-gray-900 truncate">{test.title}</h1>
             <span className="text-sm text-gray-500 whitespace-nowrap ml-4">
@@ -111,9 +112,12 @@ export function TestInterface({
         </div>
       </div>
 
-      {/* Question Content */}
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-3xl">
+      {/* Main content with two columns on desktop */}
+      <div className="flex-1 p-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-8">
+          {/* Left column - Question Content */}
+          <div className="flex items-center justify-center">
+            <div className="w-full max-w-3xl">
           <AnimatePresence mode="wait" custom={1}>
             <motion.div
               key={currentQuestionIndex}
@@ -173,6 +177,18 @@ export function TestInterface({
               </Card>
             </motion.div>
           </AnimatePresence>
+            </div>
+          </div>
+          
+          {/* Right column - Advertisement (Desktop only) */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24">
+              <YandexAd 
+                blockId="R-A-17138338-1" 
+                className="w-full"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -240,6 +256,7 @@ export function TestInterface({
           </div>
         </div>
       </div>
+
 
       {/* Milestone celebration toast */}
       <AnimatePresence>

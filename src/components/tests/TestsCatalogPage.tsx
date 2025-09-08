@@ -2,17 +2,11 @@
 
 import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   Brain,
   Briefcase,
   Heart,
-  Clock,
-  Users,
-  HelpCircle,
-  Star,
-  TrendingUp,
   Filter,
   Search,
   ArrowRight,
@@ -23,8 +17,6 @@ import {
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 
@@ -36,6 +28,7 @@ import {
   type TestData,
   type TestCategory,
 } from '@/data/tests';
+import { TestCard } from '@/components/shared/TestCard';
 import { siteConfig } from '@/config/site.config';
 
 function TestsCatalogContent() {
@@ -190,50 +183,7 @@ function TestsCatalogContent() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link href={`/tests/${test.slug}`}>
-                  <Card className="h-full border-2 border-border shadow-shadow hover:shadow-[6px_6px_0px_0px_theme(colors.border)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all cursor-pointer bg-secondary-background">
-                    <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge variant="warning" className="uppercase">
-                          <TrendingUp className="w-3 h-3 mr-1" />
-                          Популярный
-                        </Badge>
-                        <div className="flex items-center text-chart-1">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-4 h-4 ${i < test.popularity ? 'fill-current' : ''}`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-
-                      <h3 className="text-lg font-heading font-bold text-foreground mb-2 uppercase">
-                        {test.title}
-                      </h3>
-
-                      <p className="text-foreground/80 text-sm mb-4 line-clamp-2 font-base">
-                        {test.description}
-                      </p>
-
-                      <div className="flex items-center justify-between text-xs font-bold uppercase mb-4">
-                        <span className="flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {test.duration}
-                        </span>
-                        <span className="flex items-center">
-                          <Users className="w-3 h-3 mr-1" />
-                          {test.usersCount}
-                        </span>
-                      </div>
-
-                      <Button className="w-full uppercase font-bold">
-                        Пройти тест
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <TestCard test={test} variant="detailed" showStats={true} />
               </motion.div>
             ))}
           </div>
@@ -508,216 +458,16 @@ function TestGrid({ tests, visibleCount }: { tests: TestData[]; visibleCount: nu
       className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
     >
       {tests.slice(0, visibleCount).map((test, index) => (
-        <TestCard key={test.id} test={test} index={index} />
+        <motion.div
+          key={test.id}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
+          }}
+        >
+          <TestCard test={test} variant="detailed" showStats={true} />
+        </motion.div>
       ))}
-    </motion.div>
-  );
-}
-
-function TestCard({ test, index }: { test: TestData; index: number }) {
-  const categoryColors = {
-    psychology: 'bg-chart-2',
-    career: 'bg-chart-4',
-    lifestyle: 'bg-chart-5',
-  };
-
-  const bgColor = categoryColors[test.category];
-
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
-      }}
-      whileHover={test.status === 'completed' ? { y: -5 } : {}}
-    >
-      {test.status === 'completed' ? (
-        <Link href={`/tests/${test.slug}`}>
-          <Card className="h-full border-2 border-border shadow-shadow hover:shadow-[6px_6px_0px_0px_theme(colors.border)] hover:-translate-x-[2px] hover:-translate-y-[2px] transition-all cursor-pointer overflow-hidden bg-secondary-background">
-            {/* Header */}
-            <div className={`h-20 ${bgColor} relative border-b-2 border-border`}>
-              <div className="absolute top-3 right-3 flex gap-2">
-                {test.featured && (
-                  <Badge variant="warning" className="text-xs px-2 py-1 uppercase">
-                    <Star className="w-3 h-3 mr-1" />
-                    ТОП
-                  </Badge>
-                )}
-                {test.new && (
-                  <Badge variant="destructive" className="text-xs px-2 py-1 uppercase">
-                    <Sparkles className="w-3 h-3 mr-1" />
-                    NEW
-                  </Badge>
-                )}
-              </div>
-
-              <div className="absolute bottom-3 left-4">
-                <Badge variant="secondary" className="text-xs px-2 py-1 uppercase font-bold">
-                  {test.difficulty}
-                </Badge>
-              </div>
-            </div>
-
-            <CardContent className="p-6">
-              <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 uppercase">
-                {test.title}
-              </h3>
-              <p className="text-foreground/80 text-sm mb-4 line-clamp-3 leading-relaxed font-base">
-                {test.description}
-              </p>
-
-              <div className="flex items-center justify-between text-xs font-bold uppercase mb-4 pb-4 border-b-2 border-border">
-                <span className="flex items-center">
-                  <Clock className="w-3 h-3 mr-1" />
-                  {test.duration}
-                </span>
-                <span className="flex items-center">
-                  <HelpCircle className="w-3 h-3 mr-1" />
-                  {test.questionsCount}
-                </span>
-                <span className="flex items-center">
-                  <Users className="w-3 h-3 mr-1" />
-                  {test.usersCount}
-                </span>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {test.tags.slice(0, 3).map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className="inline-block px-3 py-1 bg-background border-2 border-border text-foreground text-xs font-bold uppercase shadow-[2px_2px_0px_0px_theme(colors.border)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <span className="text-xs font-bold uppercase mr-2">Рейтинг:</span>
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-3 h-3 ${
-                          i < test.popularity ? 'text-chart-1 fill-current' : 'text-foreground/30'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {test.status === 'completed' ? (
-                <Button className="w-full uppercase font-bold">
-                  Начать тест
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              ) : (
-                <div className="space-y-2">
-                  {test.expectedDate && test.status === 'in_development' && (
-                    <p className="text-xs text-center font-bold uppercase text-foreground/60">
-                      Ожидается: {test.expectedDate}
-                    </p>
-                  )}
-                  <Button variant="outline" className="w-full uppercase font-bold" disabled>
-                    <Clock className="w-4 h-4 mr-2" />
-                    {test.status === 'in_development' ? 'В разработке' : 'Запланирован'}
-                  </Button>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </Link>
-      ) : (
-        <Card className="h-full border-2 border-border shadow-shadow transition-all overflow-hidden bg-secondary-background opacity-75">
-          {/* Header */}
-          <div className={`h-20 ${bgColor} relative border-b-2 border-border`}>
-            <div className="absolute top-3 right-3 flex gap-2">
-              {test.status === 'in_development' && (
-                <Badge variant="secondary" className="text-xs px-2 py-1 uppercase">
-                  <Clock className="w-3 h-3 mr-1" />В РАЗРАБОТКЕ
-                </Badge>
-              )}
-              {test.status === 'planned' && (
-                <Badge variant="outline" className="text-xs px-2 py-1 uppercase">
-                  <Clock className="w-3 h-3 mr-1" />
-                  ЗАПЛАНИРОВАН
-                </Badge>
-              )}
-            </div>
-
-            <div className="absolute bottom-3 left-4">
-              <Badge variant="secondary" className="text-xs px-2 py-1 uppercase font-bold">
-                {test.difficulty}
-              </Badge>
-            </div>
-          </div>
-
-          <CardContent className="p-6">
-            <h3 className="text-lg font-heading font-bold text-foreground mb-2 line-clamp-2 uppercase">
-              {test.title}
-            </h3>
-            <p className="text-foreground/80 text-sm mb-4 line-clamp-3 leading-relaxed font-base">
-              {test.description}
-            </p>
-
-            <div className="flex items-center justify-between text-xs font-bold uppercase mb-4 pb-4 border-b-2 border-border">
-              <span className="flex items-center">
-                <Clock className="w-3 h-3 mr-1" />
-                {test.duration}
-              </span>
-              <span className="flex items-center">
-                <HelpCircle className="w-3 h-3 mr-1" />
-                {test.questionsCount}
-              </span>
-              <span className="flex items-center">
-                <Users className="w-3 h-3 mr-1" />
-                {test.usersCount}
-              </span>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {test.tags.slice(0, 3).map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  className="inline-block px-3 py-1 bg-background border-2 border-border text-foreground text-xs font-bold uppercase shadow-[2px_2px_0px_0px_theme(colors.border)]"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <span className="text-xs font-bold uppercase mr-2">Рейтинг:</span>
-                <div className="flex items-center">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3 h-3 ${
-                        i < test.popularity ? 'text-chart-1 fill-current' : 'text-foreground/30'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              {test.expectedDate && test.status === 'in_development' && (
-                <p className="text-xs text-center font-bold uppercase text-foreground/60">
-                  Ожидается: {test.expectedDate}
-                </p>
-              )}
-              <Button variant="outline" className="w-full uppercase font-bold" disabled>
-                <Clock className="w-4 h-4 mr-2" />
-                {test.status === 'in_development' ? 'В разработке' : 'Запланирован'}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </motion.div>
   );
 }

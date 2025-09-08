@@ -1,23 +1,11 @@
 // Утилиты для создания коротких ссылок на результаты
 
-import { TestResult as PersonalityTestResult } from '@/data/personality-type-test';
-import { DigitalPersona } from '@/data/digital-wellness-test';
-import { TestResult as EmotionalTestResult } from '@/data/emotional-intelligence-test';
-import { TestResult as ImpostorTestResult } from '@/data/impostor-syndrome-test';
-import { TestResult as ResilienceTestResult } from '@/data/mental-resilience-test';
-import { TestResult as DopamineTestResult } from '@/data/dopamine-detox-test';
+import { UniversalTestResult } from '@/lib/test-loader';
 
 // Генерация короткой ссылки для просмотра результата
 export function generateShortResultUrl(
   testSlug: string,
-  result:
-    | PersonalityTestResult
-    | DigitalPersona
-    | EmotionalTestResult
-    | ImpostorTestResult
-    | ResilienceTestResult
-    | DopamineTestResult
-    | { id?: string; name: string },
+  result: UniversalTestResult | any,
   scores?: { [key: string]: number }
 ): string {
   const params = new URLSearchParams();
@@ -29,8 +17,7 @@ export function generateShortResultUrl(
   } else if ('name' in result) {
     resultId = result.name;
   } else if ('title' in result) {
-    // Only ImpostorTestResult uses 'title' instead of 'name'
-    resultId = (result as ImpostorTestResult).title;
+    resultId = result.title || '';
   }
   params.set('r', resultId);
 

@@ -26,15 +26,30 @@ export const testStatuses = {
   'impostor-syndrome': { status: 'completed' as const },
   'mental-resilience': { status: 'completed' as const },
   'dopamine-detox-need': { status: 'completed' as const },
+  
+  // Новые реализованные тесты
+  'introvert-extrovert': { status: 'completed' as const },
+  'stress-level': { status: 'completed' as const },
+  'temperament': { status: 'completed' as const },
+  'chronotype': { status: 'completed' as const },
+  'work-life-balance': { status: 'completed' as const },
+  'self-esteem': { status: 'completed' as const },
+  'procrastination': { status: 'completed' as const },
+  'time-management': { status: 'completed' as const },
+  'love-language': { status: 'completed' as const },
+  'attachment-style': { status: 'completed' as const },
+  'anxiety-level': { status: 'completed' as const },
+  'perfectionism': { status: 'completed' as const },
+  'communication-style': { status: 'completed' as const },
+  'creativity-test': { status: 'completed' as const },
+  'decision-making': { status: 'completed' as const },
+  'learning-style': { status: 'completed' as const },
+  'emotional-stability': { status: 'completed' as const },
 
   // В разработке (приоритет 1)
   'career-test': {
     status: 'in_development' as const,
     expectedDate: 'Февраль 2025',
-  },
-  chronotype: {
-    status: 'in_development' as const,
-    expectedDate: 'Январь 2025',
   },
   'productivity-test': {
     status: 'in_development' as const,
@@ -42,10 +57,6 @@ export const testStatuses = {
   },
 
   // В разработке (приоритет 2)
-  temperament: {
-    status: 'in_development' as const,
-    expectedDate: 'Февраль 2025',
-  },
   'leadership-test': {
     status: 'in_development' as const,
     expectedDate: 'Февраль 2025',
@@ -56,37 +67,23 @@ export const testStatuses = {
   },
 
   // Планируются (приоритет 3)
-  'introvert-extrovert': { status: 'planned' as const },
-  'stress-level': { status: 'planned' as const },
   'digital-burnout': { status: 'planned' as const },
   'career-orientation': { status: 'planned' as const },
   'strengths-test': { status: 'planned' as const },
   'team-role': { status: 'planned' as const },
   'professional-burnout': { status: 'planned' as const },
-  'work-life-balance': { status: 'planned' as const },
   'bad-habits': { status: 'planned' as const },
   'motivation-level': { status: 'planned' as const },
 
-  // Новые тесты - все планируются
-  'love-language': { status: 'planned' as const },
-  'attachment-style': { status: 'planned' as const },
-  'communication-style': { status: 'planned' as const },
-  'self-esteem': { status: 'planned' as const },
-  'conflict-style': { status: 'planned' as const },
-  'anxiety-level': { status: 'planned' as const },
-  perfectionism: { status: 'planned' as const },
-  'cognitive-style': { status: 'planned' as const },
-  'emotional-stability': { status: 'planned' as const },
-  'social-intelligence': { status: 'planned' as const },
-  'creativity-test': { status: 'planned' as const },
-  'decision-making': { status: 'planned' as const },
-  'memory-type': { status: 'planned' as const },
-  'learning-style': { status: 'planned' as const },
-  'risk-tolerance': { status: 'planned' as const },
-  'work-motivation': { status: 'planned' as const },
-  'management-style': { status: 'planned' as const },
-  'sales-potential': { status: 'planned' as const },
-  entrepreneurship: { status: 'planned' as const },
+  // Новые тесты - обновленные статусы
+  'conflict-style': { status: 'completed' as const },
+  'social-intelligence': { status: 'completed' as const },
+  'memory-type': { status: 'completed' as const },
+  'risk-tolerance': { status: 'completed' as const },
+  'work-motivation': { status: 'completed' as const },
+  'management-style': { status: 'completed' as const },
+  'sales-potential': { status: 'completed' as const },
+  'entrepreneurship': { status: 'completed' as const },
   'negotiation-skills': { status: 'planned' as const },
   'workplace-personality': { status: 'planned' as const },
   'innovation-style': { status: 'planned' as const },
@@ -96,7 +93,7 @@ export const testStatuses = {
   'sleep-quality': { status: 'planned' as const },
   'nutrition-habits': { status: 'planned' as const },
   'exercise-motivation': { status: 'planned' as const },
-  'time-management': { status: 'planned' as const },
+  // 'time-management' уже в списке выше как completed
   'money-mindset': { status: 'planned' as const },
   'social-media-usage': { status: 'planned' as const },
   'travel-style': { status: 'planned' as const },
@@ -107,7 +104,7 @@ export const testStatuses = {
   'relationship-readiness': { status: 'planned' as const },
   'friendship-quality': { status: 'planned' as const },
   'happiness-level': { status: 'planned' as const },
-  procrastination: { status: 'planned' as const },
+  // 'procrastination' уже в списке выше как completed
   'digital-detox-readiness': { status: 'planned' as const },
   'mindfulness-level': { status: 'planned' as const },
   'goal-setting-style': { status: 'planned' as const },

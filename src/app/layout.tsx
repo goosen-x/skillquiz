@@ -7,6 +7,7 @@ import { EasterEggProvider, TimeBasedEasterEgg } from '@/components/animations/E
 import { EngagementNotification } from '@/components/animations/EngagementNotification';
 import { YandexMetrika } from '@/components/seo/YandexMetrika';
 import { siteConfig } from '@/config/site.config';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -82,6 +83,16 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon-180x180.png" sizes="180x180" />
         <link rel="icon" href="/favicon-192x192.png" sizes="192x192" type="image/png" />
         <link rel="icon" href="/favicon-512x512.png" sizes="512x512" type="image/png" />
+        
+        {/* Yandex.RTB загрузчик рекламы */}
+        <Script id="yandex-rtb-loader" strategy="afterInteractive">
+          {`window.yaContextCb=window.yaContextCb||[]`}
+        </Script>
+        <Script 
+          src="https://yandex.ru/ads/system/context.js" 
+          strategy="afterInteractive"
+          async
+        />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-white text-gray-900`}>
         <YandexMetrika counterId={siteConfig.analytics.yandexMetrikaId} />

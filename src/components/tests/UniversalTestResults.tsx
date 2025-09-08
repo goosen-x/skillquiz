@@ -148,6 +148,24 @@ function getCustomMetricsForTest(testSlug: string, result: UniversalTestResult) 
           sublabel: 'рекомендация',
         } as const,
       ];
+    case 'love-language':
+      // Calculate highest score value for display
+      const scores = result.factorScores ? Object.values(result.factorScores) : [];
+      const maxScore = Math.max(...scores);
+      return [
+        {
+          label: 'Ваш язык',
+          value: result.emoji + ' ' + result.name,
+          color: 'yellow' as const,
+          sublabel: 'основной способ',
+        },
+        {
+          label: 'Выраженность',
+          value: `${result.percentage || maxScore}%`,
+          color: 'blue' as const,
+          sublabel: 'от общего',
+        },
+      ];
     default:
       return undefined;
   }
@@ -201,7 +219,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={result.chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="name" tick={{ fontSize: 12, fontWeight: 'bold' }} />
+              <XAxis dataKey="factor" tick={{ fontSize: 12, fontWeight: 'bold' }} />
               <YAxis tick={{ fontSize: 12, fontWeight: 'bold' }} />
               <Tooltip
                 contentStyle={{
@@ -209,6 +227,10 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                   border: '2px solid var(--border)',
                   borderRadius: '15px',
                   boxShadow: '4px 4px 0px 0px var(--border)',
+                }}
+                formatter={(value: number) => {
+                  const ballText = value === 1 ? 'балл' : value >= 2 && value <= 4 ? 'балла' : 'баллов';
+                  return [`${value} ${ballText}`, 'Результат'];
                 }}
               />
               <Bar dataKey="value" fill="#FFBF00" stroke="var(--border)" strokeWidth={2} />
@@ -264,16 +286,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
   };
 
   return (
-    <div className="min-h-screen bg-secondary-background py-8 relative overflow-hidden">
-      {/* Grid pattern background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `repeating-linear-gradient(0deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px),
-                        repeating-linear-gradient(90deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px)`,
-          opacity: 0.1,
-        }}
-      />
+    <div className="relative">
 
       {/* Confetti Effect */}
       <ConfettiEffect
@@ -283,7 +296,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
         onComplete={() => setShowConfetti(false)}
       />
 
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <div className="relative z-10">
         {/* Заголовок */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -310,6 +323,24 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
               characteristics: result.characteristics,
             }}
             test={test}
+            allTypesData={
+              test.slug === 'love-language' && result.chartData
+                ? (result.chartData as Array<{factor: string, value: number}>).map(item => ({
+                    name: item.factor,
+                    value: item.value
+                  }))
+                : test.slug === 'temperament' && result.chartData
+                  ? (() => {
+                      // Конвертируем баллы в проценты для pie chart
+                      const chartData = result.chartData as Array<{factor: string, value: number}>;
+                      const totalScore = chartData.reduce((sum, item) => sum + item.value, 0);
+                      return chartData.map(item => ({
+                        name: item.factor,
+                        value: totalScore > 0 ? Math.round((item.value / totalScore) * 100) : 0
+                      }));
+                    })()
+                  : undefined
+            }
             metadata={{
               showCompatibility:
                 test.slug === 'personality-type' || test.slug === 'emotional-intelligence',
@@ -479,7 +510,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                     <ul className="space-y-2">
                       {result.methodology.applications.map((app, index) => (
                         <li key={index} className="flex items-start text-sm text-foreground/80">
-                          <span className="text-chart-5 font-bold mr-2">•</span>
+                          <div className="w-2 h-2 bg-chart-5 rounded-full mr-2 flex-shrink-0 mt-1" />
                           {app}
                         </li>
                       ))}
@@ -490,7 +521,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                     <ul className="space-y-2">
                       {result.methodology.notes.map((note, index) => (
                         <li key={index} className="flex items-start text-sm text-foreground/80">
-                          <span className="text-chart-5 font-bold mr-2">•</span>
+                          <div className="w-2 h-2 bg-chart-5 rounded-full mr-2 flex-shrink-0 mt-1" />
                           {note}
                         </li>
                       ))}
@@ -526,7 +557,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                     transition={{ delay: 0.5 + index * 0.1 }}
                     className="flex items-start"
                   >
-                    <span className="text-chart-4 font-bold text-xl mr-3">•</span>
+                    <div className="w-2 h-2 bg-chart-4 rounded-full mr-3 flex-shrink-0 mt-2" />
                     <span className="font-base">{char}</span>
                   </motion.li>
                 ))}
@@ -551,7 +582,7 @@ export default function UniversalTestResults({ test, result }: UniversalTestResu
                     transition={{ delay: 0.6 + index * 0.1 }}
                     className="flex items-start"
                   >
-                    <span className="text-chart-2 font-bold text-xl mr-3">→</span>
+                    <div className="w-2 h-2 bg-chart-2 rounded-full mr-3 flex-shrink-0 mt-2" />
                     <span className="font-base">{advice}</span>
                   </motion.li>
                 ))}

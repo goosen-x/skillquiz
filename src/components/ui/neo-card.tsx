@@ -30,7 +30,7 @@ export function NeoCard({
   return (
     <motion.div
       className={cn(
-        'border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)] rounded-[15px]',
+        'border-2 border-border shadow-[4px_4px_0px_0px_theme(colors.border)] rounded-[15px] overflow-hidden',
         colorClasses[color],
         hover && 'transition-all duration-300 cursor-pointer',
         className

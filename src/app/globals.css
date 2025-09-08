@@ -95,6 +95,19 @@
   }
 }
 
+/* Category color borders */
+.border-l-chart-2 {
+  border-left-color: var(--chart-2);
+}
+
+.border-l-chart-4 {
+  border-left-color: var(--chart-4);
+}
+
+.border-l-chart-5 {
+  border-left-color: var(--chart-5);
+}
+
 @theme inline {
   --color-main: var(--main);
   --color-background: var(--background);
@@ -160,6 +173,65 @@
   --card: var(--secondary-background);
   --card-foreground: var(--foreground);
   --radius: var(--radius-base);
+}
+
+/* Category accent borders */
+.border-l-chart-2 {
+  border-left-color: var(--chart-2);
+}
+
+.border-l-chart-4 {
+  border-left-color: var(--chart-4);
+}
+
+.border-l-chart-5 {
+  border-left-color: var(--chart-5);
+}
+
+.border-chart-1 {
+  border-color: var(--chart-1);
+}
+
+.border-chart-2 {
+  border-color: var(--chart-2);
+}
+
+.border-chart-3 {
+  border-color: var(--chart-3);
+}
+
+.border-chart-4 {
+  border-color: var(--chart-4);
+}
+
+.border-chart-5 {
+  border-color: var(--chart-5);
+}
+
+/* Category background colors */
+.bg-chart-2 {
+  background-color: var(--chart-2);
+}
+
+.bg-chart-4 {
+  background-color: var(--chart-4);
+}
+
+.bg-chart-5 {
+  background-color: var(--chart-5);
+}
+
+/* Category hover background colors */
+.hover\\:bg-chart-2\\/90:hover {
+  background-color: rgb(0 153 255 / 0.9);
+}
+
+.hover\\:bg-chart-4\\/90:hover {
+  background-color: rgb(0 214 150 / 0.9);
+}
+
+.hover\\:bg-chart-5\\/90:hover {
+  background-color: rgb(122 131 255 / 0.9);
 }
 
 /* Neobrutalism specific utilities */

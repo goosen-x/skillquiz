@@ -1,0 +1,29 @@
+# Robots.txt for professional-test.ru
+# Оптимизировано для Яндекса
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Crawl-delay: 0.5
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://professional-test.ru/sitemap.xml
+
+# Host (для Яндекса)
+Host: professional-test.ru

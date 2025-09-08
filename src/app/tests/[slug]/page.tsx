@@ -45,20 +45,11 @@ export default async function TestPageRoute({ params }: Props) {
     notFound();
   }
 
-  // Для реализованных тестов используем специальный компонент
-  const implementedTests = [
-    'digital-wellness-persona',
-    'personality-type',
-    'emotional-intelligence',
-    'impostor-syndrome',
-    'mental-resilience',
-    'dopamine-detox-need',
-  ];
-
-  if (implementedTests.includes(test.slug)) {
+  // Проверяем статус теста из данных
+  if (test.status === 'completed') {
     return <TestPage test={test} />;
   }
 
-  // Для остальных тестов показываем красивую страницу "В разработке"
+  // Для тестов в разработке или запланированных показываем красивую страницу "В разработке"
   return <TestUnderDevelopment test={test} />;
 }

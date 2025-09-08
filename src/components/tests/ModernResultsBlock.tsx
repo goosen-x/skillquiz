@@ -6,6 +6,7 @@ import { NeoCard, NeoCardContent, NeoBadge } from '@/components/ui/neo-card';
 import { Award, Star, BarChart3 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import Star2 from '../ui/star2';
+import Star21 from '../ui/star21';
 
 interface ModernResultsBlockProps {
   result: {
@@ -111,16 +112,44 @@ export default function ModernResultsBlock({
   };
 
   const visibleMetricsCount = metadata?.customMetrics?.length || getVisibleDefaultMetricsCount();
-  // Calculate rarity level based on percentage
-  const getRarityLevel = (percentage: number) => {
-    if (percentage < 5) return { label: 'Очень редкий', color: 'purple' };
-    if (percentage < 10) return { label: 'Редкий', color: 'blue' };
-    if (percentage < 20) return { label: 'Необычный', color: 'green' };
-    if (percentage < 30) return { label: 'Обычный', color: 'orange' };
-    return { label: 'Распространённый', color: 'yellow' };
+  // Calculate expression level based on percentage
+  const getExpressionLevel = (percentage: number, resultColor: string) => {
+    // Выбираем цвет отличный от цвета основной карточки
+    const getContrastColor = () => {
+      switch (resultColor) {
+        case 'yellow': return 'purple';
+        case 'blue': return 'orange';
+        case 'orange': return 'blue';
+        case 'green': return 'purple';
+        case 'purple': return 'green';
+        default: return 'blue';
+      }
+    };
+    
+    // Определяем цвет текста для хорошей читаемости
+    const getTextColor = (bgColor: string) => {
+      switch (bgColor) {
+        case 'yellow': return 'text-black'; // Черный на желтом
+        case 'orange': return 'text-black'; // Черный на оранжевом
+        case 'blue': return 'text-white'; // Белый на синем
+        case 'green': return 'text-white'; // Белый на зеленом
+        case 'purple': return 'text-white'; // Белый на фиолетовом
+        default: return 'text-black';
+      }
+    };
+    
+    const contrastColor = getContrastColor();
+    const textColor = getTextColor(contrastColor);
+    
+    // Логика для выраженности типа
+    if (percentage > 60) return { label: 'Ярко выражен', color: contrastColor, textColor };
+    if (percentage > 45) return { label: 'Выраженный', color: contrastColor, textColor };
+    if (percentage > 30) return { label: 'Умеренный', color: contrastColor, textColor };
+    if (percentage > 20) return { label: 'Слабый', color: contrastColor, textColor };
+    return { label: 'Смешанный', color: contrastColor, textColor };
   };
 
-  const rarity = getRarityLevel(result.percentage);
+  const rarity = getExpressionLevel(result.percentage, result.color || 'yellow');
 
   // Default pie chart data if not provided
   const pieData = allTypesData || [
@@ -162,43 +191,30 @@ export default function ModernResultsBlock({
       {/* Main Result Card - 2x1 */}
       <motion.div variants={itemAnimation} className="col-span-4 md:col-span-2 h-full">
         <NeoCard
-          color={
-            (result.color as 'white' | 'yellow' | 'blue' | 'orange' | 'green' | 'purple') ||
-            'yellow'
-          }
+          color="white"
           hover={false}
           className="h-full relative overflow-hidden"
         >
-          <NeoCardContent className="p-6 h-full">
-            <div className="relative z-10">
-              {/* Rarity badge */}
-              <div className="absolute top-0 right-0">
-                <NeoBadge
-                  color={
-                    // Use contrasting color if badge color matches card color
-                    result.color === 'green' && rarity.color === 'green'
-                      ? 'yellow'
-                      : result.color === 'yellow' && rarity.color === 'yellow'
-                        ? 'blue'
-                        : result.color === 'blue' && rarity.color === 'blue'
-                          ? 'orange'
-                          : result.color === 'orange' && rarity.color === 'orange'
-                            ? 'purple'
-                            : result.color === 'purple' && rarity.color === 'purple'
-                              ? 'green'
-                              : (rarity.color as 'yellow' | 'blue' | 'orange' | 'green' | 'purple')
-                  }
-                  className="shadow-[2px_2px_0px_0px_#000000]"
-                >
-                  <Award className="w-3 h-3 mr-1" />
-                  {rarity.label}
-                </NeoBadge>
-              </div>
-
-              <div>
-                {/* Emoji in circle */}
+          {/* Colored header */}
+          <div
+            className={`px-6 py-4 border-b-2 border-border ${
+              result.color === 'yellow'
+                ? 'bg-chart-1'
+                : result.color === 'blue'
+                  ? 'bg-chart-2'
+                  : result.color === 'orange'
+                    ? 'bg-chart-3'
+                    : result.color === 'green'
+                      ? 'bg-chart-4'
+                      : result.color === 'purple'
+                        ? 'bg-chart-5'
+                        : 'bg-chart-1'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <motion.div
-                  className="mb-4"
+                  className="mr-3"
                   animate={{
                     rotate: [0, -10, 10, -10, 10, 0],
                     scale: [1, 1.1, 1],
@@ -210,14 +226,26 @@ export default function ModernResultsBlock({
                     repeatType: 'reverse',
                   }}
                 >
-                  <div className="w-20 h-20 bg-white border-2 border-border shadow-[4px_4px_0px_0px_#000000] rounded-full flex items-center justify-center">
-                    <span className="text-4xl">{result.emoji}</span>
+                  <div className="w-12 h-12 bg-white border-2 border-border shadow-[2px_2px_0px_0px_#000000] rounded-full flex items-center justify-center">
+                    <span className="text-2xl">{result.emoji}</span>
                   </div>
                 </motion.div>
-
-                {/* Title and description */}
-                <h2 className="text-2xl font-heading font-black mb-1 uppercase">{result.name}</h2>
-                <p className="text-xs font-bold text-foreground/60 mb-2">
+                <h2 className="text-xl font-heading font-black uppercase">{result.name}</h2>
+              </div>
+              {/* Rarity badge */}
+              <NeoBadge
+                color={rarity.color as 'yellow' | 'blue' | 'orange' | 'green' | 'purple'}
+                className={`shadow-[2px_2px_0px_0px_#000000] ${rarity.textColor}`}
+              >
+                <Award className="w-3 h-3 mr-1" />
+                {rarity.label}
+              </NeoBadge>
+            </div>
+          </div>
+          <NeoCardContent className="p-6 h-full">
+            <div className="relative z-10">
+              <div>
+                <p className="text-sm font-bold text-foreground/60 mb-2">
                   Ваш психологический профиль
                 </p>
                 <p className="text-sm leading-relaxed mb-3">{result.description}</p>
@@ -235,8 +263,8 @@ export default function ModernResultsBlock({
                     .slice(0, 3)
                     .map((characteristic, idx) => (
                       <div key={idx} className="flex items-center">
-                        <div className="w-2 h-2 bg-border mr-2" />
-                        <span className="text-xs">{characteristic}</span>
+                        <div className="w-2 h-2 bg-border rounded-full mr-2" />
+                        <span className="text-sm">{characteristic}</span>
                       </div>
                     ))}
                 </div>
@@ -249,23 +277,18 @@ export default function ModernResultsBlock({
       {/* Quick Stats Grid - 2x2 */}
       <motion.div variants={itemAnimation} className="col-span-4 md:col-span-2">
         <div
-          className={`grid ${visibleMetricsCount === 1 ? 'grid-cols-1' : visibleMetricsCount === 2 ? 'grid-cols-1' : 'grid-cols-2'} gap-4 h-full auto-rows-fr`}
+          className={`grid ${visibleMetricsCount === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-4 h-full auto-rows-fr`}
         >
           {/* Use custom metrics if provided, otherwise default metrics */}
           {metadata?.customMetrics ? (
             metadata.customMetrics.map((metric, index) => (
               <NeoCard
                 key={index}
-                color={
-                  metric.color ||
-                  (['yellow', 'blue', 'green', 'orange'][index % 4] as
-                    | 'yellow'
-                    | 'blue'
-                    | 'green'
-                    | 'orange')
-                }
+                color="white"
                 hover={false}
-                className="relative overflow-hidden h-full"
+                className={`relative overflow-hidden h-full ${
+                  visibleMetricsCount === 3 && index === 2 ? 'col-span-2' : ''
+                }`}
               >
                 <div className="p-6 h-full flex flex-col">
                   <div className="flex items-start justify-between mb-4">
@@ -283,14 +306,33 @@ export default function ModernResultsBlock({
                 </div>
                 {index % 3 === 2 ? (
                   <Star2
-                    color="blue"
+                    color={
+                      metric.color ||
+                      (['yellow', 'blue', 'green', 'orange'][index % 4] as
+                        | 'yellow'
+                        | 'blue'
+                        | 'green'
+                        | 'orange')
+                    }
                     stroke="black"
-                    size={50}
-                    strokeWidth={8}
-                    className="absolute -bottom-4 -right-4 rotate-45"
+                    size={80}
+                    strokeWidth={4}
+                    className="absolute -bottom-3 -right-3 rotate-45"
                   />
                 ) : (
-                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                  <div className={`absolute -bottom-1 -right-1 size-12 border-[3px] border-border rotate-45 ${
+                    metric.color === 'yellow'
+                      ? 'bg-chart-1'
+                      : metric.color === 'blue'
+                        ? 'bg-chart-2'
+                        : metric.color === 'green'
+                          ? 'bg-chart-4'
+                          : metric.color === 'orange'
+                            ? 'bg-chart-3'
+                            : metric.color === 'purple'
+                              ? 'bg-chart-5'
+                              : (['bg-chart-1', 'bg-chart-2', 'bg-chart-4', 'bg-chart-3'][index % 4])
+                  }`} />
                 )}
               </NeoCard>
             ))
@@ -298,23 +340,29 @@ export default function ModernResultsBlock({
             <>
               {/* Default metrics */}
               {metadata?.showRarity !== false && (
-                <NeoCard color="yellow" hover={false} className="relative overflow-hidden h-full">
+                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
+                  visibleMetricsCount === 3 ? 'col-span-1' : ''
+                }`}>
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-sm font-bold uppercase text-foreground/80">Редкость</h3>
-                        <p className="text-3xl font-heading mt-2">Топ {result.percentage}%</p>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">Выраженность</h3>
+                        <p className="text-3xl font-heading mt-2">{result.percentage}%</p>
                       </div>
                     </div>
-                    <p className="text-sm text-foreground/60">среди всех типов</p>
-                    <div className="text-sm font-bold mt-2 text-chart-4">↑ Уникальный</div>
+                    <p className="text-sm text-foreground/60">основного типа</p>
+                    <div className="text-sm font-bold mt-2 text-chart-4">
+                      {result.percentage > 50 ? '↑ Доминирующий' : result.percentage > 35 ? '→ Выраженный' : '↓ Умеренный'}
+                    </div>
                   </div>
-                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                  <div className="absolute -bottom-1 -right-1 size-12 border-[3px] border-border bg-chart-1 rotate-45" />
                 </NeoCard>
               )}
 
               {metadata?.showStrengthsCount !== false && (
-                <NeoCard color="blue" hover={false} className="relative overflow-hidden h-full">
+                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
+                  visibleMetricsCount === 3 ? 'col-span-1' : ''
+                }`}>
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -328,12 +376,20 @@ export default function ModernResultsBlock({
                     </div>
                     <p className="text-sm text-foreground/60">ключевых качеств</p>
                   </div>
-                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                  <Star21
+                    color="#0099ff"
+                    stroke="black"
+                    size={80}
+                    strokeWidth={4}
+                    className="absolute -bottom-3 -right-3 rotate-45"
+                  />
                 </NeoCard>
               )}
 
               {metadata?.showCompatibility !== false && result.compatibleTypes && (
-                <NeoCard color="green" hover={false} className="relative overflow-hidden h-full">
+                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
+                  visibleMetricsCount === 3 ? 'col-span-2' : ''
+                }`}>
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -348,17 +404,17 @@ export default function ModernResultsBlock({
                     <p className="text-sm text-foreground/60">подходящих типа</p>
                   </div>
                   <Star2
-                    color="blue"
+                    color="green"
                     stroke="black"
-                    size={50}
-                    strokeWidth={8}
-                    className="absolute -bottom-4 -right-4 rotate-45"
+                    size={80}
+                    strokeWidth={4}
+                    className="absolute -bottom-3 -right-3 rotate-45"
                   />
                 </NeoCard>
               )}
 
               {metadata?.showPopularity !== false && !metadata?.customMetrics && (
-                <NeoCard color="orange" hover={false} className="relative overflow-hidden h-full">
+                <NeoCard color="white" hover={false} className="relative overflow-hidden h-full">
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -371,7 +427,7 @@ export default function ModernResultsBlock({
                     <p className="text-sm text-foreground/60">по встречаемости</p>
                     <div className="text-sm font-bold mt-2 text-foreground">→ Стабильно</div>
                   </div>
-                  <div className="absolute -bottom-2 -right-2 size-8 border-2 border-border bg-main rotate-45" />
+                  <div className="absolute -bottom-1 -right-1 size-12 border-[3px] border-border bg-chart-3 rotate-45" />
                 </NeoCard>
               )}
             </>
@@ -450,7 +506,7 @@ export default function ModernResultsBlock({
                   transition={{ delay: 0.4 + index * 0.1 }}
                   className="flex items-center"
                 >
-                  <Star className="w-5 h-5 text-main mr-3 flex-shrink-0" />
+                  <div className="w-2 h-2 bg-foreground rounded-full mr-3 flex-shrink-0" />
                   <span className="text-sm font-medium">{trait}</span>
                 </motion.div>
               ))}

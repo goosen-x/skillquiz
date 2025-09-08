@@ -34,7 +34,7 @@ export function NeoBrutalButton({
       whileHover={!disabled ? { x: -2, y: -2 } : {}}
       whileTap={!disabled ? { x: 4, y: 4 } : {}}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-      className="inline-block"
+      className={cn("inline-block", className?.includes('w-full') ? 'w-full' : '')}
     >
       <Button
         variant={variant}

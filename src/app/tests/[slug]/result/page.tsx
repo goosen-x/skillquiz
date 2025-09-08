@@ -9,6 +9,9 @@ import { impostorSyndromeResults } from '@/data/impostor-syndrome-test';
 import { psychologicalResilienceResults } from '@/data/mental-resilience-test';
 import { dopamineDetoxResults } from '@/data/dopamine-detox-test';
 import UniversalTestResults from '@/components/tests/UniversalTestResults';
+import { YandexAd } from '@/components/shared/YandexAd';
+import { loadTest, UniversalTestResult } from '@/lib/test-loader';
+import { recoverTestResult } from '@/lib/result-recovery';
 
 // Универсальный тип результата теста
 interface UniversalTestResult {
@@ -81,15 +84,32 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
   // Восстанавливаем результат из короткой ссылки
   let result: UniversalTestResult | null = null;
 
-  if (slug === 'personality-type' && urlData.scores) {
+  // Пытаемся загрузить тест для новых тестов
+  const isLegacyTest = ['personality-type', 'digital-wellness-persona', 'emotional-intelligence', 
+                       'impostor-syndrome', 'mental-resilience', 'dopamine-detox-need'].includes(slug);
+  
+  if (!isLegacyTest) {
+    // Для новых тестов используем универсальный загрузчик
+    try {
+      const testData = await loadTest(test);
+      
+      // Используем универсальную функцию восстановления результатов
+      result = recoverTestResult(slug, urlData, testData);
+    } catch (error) {
+      console.error('Failed to load test data:', error);
+    }
+  } else if (slug === 'personality-type') {
     // Для теста личности восстанавливаем из типа и оценок
     const personalityResult = getPersonalityTypeById(urlData.resultType);
     if (!personalityResult) {
       notFound();
     }
+    
+    // Если scores отсутствуют, используем значения по умолчанию для типа
+    const defaultScores = urlData.scores || [50, 50, 50, 50, 50];
 
     // Восстанавливаем оценки Big Five
-    const [extraversion, agreeableness, conscientiousness, neuroticism, openness] = urlData.scores;
+    const [extraversion, agreeableness, conscientiousness, neuroticism, openness] = defaultScores;
     const scores = {
       extraversion,
       agreeableness,
@@ -293,7 +313,7 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
         name: impostorResult.title,
         description: impostorResult.description,
         emoji: impostorResult.emoji,
-        color: impostorResult.color,
+        color: impostorResult.color === 'red' ? 'orange' : (impostorResult.color || 'yellow'),
         percentage: 15, // Добавляем значение по умолчанию
         characteristics: impostorResult.characteristics || [],
         advice: impostorResult.advice || [],
@@ -398,5 +418,35 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
   // Примерные ответы для совместимости (в реальности не используются для отображения)
   const dummyAnswers: number[] = [];
 
-  return <UniversalTestResults test={test} result={result} answers={dummyAnswers} />;
+  return (
+    <div className="min-h-screen bg-secondary-background relative">
+      {/* Grid pattern background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px),
+                        repeating-linear-gradient(90deg, var(--border) 0px, transparent 2px, transparent 80px, var(--border) 82px)`,
+          opacity: 0.1,
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="px-4 py-8">
+          {/* Main content with padding for ad */}
+          <div className="lg:pr-[332px]">
+            <UniversalTestResults test={test} result={result} answers={dummyAnswers} />
+          </div>
+        </div>
+        
+        {/* Fixed Advertisement */}
+        <div className="hidden lg:block fixed top-8 right-8 w-[300px]" 
+             style={{ right: 'max(2rem, calc((100vw - 80rem) / 2 + 2rem))' }}>
+          <div className="border-2 border-border bg-background p-4 shadow-shadow">
+            <p className="text-sm font-bold uppercase mb-4 text-center">Реклама</p>
+            <YandexAd blockId="R-A-17138338-1" className="w-full" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -85,7 +85,7 @@ export function TestsCarousel() {
               {tests.map((test) => (
                 <CarouselItem key={test.id} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <div className="py-2">
-                    <TestCard test={test} variant="default" showStats={true} />
+                    <TestCard test={test} variant="detailed" showStats={true} />
                   </div>
                 </CarouselItem>
               ))}
