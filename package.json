@@ -4,14 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate:seo && next build",
+    "build:only": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate:seo": "node scripts/generate-static-seo.js",
+    "build:production": "NODE_ENV=production npm run generate:seo && next build"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
