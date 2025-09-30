@@ -687,7 +687,7 @@ export const calculateMemoryTypeResult = (answers: Record<string, number>): Memo
   };
 
   // Подсчитываем баллы для каждого типа памяти
-  memoryTypeQuestions.forEach((question, _index) => {
+  memoryTypeQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

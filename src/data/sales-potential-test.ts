@@ -6,7 +6,13 @@
 export interface SalesPotentialQuestion {
   id: string;
   text: string;
-  category: 'communication' | 'persuasion' | 'resilience' | 'relationships' | 'motivation' | 'adaptability';
+  category:
+    | 'communication'
+    | 'persuasion'
+    | 'resilience'
+    | 'relationships'
+    | 'motivation'
+    | 'adaptability';
   options: {
     text: string;
     score: number; // 1 (низкий потенциал) до 5 (высокий потенциал)
@@ -20,12 +26,12 @@ export interface SalesPotentialResult {
   title: string;
   description: string;
   category_scores: {
-    communication: number;     // Коммуникативные навыки
-    persuasion: number;        // Навыки убеждения
-    resilience: number;        // Устойчивость к отказам
-    relationships: number;     // Построение отношений
-    motivation: number;        // Мотивация к продажам
-    adaptability: number;      // Адаптивность
+    communication: number; // Коммуникативные навыки
+    persuasion: number; // Навыки убеждения
+    resilience: number; // Устойчивость к отказам
+    relationships: number; // Построение отношений
+    motivation: number; // Мотивация к продажам
+    adaptability: number; // Адаптивность
   };
   strengths: string[];
   challenges: string[];
@@ -49,8 +55,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Принимаю близко к сердцу, но стараюсь не показывать', score: 2 },
       { text: 'Немного расстраиваюсь, но быстро восстанавливаюсь', score: 3 },
       { text: 'Воспринимаю как обычную часть работы', score: 4 },
-      { text: 'Использую как возможность узнать больше и улучшить подход', score: 5 }
-    ]
+      { text: 'Использую как возможность узнать больше и улучшить подход', score: 5 },
+    ],
   },
   {
     id: '2',
@@ -61,8 +67,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Сложно, нужно время чтобы освоиться', score: 2 },
       { text: 'Средне, зависит от ситуации и настроения', score: 3 },
       { text: 'Довольно легко, но требует некоторых усилий', score: 4 },
-      { text: 'Очень легко, получаю удовольствие от знакомств', score: 5 }
-    ]
+      { text: 'Очень легко, получаю удовольствие от знакомств', score: 5 },
+    ],
   },
   {
     id: '3',
@@ -73,8 +79,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Делаю только когда необходимо', score: 2 },
       { text: 'Нормально, но не всегда получается', score: 3 },
       { text: 'Уверенно справляюсь с этой задачей', score: 4 },
-      { text: 'Люблю и умею убеждать, это меня вдохновляет', score: 5 }
-    ]
+      { text: 'Люблю и умею убеждать, это меня вдохновляет', score: 5 },
+    ],
   },
   {
     id: '4',
@@ -85,8 +91,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Комфортная атмосфера в коллективе', score: 2 },
       { text: 'Интересные задачи и профессиональный рост', score: 3 },
       { text: 'Признание достижений и возможность влиять', score: 4 },
-      { text: 'Высокий доход и соревнование с другими', score: 5 }
-    ]
+      { text: 'Высокий доход и соревнование с другими', score: 5 },
+    ],
   },
   {
     id: '5',
@@ -97,8 +103,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Общаюсь в небольшой группе знакомых', score: 2 },
       { text: 'Участвую в общих разговорах, но не инициирую', score: 3 },
       { text: 'Активно знакомлюсь и поддерживаю разговоры', score: 4 },
-      { text: 'Становлюсь центром внимания, легко завожу новые знакомства', score: 5 }
-    ]
+      { text: 'Становлюсь центром внимания, легко завожу новые знакомства', score: 5 },
+    ],
   },
   {
     id: '6',
@@ -109,8 +115,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Сложно, но со временем привыкаю', score: 2 },
       { text: 'Нормально адаптируюсь при поддержке', score: 3 },
       { text: 'Довольно быстро приспосабливаюсь', score: 4 },
-      { text: 'Легко и быстро, изменения меня мотивируют', score: 5 }
-    ]
+      { text: 'Легко и быстро, изменения меня мотивируют', score: 5 },
+    ],
   },
   {
     id: '7',
@@ -121,8 +127,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Иногда улавливаю, но не всегда правильно', score: 2 },
       { text: 'В целом понимаю основные эмоции', score: 3 },
       { text: 'Хорошо чувствую и адаптируюсь', score: 4 },
-      { text: 'Отлично читаю людей и использую это в общении', score: 5 }
-    ]
+      { text: 'Отлично читаю людей и использую это в общении', score: 5 },
+    ],
   },
   {
     id: '8',
@@ -133,8 +139,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Участвую неохотно, если требуется', score: 2 },
       { text: 'Нормально отношусь, но не стремлюсь', score: 3 },
       { text: 'Мотивирует, стараюсь быть в лидерах', score: 4 },
-      { text: 'Обожаю соревнования, стремлюсь быть первым', score: 5 }
-    ]
+      { text: 'Обожаю соревнования, стремлюсь быть первым', score: 5 },
+    ],
   },
   {
     id: '9',
@@ -145,8 +151,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Даю дополнительную информацию и жду', score: 2 },
       { text: 'Отвечаю на вопросы и объясняю преимущества', score: 3 },
       { text: 'Выясняю конкретные возражения и работаю с ними', score: 4 },
-      { text: 'Использую техники убеждения и создаю срочность', score: 5 }
-    ]
+      { text: 'Использую техники убеждения и создаю срочность', score: 5 },
+    ],
   },
   {
     id: '10',
@@ -157,8 +163,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Хватает на короткое время', score: 2 },
       { text: 'Могу поддерживать, но с усилием', score: 3 },
       { text: 'Достаточно долго, особенно если вижу прогресс', score: 4 },
-      { text: 'Чем сложнее, тем больше азарта и энергии', score: 5 }
-    ]
+      { text: 'Чем сложнее, тем больше азарта и энергии', score: 5 },
+    ],
   },
   {
     id: '11',
@@ -169,8 +175,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Неудобно, но делаю когда нужно', score: 2 },
       { text: 'Нормально, но иногда чувствую напряжение', score: 3 },
       { text: 'Комфортно обсуждаю финансовые вопросы', score: 4 },
-      { text: 'Легко и уверенно говорю о ценности и цене', score: 5 }
-    ]
+      { text: 'Легко и уверенно говорю о ценности и цене', score: 5 },
+    ],
   },
   {
     id: '12',
@@ -181,8 +187,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Пытаюсь, но часто забываю', score: 2 },
       { text: 'Поддерживаю основные контакты', score: 3 },
       { text: 'Регулярно поддерживаю связь и слежу за потребностями', score: 4 },
-      { text: 'Превращаю клиентов в партнеров и друзей', score: 5 }
-    ]
+      { text: 'Превращаю клиентов в партнеров и друзей', score: 5 },
+    ],
   },
   {
     id: '13',
@@ -193,8 +199,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Расстраиваюсь, но стараюсь не показывать', score: 2 },
       { text: 'Остаюсь вежливым, но чувствую дискомфорт', score: 3 },
       { text: 'Сохраняю спокойствие и работаю с ситуацией', score: 4 },
-      { text: 'Воспринимаю как вызов, нахожу способ успокоить', score: 5 }
-    ]
+      { text: 'Воспринимаю как вызов, нахожу способ успокоить', score: 5 },
+    ],
   },
   {
     id: '14',
@@ -205,8 +211,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Неохота, делаю через силу', score: 2 },
       { text: 'Нейтрально, как обычную работу', score: 3 },
       { text: 'С интересом, каждый звонок - возможность', score: 4 },
-      { text: 'С энтузиазмом, люблю поиск новых клиентов', score: 5 }
-    ]
+      { text: 'С энтузиазмом, люблю поиск новых клиентов', score: 5 },
+    ],
   },
   {
     id: '15',
@@ -217,8 +223,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Справляюсь, но без энтузиазма', score: 2 },
       { text: 'Нормально рассказываю основное', score: 3 },
       { text: 'Уверенно презентую, подстраиваюсь под аудиторию', score: 4 },
-      { text: 'Отлично продаю идею, вдохновляю и убеждаю', score: 5 }
-    ]
+      { text: 'Отлично продаю идею, вдохновляю и убеждаю', score: 5 },
+    ],
   },
   {
     id: '16',
@@ -229,8 +235,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Неудобно, но стараюсь отвечать', score: 2 },
       { text: 'Нормально работаю с основными возражениями', score: 3 },
       { text: 'Уверенно отрабатываю, вижу возможности', score: 4 },
-      { text: 'Люблю работать с возражениями, это часть процесса', score: 5 }
-    ]
+      { text: 'Люблю работать с возражениями, это часть процесса', score: 5 },
+    ],
   },
   {
     id: '17',
@@ -241,8 +247,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Нужно время, не всегда получается', score: 2 },
       { text: 'В среднем темпе, с некоторыми лучше', score: 3 },
       { text: 'Довольно быстро завоевываю доверие', score: 4 },
-      { text: 'Очень быстро, люди мне сразу доверяют', score: 5 }
-    ]
+      { text: 'Очень быстро, люди мне сразу доверяют', score: 5 },
+    ],
   },
   {
     id: '18',
@@ -253,8 +259,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Волнуюсь, но справляюсь', score: 2 },
       { text: 'Немного переживаю, но это не мешает', score: 3 },
       { text: 'Чувствую легкое волнение, но оно мотивирует', score: 4 },
-      { text: 'Получаю кайф от внимания, выкладываюсь по полной', score: 5 }
-    ]
+      { text: 'Получаю кайф от внимания, выкладываюсь по полной', score: 5 },
+    ],
   },
   {
     id: '19',
@@ -265,8 +271,8 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Неохотно, но иду на уступки', score: 2 },
       { text: 'Нормально веду переговоры в разумных пределах', score: 3 },
       { text: 'Уверенно обосновываю цену и торгуюсь', score: 4 },
-      { text: 'Мастерски веду переговоры, получаю лучшие условия', score: 5 }
-    ]
+      { text: 'Мастерски веду переговоры, получаю лучшие условия', score: 5 },
+    ],
   },
   {
     id: '20',
@@ -277,12 +283,14 @@ export const salesPotentialQuestions: SalesPotentialQuestion[] = [
       { text: 'Делаю несколько попыток, потом отступаю', score: 2 },
       { text: 'Проявляю умеренную настойчивость', score: 3 },
       { text: 'Настойчив, но в разумных пределах', score: 4 },
-      { text: 'Очень настойчив, не отступаю до последнего', score: 5 }
-    ]
-  }
+      { text: 'Очень настойчив, не отступаю до последнего', score: 5 },
+    ],
+  },
 ];
 
-export const calculateSalesPotentialResult = (answers: Record<string, number>): SalesPotentialResult => {
+export const calculateSalesPotentialResult = (
+  answers: Record<string, number>
+): SalesPotentialResult => {
   const total_score = Object.values(answers).reduce((sum, score) => sum + score, 0);
   const percentage = Math.round(((total_score - 20) / 80) * 100);
 
@@ -293,7 +301,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
     resilience: 0,
     relationships: 0,
     motivation: 0,
-    adaptability: 0
+    adaptability: 0,
   };
 
   const categoryCount = {
@@ -302,7 +310,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
     resilience: 0,
     relationships: 0,
     motivation: 0,
-    adaptability: 0
+    adaptability: 0,
   };
 
   salesPotentialQuestions.forEach((question) => {
@@ -326,7 +334,6 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
   let description: string;
   let strengths: string[];
   let challenges: string[];
-  let sales_skills: string[];
   let personality_traits: string[];
   let ideal_sales_types: string[];
   let development_areas: string[];
@@ -338,133 +345,129 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
   if (total_score <= 40) {
     overall_level = 'low';
     title = 'Низкий потенциал в продажах';
-    description = 'Продажи могут не быть вашей сильной стороной. Вам может быть некомфортно в активных продажах, но это не означает, что вы не можете развить эти навыки или найти свою нишу в смежных областях.';
+    description =
+      'Продажи могут не быть вашей сильной стороной. Вам может быть некомфортно в активных продажах, но это не означает, что вы не можете развить эти навыки или найти свою нишу в смежных областях.';
     strengths = [
       'Честность и искренность',
       'Внимание к деталям продукта',
       'Консультативный подход',
-      'Способность к глубоким отношениям'
+      'Способность к глубоким отношениям',
     ];
     challenges = [
       'Трудности с активными продажами',
       'Низкая устойчивость к отказам',
       'Дискомфорт при убеждении',
       'Сложности с холодными контактами',
-      'Избегание конфронтации'
+      'Избегание конфронтации',
     ];
     ideal_sales_types = [
       'Техническое консультирование',
       'Работа с входящими заявками',
       'Поддержка существующих клиентов',
-      'Внутренние продажи'
+      'Внутренние продажи',
     ];
     warning_signs = [
       'Избегание контакта с клиентами',
       'Стресс от переговоров',
       'Низкие результаты продаж',
-      'Нежелание работать с возражениями'
+      'Нежелание работать с возражениями',
     ];
   } else if (total_score <= 55) {
     overall_level = 'below_average';
     title = 'Ниже среднего потенциал в продажах';
-    description = 'У вас есть некоторые способности к продажам, но они требуют развития. С правильным обучением и поддержкой вы можете достичь приемлемых результатов в определенных типах продаж.';
+    description =
+      'У вас есть некоторые способности к продажам, но они требуют развития. С правильным обучением и поддержкой вы можете достичь приемлемых результатов в определенных типах продаж.';
     strengths = [
       'Потенциал для развития',
       'Базовые коммуникативные навыки',
       'Способность к обучению',
-      'Аналитический подход'
+      'Аналитический подход',
     ];
     challenges = [
       'Недостаток уверенности',
       'Слабые навыки убеждения',
       'Трудности с активными продажами',
-      'Низкая мотивация к соревнованию'
+      'Низкая мотивация к соревнованию',
     ];
     ideal_sales_types = [
       'Продажи в команде',
       'Консультативные продажи',
       'B2B продажи с длинным циклом',
-      'Специализированные продукты'
+      'Специализированные продукты',
     ];
     warning_signs = [
       'Избегание сложных клиентов',
       'Быстрая сдача при возражениях',
-      'Низкая активность в поиске клиентов'
+      'Низкая активность в поиске клиентов',
     ];
   } else if (total_score <= 70) {
     overall_level = 'average';
     title = 'Средний потенциал в продажах';
-    description = 'У вас хороший базовый потенциал для работы в продажах. Вы можете быть успешными во многих типах продаж, особенно с дополнительным обучением и опытом.';
+    description =
+      'У вас хороший базовый потенциал для работы в продажах. Вы можете быть успешными во многих типах продаж, особенно с дополнительным обучением и опытом.';
     strengths = [
       'Сбалансированные навыки',
       'Умеренная настойчивость',
       'Способность к адаптации',
-      'Хорошие отношения с клиентами'
+      'Хорошие отношения с клиентами',
     ];
     challenges = [
       'Недостаток исключительных навыков',
       'Средняя мотивация',
-      'Требуется постоянное развитие'
+      'Требуется постоянное развитие',
     ];
     ideal_sales_types = [
       'Розничные продажи',
       'Корпоративные продажи',
       'Продажи услуг',
-      'Региональные продажи'
+      'Региональные продажи',
     ];
-    warning_signs = [
-      'Плато в развитии',
-      'Средние результаты без роста'
-    ];
+    warning_signs = ['Плато в развитии', 'Средние результаты без роста'];
   } else if (total_score <= 85) {
     overall_level = 'above_average';
     title = 'Выше среднего потенциал в продажах';
-    description = 'У вас отличный потенциал для успешной карьеры в продажах. Вы обладаете большинством необходимых качеств и можете достигать высоких результатов в различных типах продаж.';
+    description =
+      'У вас отличный потенциал для успешной карьеры в продажах. Вы обладаете большинством необходимых качеств и можете достигать высоких результатов в различных типах продаж.';
     strengths = [
       'Сильные коммуникативные навыки',
       'Хорошая устойчивость к стрессу',
       'Способность убеждать',
       'Мотивация к достижениям',
-      'Адаптивность'
+      'Адаптивность',
     ];
-    challenges = [
-      'Требуется шлифовка некоторых навыков',
-      'Возможная самоуверенность'
-    ];
+    challenges = ['Требуется шлифовка некоторых навыков', 'Возможная самоуверенность'];
     ideal_sales_types = [
       'Ключевые клиенты',
       'Сложные продажи',
       'Новые рынки',
-      'Управление продажами'
+      'Управление продажами',
     ];
     warning_signs = ['Минимальные'];
   } else {
     overall_level = 'high';
     title = 'Высокий потенциал в продажах';
-    description = 'У вас исключительный потенциал для продаж. Вы обладаете природными талантами продавца и можете достигать выдающихся результатов в любом типе продаж. Карьера в продажах может принести вам большой успех.';
+    description =
+      'У вас исключительный потенциал для продаж. Вы обладаете природными талантами продавца и можете достигать выдающихся результатов в любом типе продаж. Карьера в продажах может принести вам большой успех.';
     strengths = [
       'Исключительные коммуникативные навыки',
       'Высокая мотивация и настойчивость',
       'Отличные навыки убеждения',
       'Быстрая адаптация',
       'Природная харизма',
-      'Любовь к вызовам'
+      'Любовь к вызовам',
     ];
-    challenges = [
-      'Риск выгорания от высокой активности',
-      'Возможная переоценка способностей'
-    ];
+    challenges = ['Риск выгорания от высокой активности', 'Возможная переоценка способностей'];
     ideal_sales_types = [
       'Сложные B2B продажи',
       'Элитные продукты',
       'Международные продажи',
-      'Руководство отделом продаж'
+      'Руководство отделом продаж',
     ];
     warning_signs = ['Практически отсутствуют'];
   }
 
   // Навыки продаж
-  sales_skills = [
+  const sales_skills = [
     'Построение отношений с клиентами',
     'Выявление потребностей',
     'Презентация продукта/услуги',
@@ -472,7 +475,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
     'Закрытие сделки',
     'Переговоры о цене',
     'Ведение CRM системы',
-    'Планирование продаж'
+    'Планирование продаж',
   ];
 
   // Личностные качества
@@ -482,7 +485,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Осторожность',
       'Аналитичность',
       'Стремление к стабильности',
-      'Избегание конфликтов'
+      'Избегание конфликтов',
     ];
 
     development_areas = [
@@ -490,7 +493,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Тренировка навыков общения',
       'Работа с отказами',
       'Изучение техник продаж',
-      'Развитие стрессоустойчивости'
+      'Развитие стрессоустойчивости',
     ];
 
     training_recommendations = [
@@ -498,7 +501,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Тренинги по коммуникации',
       'Курсы уверенности в себе',
       'Работа с ментором',
-      'Постепенное увеличение нагрузки'
+      'Постепенное увеличение нагрузки',
     ];
 
     success_strategies = [
@@ -506,7 +509,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Работать в паре с опытным продавцом',
       'Фокусироваться на консультировании',
       'Использовать письменные материалы',
-      'Развивать экспертность в продукте'
+      'Развивать экспертность в продукте',
     ];
 
     career_paths = [
@@ -514,7 +517,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Маркетинг',
       'Менеджер по работе с клиентами',
       'Специалист по продукту',
-      'Внутренние продажи'
+      'Внутренние продажи',
     ];
   } else if (overall_level === 'average') {
     personality_traits = [
@@ -522,7 +525,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Сбалансированность',
       'Обучаемость',
       'Стабильность',
-      'Командность'
+      'Командность',
     ];
 
     development_areas = [
@@ -530,7 +533,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Развитие лидерских качеств',
       'Улучшение навыков презентации',
       'Изучение психологии клиента',
-      'Развитие переговорных навыков'
+      'Развитие переговорных навыков',
     ];
 
     training_recommendations = [
@@ -538,7 +541,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Специализация по отраслям',
       'Тренинги по переговорам',
       'Обучение работе с CRM',
-      'Развитие эмоционального интеллекта'
+      'Развитие эмоционального интеллекта',
     ];
 
     success_strategies = [
@@ -546,7 +549,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Построение долгосрочных отношений',
       'Постоянное обучение',
       'Использование аналитики',
-      'Командная работа'
+      'Командная работа',
     ];
 
     career_paths = [
@@ -554,7 +557,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Специалист по ключевым клиентам',
       'Региональный менеджер',
       'Тренер по продажам',
-      'Руководитель направления'
+      'Руководитель направления',
     ];
   } else {
     personality_traits = [
@@ -562,7 +565,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Высокая энергия',
       'Амбициозность',
       'Конкурентность',
-      'Харизматичность'
+      'Харизматичность',
     ];
 
     development_areas = [
@@ -570,7 +573,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Стратегическое планирование',
       'Международные продажи',
       'Цифровые каналы продаж',
-      'Построение партнерств'
+      'Построение партнерств',
     ];
 
     training_recommendations = [
@@ -578,7 +581,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Тренинги по лидерству',
       'Изучение новых технологий',
       'Международные программы',
-      'Менторство других'
+      'Менторство других',
     ];
 
     success_strategies = [
@@ -586,7 +589,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Развитие новых рынков',
       'Построение команды',
       'Использование данных и аналитики',
-      'Инновации в продажах'
+      'Инновации в продажах',
     ];
 
     career_paths = [
@@ -594,7 +597,7 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
       'Вице-президент по развитию',
       'Собственный бизнес',
       'Международные продажи',
-      'Консультант по продажам'
+      'Консультант по продажам',
     ];
   }
 
@@ -614,6 +617,6 @@ export const calculateSalesPotentialResult = (answers: Record<string, number>): 
     success_strategies,
     training_recommendations,
     career_paths,
-    warning_signs
+    warning_signs,
   };
 };

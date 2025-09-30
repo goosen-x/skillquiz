@@ -1021,7 +1021,7 @@ export const calculateWorkMotivationResult = (
   };
 
   // Подсчитываем баллы для каждого типа мотивации
-  workMotivationQuestions.forEach((question, _index) => {
+  workMotivationQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

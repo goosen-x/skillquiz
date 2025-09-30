@@ -820,7 +820,7 @@ export const calculateManagementStyleResult = (
   };
 
   // Подсчитываем баллы для каждого стиля управления
-  managementStyleQuestions.forEach((question, _index) => {
+  managementStyleQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

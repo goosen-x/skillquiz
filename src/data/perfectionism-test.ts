@@ -21,11 +21,11 @@ export interface PerfectionismResult {
   description: string;
   perfectionism_type: 'healthy' | 'unhealthy' | 'mixed';
   category_scores: {
-    self_oriented: number;      // Перфекционизм, ориентированный на себя
-    other_oriented: number;     // Перфекционизм, ориентированный на других
+    self_oriented: number; // Перфекционизм, ориентированный на себя
+    other_oriented: number; // Перфекционизм, ориентированный на других
     socially_prescribed: number; // Социально предписанный перфекционизм
-    adaptive: number;           // Адаптивный перфекционизм
-    maladaptive: number;        // Дезадаптивный перфекционизм
+    adaptive: number; // Адаптивный перфекционизм
+    maladaptive: number; // Дезадаптивный перфекционизм
   };
   strengths: string[];
   challenges: string[];
@@ -46,8 +46,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '2',
@@ -58,8 +58,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '3',
@@ -70,8 +70,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '4',
@@ -82,8 +82,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '5',
@@ -94,8 +94,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '6',
@@ -106,8 +106,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '7',
@@ -118,8 +118,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '8',
@@ -130,8 +130,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '9',
@@ -142,8 +142,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '10',
@@ -154,8 +154,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '11',
@@ -166,8 +166,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '12',
@@ -178,8 +178,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '13',
@@ -190,8 +190,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '14',
@@ -202,8 +202,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '15',
@@ -214,8 +214,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '16',
@@ -226,8 +226,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '17',
@@ -238,8 +238,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '18',
@@ -250,8 +250,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '19',
@@ -262,8 +262,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '20',
@@ -274,8 +274,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '21',
@@ -286,8 +286,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '22',
@@ -298,8 +298,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '23',
@@ -310,8 +310,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '24',
@@ -322,8 +322,8 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
+      { text: 'Полностью согласен', score: 5 },
+    ],
   },
   {
     id: '25',
@@ -334,12 +334,14 @@ export const perfectionismQuestions: PerfectionismQuestion[] = [
       { text: 'Не согласен', score: 2 },
       { text: 'Нейтрально', score: 3 },
       { text: 'Согласен', score: 4 },
-      { text: 'Полностью согласен', score: 5 }
-    ]
-  }
+      { text: 'Полностью согласен', score: 5 },
+    ],
+  },
 ];
 
-export const calculatePerfectionismResult = (answers: Record<string, number>): PerfectionismResult => {
+export const calculatePerfectionismResult = (
+  answers: Record<string, number>
+): PerfectionismResult => {
   const total_score = Object.values(answers).reduce((sum, score) => sum + score, 0);
   const percentage = Math.round(((total_score - 25) / 100) * 100);
 
@@ -349,7 +351,7 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
     other_oriented: 0,
     socially_prescribed: 0,
     adaptive: 0,
-    maladaptive: 0
+    maladaptive: 0,
   };
 
   const categoryCount = {
@@ -357,7 +359,7 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
     other_oriented: 0,
     socially_prescribed: 0,
     adaptive: 0,
-    maladaptive: 0
+    maladaptive: 0,
   };
 
   perfectionismQuestions.forEach((question) => {
@@ -377,7 +379,7 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
   // Определяем тип перфекционизма
   const adaptive_score = category_scores.adaptive;
   const maladaptive_score = category_scores.maladaptive;
-  
+
   let perfectionism_type: 'healthy' | 'unhealthy' | 'mixed';
   if (adaptive_score > maladaptive_score + 10) {
     perfectionism_type = 'healthy';
@@ -392,79 +394,81 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
   let description: string;
   let strengths: string[];
   let challenges: string[];
-  let impact_areas: string[];
   let coping_strategies: string[];
   let therapy_recommendations: string[];
   let warning_signs: string[];
-  let healthy_standards: string[];
 
   if (total_score <= 50) {
     overall_level = 'low';
     title = 'Низкий уровень перфекционизма';
-    description = 'У вас низкий уровень перфекционистских тенденций. Вы стремитесь к качеству, но не зацикливаетесь на совершенстве. Вы способны принимать несовершенства как часть жизни и не позволяете им препятствовать вашему прогрессу.';
+    description =
+      'У вас низкий уровень перфекционистских тенденций. Вы стремитесь к качеству, но не зацикливаетесь на совершенстве. Вы способны принимать несовершенства как часть жизни и не позволяете им препятствовать вашему прогрессу.';
     strengths = [
       'Гибкость в стандартах',
       'Способность завершать проекты',
       'Принятие несовершенств',
       'Здоровая самооценка',
-      'Эффективное использование времени'
+      'Эффективное использование времени',
     ];
     challenges = [
       'Иногда может не хватать мотивации к совершенствованию',
-      'Возможно недооценка важности качества в некоторых областях'
+      'Возможно недооценка важности качества в некоторых областях',
     ];
     warning_signs = ['Минимальные'];
   } else if (total_score <= 75) {
     overall_level = 'moderate';
     title = 'Умеренный уровень перфекционизма';
-    description = 'У вас умеренный уровень перфекционизма. Вы стремитесь к высокому качеству, что может быть как преимуществом, так и вызовом. Важно следить, чтобы стремление к совершенству не становилось препятствием для продуктивности и благополучия.';
+    description =
+      'У вас умеренный уровень перфекционизма. Вы стремитесь к высокому качеству, что может быть как преимуществом, так и вызовом. Важно следить, чтобы стремление к совершенству не становилось препятствием для продуктивности и благополучия.';
     strengths = [
       'Высокие стандарты качества',
       'Внимание к деталям',
       'Мотивация к достижениям',
-      'Ответственный подход к работе'
+      'Ответственный подход к работе',
     ];
     challenges = [
       'Иногда чрезмерное внимание к деталям',
       'Трудности с делегированием',
       'Склонность к самокритике',
-      'Возможное откладывание задач'
+      'Возможное откладывание задач',
     ];
     warning_signs = [
       'Увеличение времени на выполнение задач',
       'Недовольство результатами работы',
-      'Стресс при необходимости соблюдать сроки'
+      'Стресс при необходимости соблюдать сроки',
     ];
   } else if (total_score <= 100) {
     overall_level = 'high';
     title = 'Высокий уровень перфекционизма';
-    description = 'У вас высокий уровень перфекционизма, который может значительно влиять на вашу жизнь. Хотя стремление к совершенству может приводить к высоким достижениям, оно также может вызывать стресс, тревогу и препятствовать эффективности.';
+    description =
+      'У вас высокий уровень перфекционизма, который может значительно влиять на вашу жизнь. Хотя стремление к совершенству может приводить к высоким достижениям, оно также может вызывать стресс, тревогу и препятствовать эффективности.';
     strengths = [
       'Исключительное качество работы',
       'Высокие стандарты',
       'Детальность и точность',
-      'Мотивация к совершенствованию'
+      'Мотивация к совершенствованию',
     ];
     challenges = [
       'Хроническое недовольство результатами',
       'Прокрастинация из-за страха несовершенства',
       'Высокий уровень стресса',
       'Трудности с делегированием',
-      'Проблемы в отношениях из-за высоких ожиданий'
+      'Проблемы в отношениях из-за высоких ожиданий',
     ];
     warning_signs = [
       'Панические атаки перед дедлайнами',
       'Избегание новых вызовов',
       'Социальная изоляция',
-      'Выгорание на работе'
+      'Выгорание на работе',
     ];
   } else {
     overall_level = 'extreme';
     title = 'Экстремальный перфекционизм';
-    description = 'У вас крайне высокий уровень перфекционизма, который может серьезно препятствовать вашему функционированию и благополучию. Стремление к совершенству стало дисфункциональным и требует профессиональной помощи.';
+    description =
+      'У вас крайне высокий уровень перфекционизма, который может серьезно препятствовать вашему функционированию и благополучию. Стремление к совершенству стало дисфункциональным и требует профессиональной помощи.';
     strengths = [
       'Потенциально исключительное качество работы (когда удается завершить)',
-      'Высокие стандарты могут вдохновлять других'
+      'Высокие стандарты могут вдохновлять других',
     ];
     challenges = [
       'Парализующий страх несовершенства',
@@ -472,25 +476,25 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
       'Серьезные проблемы с самооценкой',
       'Невозможность завершить проекты',
       'Серьезные проблемы в отношениях',
-      'Высокий риск депрессии и тревоги'
+      'Высокий риск депрессии и тревоги',
     ];
     warning_signs = [
       'Полная неспособность завершать проекты',
       'Суицидальные мысли из-за "неудач"',
       'Полная социальная изоляция',
       'Злоупотребление веществами',
-      'Серьезные проблемы на работе/учебе'
+      'Серьезные проблемы на работе/учебе',
     ];
   }
 
   // Области влияния
-  impact_areas = [
+  const impact_areas = [
     'Работа и карьера',
     'Академические достижения',
     'Отношения с семьей и друзьями',
     'Творческая деятельность',
     'Физическое и психическое здоровье',
-    'Самооценка и самоценность'
+    'Самооценка и самоценность',
   ];
 
   // Стратегии преодоления
@@ -499,11 +503,11 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
       'Устанавливайте реалистичные сроки',
       'Практикуйте принцип "достаточно хорошо"',
       'Отмечайте прогресс, а не только идеальные результаты',
-      'Изучайте техники управления временем'
+      'Изучайте техники управления временем',
     ];
     therapy_recommendations = [
       'Коучинг по продуктивности',
-      'Группы поддержки для амбициозных людей'
+      'Группы поддержки для амбициозных людей',
     ];
   } else {
     coping_strategies = [
@@ -511,18 +515,18 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
       'Техники принятия несовершенства',
       'Постановка процессуальных целей вместо результативных',
       'Практика самосострадания',
-      'Техники заземления при тревоге'
+      'Техники заземления при тревоге',
     ];
     therapy_recommendations = [
       'Когнитивно-поведенческая терапия (КПТ)',
       'Терапия принятия и обязательств (ACT)',
       'Mindfulness-based терапия',
-      'EMDR при травматических причинах перфекционизма'
+      'EMDR при травматических причинах перфекционизма',
     ];
   }
 
   // Здоровые стандарты
-  healthy_standards = [
+  const healthy_standards = [
     'Стремитесь к прогрессу, а не к совершенству',
     'Устанавливайте реалистичные и достижимые цели',
     'Принимайте ошибки как часть процесса обучения',
@@ -530,7 +534,7 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
     'Практикуйте самосострадание при неудачах',
     'Различайте важные и неважные детали',
     'Устанавливайте временные границы для задач',
-    'Празднуйте промежуточные достижения'
+    'Празднуйте промежуточные достижения',
   ];
 
   return {
@@ -547,6 +551,6 @@ export const calculatePerfectionismResult = (answers: Record<string, number>): P
     coping_strategies,
     therapy_recommendations,
     warning_signs,
-    healthy_standards
+    healthy_standards,
   };
 };

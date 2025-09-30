@@ -320,7 +320,14 @@ export default function TestPage({ test }: TestPageProps) {
     if (test.slug === 'personality-type' && !scores) {
       // Импортируем функцию из оригинального файла
       const { calculateBigFiveScores } = await import('@/data/personality-type-test');
-      scores = calculateBigFiveScores(finalAnswers as number[]);
+      const bigFiveScores = calculateBigFiveScores(finalAnswers as number[]);
+      scores = {
+        extraversion: bigFiveScores.extraversion,
+        agreeableness: bigFiveScores.agreeableness,
+        conscientiousness: bigFiveScores.conscientiousness,
+        neuroticism: bigFiveScores.neuroticism,
+        openness: bigFiveScores.openness,
+      };
     }
 
     const shortUrl = generateShortResultUrl(test.slug, testResult, scores);

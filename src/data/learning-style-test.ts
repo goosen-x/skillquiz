@@ -583,7 +583,7 @@ export const calculateLearningStyleResult = (
   };
 
   // Подсчитываем баллы для каждого стиля
-  learningStyleQuestions.forEach((question, _index) => {
+  learningStyleQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

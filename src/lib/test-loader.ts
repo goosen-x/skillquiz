@@ -52,11 +52,8 @@ export interface LoadedTestData {
 // Маппинг всех тестов
 const testImportMap: Record<
   string,
-  () => Promise<{
-    questions: unknown[];
-    calculateResult: (...args: unknown[]) => unknown;
-    results?: unknown[];
-  }>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  () => Promise<any>
 > = {
   'digital-wellness-persona': () => import('@/data/digital-wellness-test'),
   'personality-type': () => import('@/data/personality-type-test'),
@@ -92,7 +89,8 @@ const testImportMap: Record<
 };
 
 // Адаптеры для преобразования разных форматов вопросов
-function adaptQuestions(questions: unknown[], testSlug: string): UniversalQuestion[] {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function adaptQuestions(questions: any[], testSlug: string): UniversalQuestion[] {
   // Для тестов с форматом TestQuestion (digital-wellness, personality-type, etc)
   if (
     (questions[0] as { question?: string; icon?: string })?.question &&
@@ -106,11 +104,11 @@ function adaptQuestions(questions: unknown[], testSlug: string): UniversalQuesti
         q as { options: Array<{ text: string; value: unknown; factor?: string }> }
       ).options.map((opt: { text: string; value: unknown; factor?: string }) => ({
         text: opt.text,
-        value: opt.value,
+        value: opt.value as string | number,
         factor: opt.factor,
       })),
       category: (q as { category?: string }).category,
-    }));
+    })) as UniversalQuestion[];
   }
 
   // Для тестов с форматом {id: string, text: string} (новые тесты)
@@ -170,17 +168,17 @@ function adaptQuestions(questions: unknown[], testSlug: string): UniversalQuesti
             opt.language ??
             opt.temperament ??
             // Для attachment-style и других тестов с множественными баллами используем индекс
-            (opt.secure !== undefined ||
+            ((opt.secure !== undefined ||
             opt.anxious !== undefined ||
             opt.avoidant !== undefined ||
             opt.disorganized !== undefined
               ? optIndex.toString()
-              : (opt.primary ?? opt.category ?? optIndex.toString())),
+              : (opt.primary ?? opt.category ?? optIndex.toString())) as string | number),
           factor: opt.factor ?? opt.category ?? opt.temperament,
         })
       ),
       category: (q as { category?: string }).category,
-    }));
+    })) as UniversalQuestion[];
   }
 
   throw new Error(`Unknown question format for test: ${testSlug}`);
@@ -268,7 +266,8 @@ function adaptCalculateFunction(
     }
 
     // Вызываем оригинальную функцию
-    const result = originalCalculate(adaptedAnswers);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const result = originalCalculate(adaptedAnswers) as any;
 
     // Адаптируем результат к универсальному формату
     return adaptResult(result, testSlug);
@@ -372,7 +371,7 @@ function adaptResult(
       time: '⏰',
       touch: '🤗',
     };
-    adapted.emoji = emojiMap[result.primary_language] || '❤️';
+    adapted.emoji = result.primary_language ? emojiMap[result.primary_language] || '❤️' : '❤️';
     adapted.color = 'yellow';
 
     // Добавляем percentage из результата
@@ -420,7 +419,9 @@ function adaptResult(
   if (result.factors || result.scores || result.factorScores) {
     adapted.chartType = 'radar';
     adapted.factorScores = result.factors || result.scores || result.factorScores;
-    adapted.chartData = generateChartData(adapted.factorScores, testSlug);
+    if (adapted.factorScores) {
+      adapted.chartData = generateChartData(adapted.factorScores, testSlug);
+    }
   }
 
   // Специальная обработка для теста темперамента
@@ -440,7 +441,7 @@ function adaptResult(
 
     // Вычисляем правильный percentage для основного типа
     const totalScore = Object.values(result.scores).reduce((sum, score) => sum + score, 0);
-    const primaryScore = result.scores[result.primary_type];
+    const primaryScore = result.primary_type ? result.scores[result.primary_type] || 0 : 0;
     adapted.percentage = totalScore > 0 ? Math.round((primaryScore / totalScore) * 100) : 15;
 
     // Устанавливаем правильные цвета и эмодзи для темпераментов
@@ -451,7 +452,7 @@ function adaptResult(
       phlegmatic: { color: 'green', emoji: '🧘' },
     };
 
-    const config = temperamentConfig[result.primary_type];
+    const config = result.primary_type ? temperamentConfig[result.primary_type] : undefined;
     if (config) {
       adapted.color = config.color;
       adapted.emoji = config.emoji;

@@ -481,7 +481,7 @@ export const calculateCommunicationResult = (
   };
 
   // Подсчитываем баллы для каждого стиля
-  communicationQuestions.forEach((question, _index) => {
+  communicationQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

@@ -44,8 +44,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '2',
@@ -56,8 +56,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '3',
@@ -68,8 +68,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '4',
@@ -80,8 +80,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '5',
@@ -92,8 +92,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '6',
@@ -104,8 +104,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '7',
@@ -116,8 +116,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '8',
@@ -128,8 +128,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '9',
@@ -140,8 +140,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '10',
@@ -152,8 +152,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '11',
@@ -164,8 +164,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '12',
@@ -176,8 +176,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '13',
@@ -188,8 +188,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '14',
@@ -200,8 +200,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '15',
@@ -212,8 +212,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '16',
@@ -224,8 +224,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '17',
@@ -236,8 +236,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '18',
@@ -248,8 +248,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '19',
@@ -260,8 +260,8 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
+      { text: 'Всегда', score: 5 },
+    ],
   },
   {
     id: '20',
@@ -272,22 +272,24 @@ export const procrastinationQuestions: ProcrastinationQuestion[] = [
       { text: 'Редко', score: 2 },
       { text: 'Иногда', score: 3 },
       { text: 'Часто', score: 4 },
-      { text: 'Всегда', score: 5 }
-    ]
-  }
+      { text: 'Всегда', score: 5 },
+    ],
+  },
 ];
 
-export const calculateProcrastinationResult = (answers: Record<string, number>): ProcrastinationResult => {
+export const calculateProcrastinationResult = (
+  answers: Record<string, number>
+): ProcrastinationResult => {
   const totalScore = Object.values(answers).reduce((sum, score) => sum + score, 0);
   const percentage = Math.round(((totalScore - 20) / 80) * 100);
-  
+
   // Подсчет баллов по категориям
   const category_scores = {
     avoidance: 0,
     perfectionism: 0,
     time_management: 0,
     motivation: 0,
-    fear: 0
+    fear: 0,
   };
 
   const categoryCount = {
@@ -295,7 +297,7 @@ export const calculateProcrastinationResult = (answers: Record<string, number>):
     perfectionism: 0,
     time_management: 0,
     motivation: 0,
-    fear: 0
+    fear: 0,
   };
 
   procrastinationQuestions.forEach((question) => {
@@ -309,17 +311,13 @@ export const calculateProcrastinationResult = (answers: Record<string, number>):
   // Нормализуем оценки по категориям
   Object.keys(category_scores).forEach((category) => {
     const key = category as keyof typeof category_scores;
-    category_scores[key] = Math.round((category_scores[key] / categoryCount[key]) * 100 / 5);
+    category_scores[key] = Math.round(((category_scores[key] / categoryCount[key]) * 100) / 5);
   });
 
   let level: 'minimal' | 'mild' | 'moderate' | 'high' | 'severe';
   let title: string;
   let description: string;
-  let main_causes: string[];
   let consequences: string[];
-  let strategies: string[];
-  let immediate_steps: string[];
-  let long_term_plan: string[];
   let warning_signs: string[];
 
   // Определяем основные причины прокрастинации
@@ -332,113 +330,118 @@ export const calculateProcrastinationResult = (answers: Record<string, number>):
     perfectionism: 'Перфекционизм',
     time_management: 'Плохое управление временем',
     motivation: 'Недостаток мотивации',
-    fear: 'Страх неудачи или критики'
+    fear: 'Страх неудачи или критики',
   };
 
-  main_causes = topCauses.map(([cause]) => causeMap[cause as keyof typeof causeMap]);
+  const main_causes = topCauses.map(([cause]) => causeMap[cause as keyof typeof causeMap]);
 
   if (totalScore <= 35) {
     level = 'minimal';
     title = 'Минимальная прокрастинация';
-    description = 'У вас очень низкий уровень прокрастинации. Вы хорошо управляете своим временем и редко откладываете важные дела. Продолжайте поддерживать эти здоровые привычки!';
+    description =
+      'У вас очень низкий уровень прокрастинации. Вы хорошо управляете своим временем и редко откладываете важные дела. Продолжайте поддерживать эти здоровые привычки!';
     consequences = ['Практически отсутствуют'];
     warning_signs = ['Отсутствуют'];
   } else if (totalScore <= 50) {
     level = 'mild';
     title = 'Легкая прокрастинация';
-    description = 'У вас легкий уровень прокрастинации. Иногда вы можете откладывать дела, но в целом справляетесь с задачами в срок. Небольшие улучшения помогут стать еще эффективнее.';
+    description =
+      'У вас легкий уровень прокрастинации. Иногда вы можете откладывать дела, но в целом справляетесь с задачами в срок. Небольшие улучшения помогут стать еще эффективнее.';
     consequences = [
       'Периодическая спешка',
       'Незначительное снижение качества работы',
-      'Легкий стресс перед дедлайнами'
+      'Легкий стресс перед дедлайнами',
     ];
     warning_signs = [
       'Периодические отвлечения',
       'Иногда работа в последний момент',
-      'Небольшое чувство вины за откладывание'
+      'Небольшое чувство вины за откладывание',
     ];
   } else if (totalScore <= 65) {
     level = 'moderate';
     title = 'Умеренная прокрастинация';
-    description = 'У вас умеренный уровень прокрастинации. Вы регулярно откладываете дела, что может влиять на качество работы и уровень стресса. Пора принимать активные меры для изменения этой привычки.';
+    description =
+      'У вас умеренный уровень прокрастинации. Вы регулярно откладываете дела, что может влиять на качество работы и уровень стресса. Пора принимать активные меры для изменения этой привычки.';
     consequences = [
       'Регулярная работа в авральном режиме',
       'Снижение качества результатов',
       'Повышенный стресс',
       'Проблемы с самооценкой',
-      'Конфликты из-за несоблюдения сроков'
+      'Конфликты из-за несоблюдения сроков',
     ];
     warning_signs = [
       'Частые отвлечения на неважные дела',
       'Регулярная работа по ночам',
       'Постоянное чувство вины',
-      'Обещания "завтра точно начну"'
+      'Обещания "завтра точно начну"',
     ];
   } else if (totalScore <= 80) {
     level = 'high';
     title = 'Высокая прокрастинация';
-    description = 'У вас высокий уровень прокрастинации, который серьезно влияет на вашу продуктивность и благополучие. Откладывание дел стало привычным паттерном поведения. Необходимы кардинальные изменения в подходе к планированию и выполнению задач.';
+    description =
+      'У вас высокий уровень прокрастинации, который серьезно влияет на вашу продуктивность и благополучие. Откладывание дел стало привычным паттерном поведения. Необходимы кардинальные изменения в подходе к планированию и выполнению задач.';
     consequences = [
       'Постоянный стресс и тревога',
       'Значительное снижение качества работы',
       'Пропуск важных дедлайнов',
       'Проблемы в карьере и отношениях',
       'Хроническое чувство вины и стыда',
-      'Снижение самооценки'
+      'Снижение самооценки',
     ];
     warning_signs = [
       'Постоянное откладывание важных задач',
       'Работа только под давлением дедлайнов',
       'Избежание сложных проектов',
       'Хроническое опоздание',
-      'Потеря контроля над временем'
+      'Потеря контроля над временем',
     ];
   } else {
     level = 'severe';
     title = 'Тяжелая прокрастинация';
-    description = 'У вас тяжелый уровень прокрастинации, который парализует вашу способность к действию. Это может указывать на глубокие психологические причины. Настоятельно рекомендуется обратиться к специалисту.';
+    description =
+      'У вас тяжелый уровень прокрастинации, который парализует вашу способность к действию. Это может указывать на глубокие психологические причины. Настоятельно рекомендуется обратиться к специалисту.';
     consequences = [
       'Полная потеря контроля над временем',
       'Серьезные проблемы в работе/учебе',
       'Разрушение отношений',
       'Депрессивные состояния',
       'Социальная изоляция',
-      'Финансовые проблемы'
+      'Финансовые проблемы',
     ];
     warning_signs = [
       'Полное избегание важных задач',
       'Панические атаки перед дедлайнами',
       'Ложь другим о прогрессе работы',
       'Самосаботаж возможностей',
-      'Чувство полного бессилия'
+      'Чувство полного бессилия',
     ];
   }
 
   // Стратегии борьбы с прокрастинацией
-  strategies = [
+  const strategies = [
     'Техника "Помидора" - работа интервалами 25 минут',
     'Разбивание больших задач на мелкие шаги',
     'Правило "2 минут" - делать сразу то, что займет меньше 2 минут',
     'Устранение отвлекающих факторов',
     'Создание системы вознаграждений за выполнение задач',
     'Использование внешней отчетности',
-    'Планирование самых сложных задач на утро'
+    'Планирование самых сложных задач на утро',
   ];
 
-  immediate_steps = [
+  const immediate_steps = [
     'Выберите одну отложенную задачу и начните прямо сейчас',
     'Установите таймер на 15 минут и работайте над задачей',
     'Уберите телефон и закройте социальные сети',
     'Запишите 3 небольших шага для завершения текущего проекта',
-    'Найдите партнера по отчетности'
+    'Найдите партнера по отчетности',
   ];
 
-  long_term_plan = [
+  const long_term_plan = [
     'Развитие навыков планирования и организации времени',
     'Работа с перфекционизмом и страхом неудачи',
     'Создание устойчивых рабочих привычек',
     'Изучение техник управления стрессом',
-    'При необходимости - работа с психологом'
+    'При необходимости - работа с психологом',
   ];
 
   return {
@@ -453,6 +456,6 @@ export const calculateProcrastinationResult = (answers: Record<string, number>):
     strategies,
     immediate_steps,
     long_term_plan,
-    warning_signs
+    warning_signs,
   };
 };

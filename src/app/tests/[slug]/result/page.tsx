@@ -10,11 +10,11 @@ import { psychologicalResilienceResults } from '@/data/mental-resilience-test';
 import { dopamineDetoxResults } from '@/data/dopamine-detox-test';
 import UniversalTestResults from '@/components/tests/UniversalTestResults';
 import { YandexAd } from '@/components/shared/YandexAd';
-import { loadTest, UniversalTestResult } from '@/lib/test-loader';
+import { loadTest } from '@/lib/test-loader';
 import { recoverTestResult } from '@/lib/result-recovery';
 
 // Универсальный тип результата теста
-interface UniversalTestResult {
+interface LocalTestResult {
   name: string;
   description: string;
   emoji: string;
@@ -82,19 +82,40 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
   }
 
   // Восстанавливаем результат из короткой ссылки
-  let result: UniversalTestResult | null = null;
+  let result: LocalTestResult | null = null;
 
   // Пытаемся загрузить тест для новых тестов
-  const isLegacyTest = ['personality-type', 'digital-wellness-persona', 'emotional-intelligence', 
-                       'impostor-syndrome', 'mental-resilience', 'dopamine-detox-need'].includes(slug);
-  
+  const isLegacyTest = [
+    'personality-type',
+    'digital-wellness-persona',
+    'emotional-intelligence',
+    'impostor-syndrome',
+    'mental-resilience',
+    'dopamine-detox-need',
+  ].includes(slug);
+
   if (!isLegacyTest) {
     // Для новых тестов используем универсальный загрузчик
     try {
       const testData = await loadTest(test);
-      
+
       // Используем универсальную функцию восстановления результатов
-      result = recoverTestResult(slug, urlData, testData);
+      const universalResult = recoverTestResult(slug, urlData, testData);
+      if (universalResult) {
+        result = {
+          name: universalResult.name,
+          description: universalResult.description,
+          emoji: universalResult.emoji || '🎯',
+          color: universalResult.color || 'blue',
+          percentage: universalResult.percentage || 0,
+          characteristics: universalResult.characteristics || [],
+          advice: universalResult.advice || universalResult.recommendations || [],
+          chartData: universalResult.chartData,
+          chartType: universalResult.chartType,
+          factorScores: universalResult.factorScores,
+          factorDescriptions: undefined,
+        };
+      }
     } catch (error) {
       console.error('Failed to load test data:', error);
     }
@@ -104,7 +125,7 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
     if (!personalityResult) {
       notFound();
     }
-    
+
     // Если scores отсутствуют, используем значения по умолчанию для типа
     const defaultScores = urlData.scores || [50, 50, 50, 50, 50];
 
@@ -313,7 +334,7 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
         name: impostorResult.title,
         description: impostorResult.description,
         emoji: impostorResult.emoji,
-        color: impostorResult.color === 'red' ? 'orange' : (impostorResult.color || 'yellow'),
+        color: impostorResult.color === 'red' ? 'orange' : impostorResult.color || 'yellow',
         percentage: 15, // Добавляем значение по умолчанию
         characteristics: impostorResult.characteristics || [],
         advice: impostorResult.advice || [],
@@ -437,10 +458,12 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
             <UniversalTestResults test={test} result={result} answers={dummyAnswers} />
           </div>
         </div>
-        
+
         {/* Fixed Advertisement */}
-        <div className="hidden lg:block fixed top-8 right-8 w-[300px]" 
-             style={{ right: 'max(2rem, calc((100vw - 80rem) / 2 + 2rem))' }}>
+        <div
+          className="hidden lg:block fixed top-8 right-8 w-[300px]"
+          style={{ right: 'max(2rem, calc((100vw - 80rem) / 2 + 2rem))' }}
+        >
           <div className="border-2 border-border bg-background p-4 shadow-shadow">
             <p className="text-sm font-bold uppercase mb-4 text-center">Реклама</p>
             <YandexAd blockId="R-A-17138338-1" className="w-full" />

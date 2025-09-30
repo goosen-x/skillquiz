@@ -15,7 +15,7 @@ export function generateShortResultUrl(
   if (result.id) {
     resultId = result.id;
   } else if ('name' in result) {
-    resultId = result.name;
+    resultId = result.name || '';
   } else if ('title' in result) {
     resultId = result.title || '';
   }

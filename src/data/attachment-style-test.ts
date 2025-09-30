@@ -583,7 +583,7 @@ export const calculateAttachmentResult = (answers: Record<string, number>): Atta
   };
 
   // Подсчитываем баллы для каждого стиля привязанности
-  attachmentQuestions.forEach((question, _index) => {
+  attachmentQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];

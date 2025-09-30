@@ -44,8 +44,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '2',
@@ -55,8 +55,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '3',
@@ -66,8 +66,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '4',
@@ -77,8 +77,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '5',
@@ -88,8 +88,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '6',
@@ -99,8 +99,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '7',
@@ -110,8 +110,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '8',
@@ -121,8 +121,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '9',
@@ -132,8 +132,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '10',
@@ -143,8 +143,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '11',
@@ -154,8 +154,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '12',
@@ -165,8 +165,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '13',
@@ -176,8 +176,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '14',
@@ -187,8 +187,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '15',
@@ -198,8 +198,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '16',
@@ -209,8 +209,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '17',
@@ -220,8 +220,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '18',
@@ -231,8 +231,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '19',
@@ -242,8 +242,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '20',
@@ -253,8 +253,8 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
+      { text: 'Почти всегда', score: 3 },
+    ],
   },
   {
     id: '21',
@@ -264,9 +264,9 @@ export const anxietyQuestions: AnxietyQuestion[] = [
       { text: 'Никогда', score: 0 },
       { text: 'Иногда', score: 1 },
       { text: 'Часто', score: 2 },
-      { text: 'Почти всегда', score: 3 }
-    ]
-  }
+      { text: 'Почти всегда', score: 3 },
+    ],
+  },
 ];
 
 export const calculateAnxietyResult = (answers: Record<string, number>): AnxietyResult => {
@@ -280,7 +280,7 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
     emotional: 0,
     cognitive: 0,
     behavioral: 0,
-    social: 0
+    social: 0,
   };
 
   const categoryCount = {
@@ -288,7 +288,7 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
     emotional: 0,
     cognitive: 0,
     behavioral: 0,
-    social: 0
+    social: 0,
   };
 
   anxietyQuestions.forEach((question) => {
@@ -302,7 +302,7 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
   // Нормализуем оценки по категориям (средний балл)
   Object.keys(category_scores).forEach((category) => {
     const key = category as keyof typeof category_scores;
-    category_scores[key] = Math.round((category_scores[key] / categoryCount[key]) * 100 / 3);
+    category_scores[key] = Math.round(((category_scores[key] / categoryCount[key]) * 100) / 3);
   });
 
   let level: 'minimal' | 'mild' | 'moderate' | 'severe';
@@ -319,7 +319,8 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
   if (total_score <= 15) {
     level = 'minimal';
     title = 'Минимальный уровень тревожности';
-    description = 'У вас низкий уровень тревожности. Периодические волнения - это нормальная реакция на стрессовые ситуации. Вы хорошо справляетесь с повседневными вызовами и в целом чувствуете себя спокойно.';
+    description =
+      'У вас низкий уровень тревожности. Периодические волнения - это нормальная реакция на стрессовые ситуации. Вы хорошо справляетесь с повседневными вызовами и в целом чувствуете себя спокойно.';
     symptoms = ['Редкие эпизоды беспокойства', 'Легкое волнение перед важными событиями'];
     triggers = ['Важные экзамены или презентации', 'Неопределенные ситуации'];
     warning_signs = ['Практически отсутствуют'];
@@ -327,59 +328,53 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
   } else if (total_score <= 30) {
     level = 'mild';
     title = 'Легкая тревожность';
-    description = 'У вас легкий уровень тревожности. Беспокойство иногда влияет на вашу жизнь, но в целом вы справляетесь с ним самостоятельно. Изучение техник управления стрессом поможет чувствовать себя еще лучше.';
+    description =
+      'У вас легкий уровень тревожности. Беспокойство иногда влияет на вашу жизнь, но в целом вы справляетесь с ним самостоятельно. Изучение техник управления стрессом поможет чувствовать себя еще лучше.';
     symptoms = [
       'Периодические волнения',
       'Легкие физические симптомы стресса',
       'Иногда сложности с концентрацией',
-      'Небольшие проблемы со сном'
+      'Небольшие проблемы со сном',
     ];
-    triggers = [
-      'Рабочий стресс',
-      'Социальные ситуации',
-      'Изменения в жизни',
-      'Финансовые вопросы'
-    ];
-    warning_signs = [
-      'Усиление беспокойства',
-      'Избегание важных дел',
-      'Ухудшение сна'
-    ];
+    triggers = ['Рабочий стресс', 'Социальные ситуации', 'Изменения в жизни', 'Финансовые вопросы'];
+    warning_signs = ['Усиление беспокойства', 'Избегание важных дел', 'Ухудшение сна'];
     emergency_resources = ['Горячие линии психологической поддержки'];
   } else if (total_score <= 45) {
     level = 'moderate';
     title = 'Умеренная тревожность';
-    description = 'У вас умеренный уровень тревожности, который заметно влияет на вашу повседневную жизнь. Тревога может мешать работе, отношениям и общему самочувствию. Рекомендуется обратиться к специалисту для получения профессиональной помощи.';
+    description =
+      'У вас умеренный уровень тревожности, который заметно влияет на вашу повседневную жизнь. Тревога может мешать работе, отношениям и общему самочувствию. Рекомендуется обратиться к специалисту для получения профессиональной помощи.';
     symptoms = [
       'Частое беспокойство и волнение',
       'Физические симптомы тревоги',
       'Проблемы с концентрацией и памятью',
       'Нарушения сна',
       'Избегание определенных ситуаций',
-      'Раздражительность'
+      'Раздражительность',
     ];
     triggers = [
       'Ежедневный стресс',
       'Межличностные отношения',
       'Рабочие обязанности',
       'Здоровье и безопасность',
-      'Будущее и неопределенность'
+      'Будущее и неопределенность',
     ];
     warning_signs = [
       'Панические атаки',
       'Значительное избегание ситуаций',
       'Проблемы в отношениях',
-      'Снижение работоспособности'
+      'Снижение работоспособности',
     ];
     emergency_resources = [
       'Служба экстренной психологической помощи: 051',
       'Телефон доверия: 8-800-2000-122',
-      'Кризисные центры в вашем городе'
+      'Кризисные центры в вашем городе',
     ];
   } else {
     level = 'severe';
     title = 'Высокий уровень тревожности';
-    description = 'У вас высокий уровень тревожности, который серьезно влияет на качество жизни. Тревога может парализовать нормальную деятельность и привести к серьезным проблемам. Настоятельно рекомендуется немедленно обратиться к квалифицированному специалисту.';
+    description =
+      'У вас высокий уровень тревожности, который серьезно влияет на качество жизни. Тревога может парализовать нормальную деятельность и привести к серьезным проблемам. Настоятельно рекомендуется немедленно обратиться к квалифицированному специалисту.';
     symptoms = [
       'Постоянное беспокойство и тревога',
       'Сильные физические симптомы',
@@ -387,27 +382,27 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
       'Серьезные нарушения сна',
       'Значительное избегание ситуаций',
       'Проблемы с концентрацией',
-      'Социальная изоляция'
+      'Социальная изоляция',
     ];
     triggers = [
       'Практически любые ситуации',
       'Мысли о будущем',
       'Социальные взаимодействия',
       'Рабочие задачи',
-      'Повседневные обязанности'
+      'Повседневные обязанности',
     ];
     warning_signs = [
       'Суицидальные мысли',
       'Полная неспособность функционировать',
       'Злоупотребление веществами',
-      'Самоповреждение'
+      'Самоповреждение',
     ];
     emergency_resources = [
       'НЕМЕДЛЕННО: Служба экстренной психологической помощи: 051',
       'Кризисная линия: 8-800-2000-122',
       'Скорая помощь: 103',
       'Психиатрическая помощь в вашем регионе',
-      'Кризисные центры и стационары'
+      'Кризисные центры и стационары',
     ];
   }
 
@@ -418,42 +413,44 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
     'Медитация и осознанность',
     'Регулярные физические упражнения',
     'Ограничение кофеина и алкоголя',
-    'Здоровый режим сна'
+    'Здоровый режим сна',
   ];
 
   if (level === 'minimal' || level === 'mild') {
-    coping_strategies.push(
+    coping_strategies = [
+      ...coping_strategies,
       'Ведение дневника эмоций',
       'Техники когнитивной реструктуризации',
-      'Планирование времени для отдыха'
-    );
+      'Планирование времени для отдыха',
+    ];
     professional_help = [
       'Психолог для изучения техник управления стрессом',
-      'Групповые занятия по релаксации'
+      'Групповые занятия по релаксации',
     ];
     lifestyle_changes = [
       'Регулярный режим дня',
       'Сбалансированное питание',
       'Социальная поддержка',
-      'Хобби и творчество'
+      'Хобби и творчество',
     ];
   } else {
-    coping_strategies.push(
+    coping_strategies = [
+      ...coping_strategies,
       'Техники заземления при панических атаках',
       'Постепенное преодоление избегания',
-      'Построение системы поддержки'
-    );
+      'Построение системы поддержки',
+    ];
     professional_help = [
       'Когнитивно-поведенческая терапия (КПТ)',
       'EMDR при травматических триггерах',
       'Медикаментозное лечение при необходимости',
-      'Групповая терапия'
+      'Групповая терапия',
     ];
     lifestyle_changes = [
       'Структурированный распорядок дня',
       'Исключение триггеров из окружения',
       'Поддержка близких и друзей',
-      'Возможно временное изменение рабочей нагрузки'
+      'Возможно временное изменение рабочей нагрузки',
     ];
   }
 
@@ -470,6 +467,6 @@ export const calculateAnxietyResult = (answers: Record<string, number>): Anxiety
     professional_help,
     lifestyle_changes,
     warning_signs,
-    emergency_resources
+    emergency_resources,
   };
 };

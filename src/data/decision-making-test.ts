@@ -583,7 +583,7 @@ export const calculateDecisionMakingResult = (
   };
 
   // Подсчитываем баллы для каждого стиля
-  decisionMakingQuestions.forEach((question, _index) => {
+  decisionMakingQuestions.forEach((question) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];
