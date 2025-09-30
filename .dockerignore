@@ -54,4 +54,3 @@ tsconfig.tsbuildinfo
 .husky
 .git-blame-ignore-revs
 deploy-github.yml
-ecosystem.config.js
