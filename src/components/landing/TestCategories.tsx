@@ -106,17 +106,17 @@ export function TestCategories() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-foreground mb-4 uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-black text-foreground mb-4 uppercase">
             Популярные категории тестов
           </h2>
-          <p className="text-xl text-foreground max-w-3xl mx-auto font-base">
+          <p className="text-lg sm:text-xl text-foreground max-w-3xl mx-auto font-base px-4">
             Выберите подходящую категорию и пройдите{' '}
             <strong className="font-bold">психологический тест онлайн</strong>
             для получения персональных рекомендаций
           </p>
         </motion.div>
 
-        <StaggerContainer className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {categories.map((category) => {
             const IconComponent = category.icon;
 
@@ -129,39 +129,39 @@ export function TestCategories() {
                   onClick={() => playClick()}
                 >
                   {/* Header with icon and badge */}
-                  <div className="relative p-6 pb-0">
-                    <div className="absolute top-4 right-4">
-                      <NeoBadge color={category.newBadge.color}>
+                  <div className="relative p-4 sm:p-6 pb-0">
+                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4">
+                      <NeoBadge color={category.newBadge.color} className="text-xs">
                         {category.newBadge.text === 'ХИТ' && (
-                          <Star className="w-3 h-3 mr-1 inline" />
+                          <Star className="w-2 h-2 sm:w-3 sm:h-3 mr-1 inline" />
                         )}
                         {category.newBadge.text === 'NEW' && (
-                          <Sparkles className="w-3 h-3 mr-1 inline" />
+                          <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 mr-1 inline" />
                         )}
                         {category.newBadge.text === 'TOP' && (
-                          <Zap className="w-3 h-3 mr-1 inline" />
+                          <Zap className="w-2 h-2 sm:w-3 sm:h-3 mr-1 inline" />
                         )}
                         {category.newBadge.text}
                       </NeoBadge>
                     </div>
                     <div
-                      className={`w-20 h-20 ${category.iconBg} border-2 border-border shadow-[4px_4px_0px_0px_#000000] flex items-center justify-center mb-4 transform rotate-3 hover:rotate-0 transition-transform`}
+                      className={`w-16 h-16 sm:w-20 sm:h-20 ${category.iconBg} border-2 border-border shadow-[4px_4px_0px_0px_#000000] flex items-center justify-center mb-4 transform rotate-3 hover:rotate-0 transition-transform`}
                     >
-                      <IconComponent className="w-10 h-10 text-white" />
+                      <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                     </div>
                   </div>
 
-                  <NeoCardContent className="p-6 pt-0">
-                    <h3 className="text-xl font-heading font-bold text-foreground mb-3 uppercase">
+                  <NeoCardContent className="p-4 sm:p-6 pt-0">
+                    <h3 className="text-lg sm:text-xl font-heading font-bold text-foreground mb-3 uppercase">
                       {category.title}
                     </h3>
-                    <p className="text-foreground/80 mb-6 leading-relaxed font-base">
+                    <p className="text-sm sm:text-base text-foreground/80 mb-4 sm:mb-6 leading-relaxed font-base">
                       {category.description}
                     </p>
 
                     {/* Test list */}
                     <div
-                      className={`space-y-2 mb-6 border-2 border-border p-4 ${category.bgColor} bg-opacity-20`}
+                      className={`space-y-2 mb-4 sm:mb-6 border-2 border-border p-3 sm:p-4 ${category.bgColor} bg-opacity-20`}
                     >
                       {category.tests.slice(0, 3).map((test, testIndex) => (
                         <motion.div

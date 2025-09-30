@@ -29,16 +29,13 @@ export function YandexAd({ blockId, className, variant = 'default' }: YandexAdPr
 
   useEffect(() => {
     // Проверяем, что контейнер существует и реклама еще не отрендерена
-    if (!containerRef.current || renderedRef.current) return;
+    const container = containerRef.current;
+    if (!container || renderedRef.current) return;
 
     const renderAd = () => {
-      if (
-        window.Ya?.Context?.AdvManager &&
-        containerRef.current &&
-        !renderedRef.current
-      ) {
+      if (window.Ya?.Context?.AdvManager && containerRef.current && !renderedRef.current) {
         const containerId = `yandex_rtb_${blockId}`;
-        
+
         // Создаем div для рекламы
         const adDiv = document.createElement('div');
         adDiv.id = containerId;
@@ -67,37 +64,26 @@ export function YandexAd({ blockId, className, variant = 'default' }: YandexAdPr
 
     // Cleanup
     return () => {
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
+      if (container) {
+        container.innerHTML = '';
       }
       renderedRef.current = false;
     };
   }, [blockId]);
 
   return (
-    <div
-      className={cn(
-        'relative',
-        variant === 'compact' ? 'my-6' : 'my-8',
-        className
-      )}
-    >
+    <div className={cn('relative', variant === 'compact' ? 'my-6' : 'my-8', className)}>
       <NeoCard className="overflow-hidden">
         <NeoCardContent className={variant === 'compact' ? 'p-4' : 'p-6'}>
           {/* Заголовок рекламного блока */}
           <div className="absolute top-2 left-2 z-10">
-            <span className="text-xs text-foreground/40 font-bold uppercase">
-              Реклама
-            </span>
+            <span className="text-xs text-foreground/40 font-bold uppercase">Реклама</span>
           </div>
-          
+
           {/* Контейнер для рекламы */}
-          <div 
+          <div
             ref={containerRef}
-            className={cn(
-              'relative min-h-[100px]',
-              variant === 'default' && 'min-h-[250px]'
-            )}
+            className={cn('relative min-h-[100px]', variant === 'default' && 'min-h-[250px]')}
           >
             {/* Заглушка на время загрузки */}
             <div className="absolute inset-0 flex items-center justify-center">

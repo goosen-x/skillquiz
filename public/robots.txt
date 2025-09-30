@@ -1,5 +1,5 @@
-# Robots.txt for professional-test.ru
-# Оптимизировано для Яндекса
+# Robots.txt for https://professional-test.ru
+# Optimized for Yandex
 
 User-agent: *
 Allow: /
@@ -25,5 +25,5 @@ Disallow: /admin/
 # Sitemap
 Sitemap: https://professional-test.ru/sitemap.xml
 
-# Host (для Яндекса)
+# Host for Yandex
 Host: professional-test.ru

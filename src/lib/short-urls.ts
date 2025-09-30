@@ -5,7 +5,7 @@ import { UniversalTestResult } from '@/lib/test-loader';
 // Генерация короткой ссылки для просмотра результата
 export function generateShortResultUrl(
   testSlug: string,
-  result: UniversalTestResult | any,
+  result: UniversalTestResult | { id?: string; name?: string; title?: string },
   scores?: { [key: string]: number }
 ): string {
   const params = new URLSearchParams();

@@ -96,7 +96,7 @@ import { TestData } from '@/data/tests';
 import { generateShortResultUrl } from '@/lib/short-urls';
 import { useRouter } from 'next/navigation';
 import { YandexAd } from '@/components/shared/YandexAd';
-import { loadTest, UniversalQuestion, UniversalTestResult, LoadedTestData } from '@/lib/test-loader';
+import { loadTest, UniversalTestResult, LoadedTestData } from '@/lib/test-loader';
 
 interface TestPageProps {
   test: TestData;
@@ -193,7 +193,7 @@ const renderIcon = (iconName?: string, className: string = 'w-12 h-12 text-foreg
     CheckSquare,
     PlayCircle,
     Focus,
-    
+
     // Additional icons for new tests
     Rocket,
     Briefcase,
@@ -260,7 +260,7 @@ export default function TestPage({ test }: TestPageProps) {
         setIsLoading(false);
       }
     };
-    
+
     loadTestData();
   }, [test]);
 
@@ -313,7 +313,7 @@ export default function TestPage({ test }: TestPageProps) {
     // Вычисляем результат используя универсальный загрузчик
     const testResult = testData.calculateResult(finalAnswers);
     setResult(testResult);
-    
+
     // Генерируем короткую ссылку
     // Для personality-type теста нужно передать Big Five scores
     let scores = testResult.factorScores;
@@ -322,7 +322,7 @@ export default function TestPage({ test }: TestPageProps) {
       const { calculateBigFiveScores } = await import('@/data/personality-type-test');
       scores = calculateBigFiveScores(finalAnswers as number[]);
     }
-    
+
     const shortUrl = generateShortResultUrl(test.slug, testResult, scores);
 
     // Сохраняем результат в localStorage для совместимости
@@ -371,15 +371,13 @@ export default function TestPage({ test }: TestPageProps) {
               <Brain className="w-16 h-16 text-foreground" />
             </motion.div>
           </div>
-          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">
-            Загружаем тест...
-          </h2>
+          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">Загружаем тест...</h2>
           <p className="text-foreground/80 font-base">Подготавливаем вопросы</p>
         </motion.div>
       </div>
     );
   }
-  
+
   if (loadError) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -389,9 +387,7 @@ export default function TestPage({ test }: TestPageProps) {
               <X className="w-16 h-16 text-white" />
             </div>
           </div>
-          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">
-            Ошибка загрузки теста
-          </h2>
+          <h2 className="text-2xl font-heading font-bold mb-4 uppercase">Ошибка загрузки теста</h2>
           <p className="text-foreground/80 font-base mb-6">{loadError}</p>
           <Button onClick={() => router.back()} variant="outline">
             Вернуться назад
@@ -400,11 +396,11 @@ export default function TestPage({ test }: TestPageProps) {
       </div>
     );
   }
-  
+
   if (!testData || questions.length === 0) {
     return null;
   }
-  
+
   if (isLoading && result) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">

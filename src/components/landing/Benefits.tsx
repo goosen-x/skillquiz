@@ -86,7 +86,7 @@ export function Benefits() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-foreground mb-4 uppercase">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-foreground mb-4 uppercase">
             Преимущества{' '}
             <span
               className="text-main"
@@ -98,14 +98,14 @@ export function Benefits() {
               психологических тестов
             </span>
           </h2>
-          <p className="text-xl text-foreground max-w-3xl mx-auto font-base">
+          <p className="text-lg sm:text-xl text-foreground max-w-3xl mx-auto font-base px-4">
             Узнайте, как наши тесты помогут вам лучше понять себя, выбрать подходящую профессию и
             улучшить качество жизни
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -116,20 +116,20 @@ export function Benefits() {
             return (
               <motion.div key={index} variants={itemVariants}>
                 <NeoCard className="h-full">
-                  <NeoCardContent className="p-6">
+                  <NeoCardContent className="p-4 sm:p-6">
                     <div className="flex flex-col gap-4 items-start space-x-4">
                       <div className="flex-shrink-0">
                         <div
-                          className={`w-16 h-16 ${benefit.color} border-2 border-border shadow-shadow flex items-center justify-center`}
+                          className={`w-12 h-12 sm:w-16 sm:h-16 ${benefit.color} border-2 border-border shadow-shadow flex items-center justify-center`}
                         >
-                          <IconComponent className="w-8 h-8 text-foreground" />
+                          <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-foreground" />
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-heading  text-foreground mb-2 uppercase">
+                        <h3 className="text-lg sm:text-xl font-heading  text-foreground mb-2 uppercase">
                           {benefit.title}
                         </h3>
-                        <p className="text-foreground/80 leading-relaxed mb-4 font-base">
+                        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-4 font-base">
                           {benefit.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -157,8 +157,8 @@ export function Benefits() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <NeoCard className="bg-main">
-            <NeoCardContent className="p-8 text-center">
-              <h3 className="text-2xl sm:text-3xl font-heading font-black text-main-foreground mb-4 uppercase">
+            <NeoCardContent className="p-6 sm:p-8 text-center">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-main-foreground mb-4 uppercase">
                 Почему важно знать свой тип личности?
               </h3>
               <p className="text-main-foreground leading-relaxed max-w-4xl mx-auto font-base">

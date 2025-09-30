@@ -9,10 +9,10 @@ export interface LearningStyleQuestion {
   category: 'processing' | 'perception' | 'input' | 'understanding' | 'organization';
   options: {
     text: string;
-    visual: number;      // Визуальный стиль
-    auditory: number;    // Аудиальный стиль
+    visual: number; // Визуальный стиль
+    auditory: number; // Аудиальный стиль
     kinesthetic: number; // Кинестетический стиль
-    reading: number;     // Чтение/письмо стиль
+    reading: number; // Чтение/письмо стиль
   }[];
 }
 
@@ -55,30 +55,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Слушать объяснения или лекции',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Практиковаться и экспериментировать',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Читать тексты и делать заметки',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '2',
@@ -90,30 +90,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Рассказывать устно, используя примеры',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Показывать на практике или использовать жесты',
         visual: 1,
         auditory: 0,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Писать детальное объяснение',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '3',
@@ -125,30 +125,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Звуками, мелодиями и ритмами',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Движениями, ощущениями и действиями',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Словами, списками и текстовой информацией',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '4',
@@ -160,30 +160,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 1,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Слушать аудиозаписи и говорить вслух',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Использовать карточки и писать от руки',
         visual: 1,
         auditory: 0,
         kinesthetic: 1,
-        reading: 3
+        reading: 3,
       },
       {
         text: 'Играть в языковые игры и петь песни',
         visual: 1,
         auditory: 1,
         kinesthetic: 3,
-        reading: 0
-      }
-    ]
+        reading: 0,
+      },
+    ],
   },
   {
     id: '5',
@@ -195,30 +195,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Выслушать устные направления',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Пройти маршрут вместе с объясняющим',
         visual: 0,
         auditory: 1,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Получить письменные инструкции',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '6',
@@ -230,30 +230,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Читаете материал вслух или обсуждаете с другими',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Делаете карточки и повторяете, ходя по комнате',
         visual: 1,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Многократно перечитываете и переписываете заметки',
         visual: 0,
         auditory: 0,
         kinesthetic: 1,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '7',
@@ -265,30 +265,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Активно участвуете в обсуждениях',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Предлагаете практические упражнения',
         visual: 1,
         auditory: 0,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Делитесь письменными материалами',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '8',
@@ -300,30 +300,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Смотрите видеоуроки с объяснениями',
         visual: 1,
         auditory: 3,
         kinesthetic: 0,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Сразу начинаете экспериментировать методом проб и ошибок',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Читаете документацию и инструкции',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '9',
@@ -335,30 +335,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Оборудовано хорошими колонками для музыки/подкастов',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Позволяет двигаться: мяч для сидения, стоячий стол',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Заполнено книгами, статьями и письменными материалами',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '10',
@@ -370,30 +370,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Повторяете список вслух несколько раз',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Связываете каждый продукт с действием или жестом',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Записываете список на бумаге или в телефоне',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '11',
@@ -405,30 +405,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Проговаривание задачи вслух',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Использование предметов или пальцев для счета',
         visual: 1,
         auditory: 0,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Написание подробного решения по шагам',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '12',
@@ -440,30 +440,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Документальные фильмы и аудиокниги',
         visual: 1,
         auditory: 3,
         kinesthetic: 0,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Исторические реконструкции и музеи',
         visual: 1,
         auditory: 1,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Чтение исторических книг и документов',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '13',
@@ -475,30 +475,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Тишина или определенная фоновая музыка',
         visual: 0,
         auditory: 3,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Возможность менять позу и двигаться',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Письменные материалы под рукой',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '14',
@@ -510,30 +510,30 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 1,
         kinesthetic: 0,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Слушаете объяснения опытного человека',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Практикуетесь под наблюдением, повторяя движения',
         visual: 1,
         auditory: 0,
         kinesthetic: 3,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Следуете письменным рецептам и инструкциям',
         visual: 0,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
+        reading: 3,
+      },
+    ],
   },
   {
     id: '15',
@@ -545,43 +545,45 @@ export const learningStyleQuestions: LearningStyleQuestion[] = [
         visual: 3,
         auditory: 0,
         kinesthetic: 0,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Устное обсуждение с преподавателем',
         visual: 0,
         auditory: 3,
         kinesthetic: 1,
-        reading: 0
+        reading: 0,
       },
       {
         text: 'Практические тесты и упражнения',
         visual: 0,
         auditory: 0,
         kinesthetic: 3,
-        reading: 1
+        reading: 1,
       },
       {
         text: 'Письменные комментарии и оценки',
         visual: 1,
         auditory: 0,
         kinesthetic: 0,
-        reading: 3
-      }
-    ]
-  }
+        reading: 3,
+      },
+    ],
+  },
 ];
 
-export const calculateLearningStyleResult = (answers: Record<string, number>): LearningStyleResult => {
+export const calculateLearningStyleResult = (
+  answers: Record<string, number>
+): LearningStyleResult => {
   const scores = {
     visual: 0,
     auditory: 0,
     kinesthetic: 0,
-    reading: 0
+    reading: 0,
   };
 
   // Подсчитываем баллы для каждого стиля
-  learningStyleQuestions.forEach((question, index) => {
+  learningStyleQuestions.forEach((question, _index) => {
     const answerIndex = answers[question.id];
     if (answerIndex !== undefined && question.options[answerIndex]) {
       const option = question.options[answerIndex];
@@ -595,7 +597,8 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
   // Находим основной и вторичный стили
   const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const primary_style = sortedScores[0][0] as keyof typeof scores;
-  const secondary_style = sortedScores[1][1] > 0 ? sortedScores[1][0] as keyof typeof scores : undefined;
+  const secondary_style =
+    sortedScores[1][1] > 0 ? (sortedScores[1][0] as keyof typeof scores) : undefined;
 
   // Вычисляем проценты
   const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
@@ -603,7 +606,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
     visual: Math.round((scores.visual / totalScore) * 100),
     auditory: Math.round((scores.auditory / totalScore) * 100),
     kinesthetic: Math.round((scores.kinesthetic / totalScore) * 100),
-    reading: Math.round((scores.reading / totalScore) * 100)
+    reading: Math.round((scores.reading / totalScore) * 100),
   };
 
   let title: string;
@@ -621,14 +624,15 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
   switch (primary_style) {
     case 'visual':
       title = 'Визуальный стиль обучения';
-      description = 'Вы лучше всего усваиваете информацию через зрение. Картинки, диаграммы, схемы, цвета и пространственное расположение помогают вам понимать и запоминать материал. Вы мыслите образами и предпочитаете видеть информацию, а не только слышать или читать о ней.';
+      description =
+        'Вы лучше всего усваиваете информацию через зрение. Картинки, диаграммы, схемы, цвета и пространственное расположение помогают вам понимать и запоминать материал. Вы мыслите образами и предпочитаете видеть информацию, а не только слышать или читать о ней.';
       characteristics = [
         'Предпочтение визуальной информации',
         'Сильная пространственная память',
         'Мышление образами и картинками',
         'Внимание к деталям и цветам',
         'Способность к визуализации',
-        'Любовь к схемам и диаграммам'
+        'Любовь к схемам и диаграммам',
       ];
       learning_preferences = [
         'Диаграммы, схемы и карты',
@@ -636,7 +640,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Видеоматериалы и презентации',
         'Графики и таблицы',
         'Mind maps (карты мышления)',
-        'Визуальные органайзеры'
+        'Визуальные органайзеры',
       ];
       effective_methods = [
         'Создавайте визуальные заметки с рисунками',
@@ -644,13 +648,13 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Рисуйте диаграммы и схемы',
         'Создавайте карты мышления',
         'Используйте стикеры и визуальные напоминания',
-        'Организуйте информацию в таблицы'
+        'Организуйте информацию в таблицы',
       ];
       challenging_situations = [
         'Длинные лекции без визуальных материалов',
         'Аудиокниги без сопровождающих материалов',
         'Устные инструкции без визуального подтверждения',
-        'Текстовая информация без иллюстраций'
+        'Текстовая информация без иллюстраций',
       ];
       study_tips = [
         'Создавайте визуальные конспекты',
@@ -658,7 +662,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Рисуйте схемы процессов и взаимосвязей',
         'Организуйте рабочее место визуально',
         'Используйте флэш-карты с картинками',
-        'Создавайте timeline для исторических событий'
+        'Создавайте timeline для исторических событий',
       ];
       technology_tools = [
         'Canva для создания инфографики',
@@ -666,7 +670,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Prezi для динамичных презентаций',
         'Notion для визуальной организации заметок',
         'Draw.io для создания диаграмм',
-        'Pinterest для сбора визуальных материалов'
+        'Pinterest для сбора визуальных материалов',
       ];
       career_advantages = [
         'Дизайн и творческие профессии',
@@ -674,33 +678,34 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Преподавание с визуальными материалами',
         'Маркетинг и реклама',
         'Наука и исследования (графики, схемы)',
-        'IT и веб-дизайн'
+        'IT и веб-дизайн',
       ];
       development_suggestions = [
         'Развивайте навыки аудиального восприятия',
         'Практикуйте вербализацию визуальных концепций',
         'Учитесь объяснять идеи словами',
-        'Тренируйте слуховую память'
+        'Тренируйте слуховую память',
       ];
       memory_techniques = [
         'Метод локусов (дворец памяти)',
         'Визуальные ассоциации',
         'Цветовое кодирование информации',
         'Пространственное группирование',
-        'Создание ментальных карт'
+        'Создание ментальных карт',
       ];
       break;
 
     case 'auditory':
       title = 'Аудиальный стиль обучения';
-      description = 'Вы лучше всего усваиваете информацию через слух. Лекции, дискуссии, аудиозаписи и устные объяснения являются для вас наиболее эффективными способами обучения. Вы хорошо запоминаете услышанную информацию и любите проговаривать изученное.';
+      description =
+        'Вы лучше всего усваиваете информацию через слух. Лекции, дискуссии, аудиозаписи и устные объяснения являются для вас наиболее эффективными способами обучения. Вы хорошо запоминаете услышанную информацию и любите проговаривать изученное.';
       characteristics = [
         'Сильная слуховая память',
         'Предпочтение устной информации',
         'Любовь к обсуждениям и дискуссиям',
         'Чувствительность к тону и ритму речи',
         'Склонность думать вслух',
-        'Хорошее восприятие музыки и звуков'
+        'Хорошее восприятие музыки и звуков',
       ];
       learning_preferences = [
         'Лекции и устные объяснения',
@@ -708,7 +713,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Групповые дискуссии',
         'Музыкальное сопровождение',
         'Повторение вслух',
-        'Устные вопросы и ответы'
+        'Устные вопросы и ответы',
       ];
       effective_methods = [
         'Слушайте аудиолекции и подкасты',
@@ -716,13 +721,13 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Читайте материал вслух',
         'Записывайте себя и прослушивайте',
         'Обсуждайте материал с другими',
-        'Используйте мнемонические приемы со звуками'
+        'Используйте мнемонические приемы со звуками',
       ];
       challenging_situations = [
         'Тихое чтение больших текстов',
         'Визуальная информация без объяснений',
         'Самостоятельное изучение без обсуждений',
-        'Работа в полной тишине'
+        'Работа в полной тишине',
       ];
       study_tips = [
         'Находите партнера для учебы',
@@ -730,7 +735,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Проговаривайте ключевые концепции',
         'Используйте ритм и рифмы для запоминания',
         'Объясняйте материал другим людям',
-        'Слушайте фоновую музыку во время учебы'
+        'Слушайте фоновую музыку во время учебы',
       ];
       technology_tools = [
         'Audible для аудиокниг',
@@ -738,7 +743,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Voice Recorder для записи лекций',
         'Zoom для участия в онлайн-дискуссиях',
         'YouTube для образовательных видео',
-        'Discord для учебных голосовых каналов'
+        'Discord для учебных голосовых каналов',
       ];
       career_advantages = [
         'Преподавание и тренинги',
@@ -746,33 +751,34 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Консультирование и коучинг',
         'Переводческая деятельность',
         'Музыка и звукорежиссура',
-        'Продажи и переговоры'
+        'Продажи и переговоры',
       ];
       development_suggestions = [
         'Развивайте визуальные навыки',
         'Учитесь работать с диаграммами',
         'Практикуйте письменное изложение мыслей',
-        'Тренируйте концентрацию в тишине'
+        'Тренируйте концентрацию в тишине',
       ];
       memory_techniques = [
         'Рифмы и ритмические паттерны',
         'Звуковые ассоциации',
         'Повторение с интонацией',
         'Музыкальные мнемоники',
-        'Вербальное кодирование информации'
+        'Вербальное кодирование информации',
       ];
       break;
 
     case 'kinesthetic':
       title = 'Кинестетический стиль обучения';
-      description = 'Вы лучше всего учитесь через движение, прикосновения и практический опыт. Физическая активность, эксперименты и "обучение на практике" являются для вас наиболее эффективными. Вы предпочитаете активное участие в процессе обучения.';
+      description =
+        'Вы лучше всего учитесь через движение, прикосновения и практический опыт. Физическая активность, эксперименты и "обучение на практике" являются для вас наиболее эффективными. Вы предпочитаете активное участие в процессе обучения.';
       characteristics = [
         'Потребность в физической активности',
         'Обучение через практику и эксперименты',
         'Хорошая мышечная память',
         'Предпочтение практических занятий',
         'Использование жестов при объяснении',
-        'Чувствительность к физическим ощущениям'
+        'Чувствительность к физическим ощущениям',
       ];
       learning_preferences = [
         'Практические занятия и эксперименты',
@@ -780,7 +786,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Строительство и создание моделей',
         'Физические упражнения',
         'Экскурсии и полевые исследования',
-        'Интерактивные демонстрации'
+        'Интерактивные демонстрации',
       ];
       effective_methods = [
         'Практикуйтесь и экспериментируйте',
@@ -788,13 +794,13 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Создавайте физические модели',
         'Применяйте изученное на практике',
         'Делайте регулярные перерывы для движения',
-        'Используйте манипулятивные материалы'
+        'Используйте манипулятивные материалы',
       ];
       challenging_situations = [
         'Долгие лекции без активности',
         'Длительное сидение за партой',
         'Только теоретическое обучение',
-        'Запрет на движение во время учебы'
+        'Запрет на движение во время учебы',
       ];
       study_tips = [
         'Используйте стоячий стол или мяч для сидения',
@@ -802,7 +808,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Создавайте физические модели концепций',
         'Используйте жесты для запоминания',
         'Делайте частые активные перерывы',
-        'Изучайте материал в разных местах'
+        'Изучайте материал в разных местах',
       ];
       technology_tools = [
         'VR-приложения для образования',
@@ -810,7 +816,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Приложения с AR (дополненная реальность)',
         'Игровые обучающие платформы',
         'Приложения для фитнеса и движения',
-        'Сенсорные планшеты и интерактивные доски'
+        'Сенсорные планшеты и интерактивные доски',
       ];
       career_advantages = [
         'Медицина и хирургия',
@@ -818,33 +824,34 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Спорт и фитнес-тренировки',
         'Строительство и архитектура',
         'Ремесла и прикладное искусство',
-        'Лабораторные исследования'
+        'Лабораторные исследования',
       ];
       development_suggestions = [
         'Развивайте навыки концентрации в статике',
         'Учитесь работать с текстовой информацией',
         'Практикуйте визуальное мышление',
-        'Тренируйте терпение к теоретическому материалу'
+        'Тренируйте терпение к теоретическому материалу',
       ];
       memory_techniques = [
         'Мышечная память через повторение движений',
         'Ассоциации с физическими действиями',
         'Создание "телесных" мнемоник',
         'Использование жестов для кодирования',
-        'Пространственное размещение информации'
+        'Пространственное размещение информации',
       ];
       break;
 
     case 'reading':
       title = 'Стиль обучения через чтение/письмо';
-      description = 'Вы лучше всего усваиваете информацию через чтение и письмо. Текстовые материалы, заметки, списки и письменные упражнения являются для вас наиболее эффективными способами обучения. Вы предпочитаете работать с написанным словом.';
+      description =
+        'Вы лучше всего усваиваете информацию через чтение и письмо. Текстовые материалы, заметки, списки и письменные упражнения являются для вас наиболее эффективными способами обучения. Вы предпочитаете работать с написанным словом.';
       characteristics = [
         'Любовь к чтению и письму',
         'Сильные навыки работы с текстом',
         'Предпочтение письменной информации',
         'Систематический подход к заметкам',
         'Хорошее понимание грамматики и структуры',
-        'Склонность к детальному анализу текстов'
+        'Склонность к детальному анализу текстов',
       ];
       learning_preferences = [
         'Учебники и письменные материалы',
@@ -852,7 +859,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Списки и bullet points',
         'Письменные упражнения',
         'Исследовательские работы',
-        'Словари и справочники'
+        'Словари и справочники',
       ];
       effective_methods = [
         'Читайте разнообразные материалы',
@@ -860,13 +867,13 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Создавайте списки и планы',
         'Переписывайте важную информацию',
         'Составляйте резюме и краткие изложения',
-        'Пишите эссе и размышления'
+        'Пишите эссе и размышления',
       ];
       challenging_situations = [
         'Только устная подача материала',
         'Визуальная информация без текста',
         'Групповые дискуссии без письменных материалов',
-        'Практические занятия без инструкций'
+        'Практические занятия без инструкций',
       ];
       study_tips = [
         'Создавайте подробные письменные планы',
@@ -874,7 +881,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Используйте различные методы конспектирования',
         'Читайте дополнительную литературу',
         'Пишите резюме после каждой главы',
-        'Создавайте глоссарии терминов'
+        'Создавайте глоссарии терминов',
       ];
       technology_tools = [
         'Microsoft Word/Google Docs для заметок',
@@ -882,7 +889,7 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Evernote для сбора материалов',
         'Grammarly для улучшения письма',
         'Kindle для чтения электронных книг',
-        'Obsidian для связывания заметок'
+        'Obsidian для связывания заметок',
       ];
       career_advantages = [
         'Писательская деятельность и журналистика',
@@ -890,20 +897,20 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
         'Библиотечное дело и архивы',
         'Редактирование и корректура',
         'Юриспруденция и законодательство',
-        'Техническая документация'
+        'Техническая документация',
       ];
       development_suggestions = [
         'Развивайте навыки устного общения',
         'Практикуйте визуальное мышление',
         'Участвуйте в дискуссиях и презентациях',
-        'Изучайте невербальную коммуникацию'
+        'Изучайте невербальную коммуникацию',
       ];
       memory_techniques = [
         'Акронимы и аббревиатуры',
         'Списки и категоризация',
         'Письменное повторение',
         'Создание словесных ассоциаций',
-        'Структурированные конспекты'
+        'Структурированные конспекты',
       ];
       break;
   }
@@ -923,6 +930,6 @@ export const calculateLearningStyleResult = (answers: Record<string, number>): L
     technology_tools,
     career_advantages,
     development_suggestions,
-    memory_techniques
+    memory_techniques,
   };
 };

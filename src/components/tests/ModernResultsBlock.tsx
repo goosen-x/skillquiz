@@ -60,42 +60,6 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
-// Trait emojis mapping
-const traitEmojis: { [key: string]: string } = {
-  // Personality traits
-  analytical: '🧠',
-  creative: '✨',
-  leader: '🏆',
-  empathetic: '💖',
-  energetic: '⚡',
-  reliable: '🛡️',
-  strategic: '🎯',
-  innovative: '💡',
-  balanced: '⚖️',
-  flexible: '🌊',
-  social: '👥',
-  independent: '🦅',
-
-  // Emotional intelligence traits
-  'Хорошее базовое понимание эмоций': '🎭',
-  'Умеренные навыки самоконтроля': '🎛️',
-  'Адекватная эмпатия': '💝',
-  'Неплохие коммуникативные способности': '💬',
-  'Высокая эмпатия': '🤝',
-  'Отличное понимание эмоций': '🎨',
-  'Сильные навыки самоконтроля': '💪',
-  'Превосходные коммуникативные способности': '🗣️',
-
-  // Default fallback emojis by keywords
-  эмоци: '😊',
-  самоконтрол: '🎯',
-  эмпати: '💕',
-  коммуникатив: '💭',
-  понимани: '🔮',
-  навык: '🛠️',
-  способност: '🌟',
-};
-
 export default function ModernResultsBlock({
   result,
   allTypesData,
@@ -117,30 +81,42 @@ export default function ModernResultsBlock({
     // Выбираем цвет отличный от цвета основной карточки
     const getContrastColor = () => {
       switch (resultColor) {
-        case 'yellow': return 'purple';
-        case 'blue': return 'orange';
-        case 'orange': return 'blue';
-        case 'green': return 'purple';
-        case 'purple': return 'green';
-        default: return 'blue';
+        case 'yellow':
+          return 'purple';
+        case 'blue':
+          return 'orange';
+        case 'orange':
+          return 'blue';
+        case 'green':
+          return 'purple';
+        case 'purple':
+          return 'green';
+        default:
+          return 'blue';
       }
     };
-    
+
     // Определяем цвет текста для хорошей читаемости
     const getTextColor = (bgColor: string) => {
       switch (bgColor) {
-        case 'yellow': return 'text-black'; // Черный на желтом
-        case 'orange': return 'text-black'; // Черный на оранжевом
-        case 'blue': return 'text-white'; // Белый на синем
-        case 'green': return 'text-white'; // Белый на зеленом
-        case 'purple': return 'text-white'; // Белый на фиолетовом
-        default: return 'text-black';
+        case 'yellow':
+          return 'text-black'; // Черный на желтом
+        case 'orange':
+          return 'text-black'; // Черный на оранжевом
+        case 'blue':
+          return 'text-white'; // Белый на синем
+        case 'green':
+          return 'text-white'; // Белый на зеленом
+        case 'purple':
+          return 'text-white'; // Белый на фиолетовом
+        default:
+          return 'text-black';
       }
     };
-    
+
     const contrastColor = getContrastColor();
     const textColor = getTextColor(contrastColor);
-    
+
     // Логика для выраженности типа
     if (percentage > 60) return { label: 'Ярко выражен', color: contrastColor, textColor };
     if (percentage > 45) return { label: 'Выраженный', color: contrastColor, textColor };
@@ -190,11 +166,7 @@ export default function ModernResultsBlock({
     >
       {/* Main Result Card - 2x1 */}
       <motion.div variants={itemAnimation} className="col-span-4 md:col-span-2 h-full">
-        <NeoCard
-          color="white"
-          hover={false}
-          className="h-full relative overflow-hidden"
-        >
+        <NeoCard color="white" hover={false} className="h-full relative overflow-hidden">
           {/* Colored header */}
           <div
             className={`px-6 py-4 border-b-2 border-border ${
@@ -320,19 +292,23 @@ export default function ModernResultsBlock({
                     className="absolute -bottom-3 -right-3 rotate-45"
                   />
                 ) : (
-                  <div className={`absolute -bottom-1 -right-1 size-12 border-[3px] border-border rotate-45 ${
-                    metric.color === 'yellow'
-                      ? 'bg-chart-1'
-                      : metric.color === 'blue'
-                        ? 'bg-chart-2'
-                        : metric.color === 'green'
-                          ? 'bg-chart-4'
-                          : metric.color === 'orange'
-                            ? 'bg-chart-3'
-                            : metric.color === 'purple'
-                              ? 'bg-chart-5'
-                              : (['bg-chart-1', 'bg-chart-2', 'bg-chart-4', 'bg-chart-3'][index % 4])
-                  }`} />
+                  <div
+                    className={`absolute -bottom-1 -right-1 size-12 border-[3px] border-border rotate-45 ${
+                      metric.color === 'yellow'
+                        ? 'bg-chart-1'
+                        : metric.color === 'blue'
+                          ? 'bg-chart-2'
+                          : metric.color === 'green'
+                            ? 'bg-chart-4'
+                            : metric.color === 'orange'
+                              ? 'bg-chart-3'
+                              : metric.color === 'purple'
+                                ? 'bg-chart-5'
+                                : ['bg-chart-1', 'bg-chart-2', 'bg-chart-4', 'bg-chart-3'][
+                                    index % 4
+                                  ]
+                    }`}
+                  />
                 )}
               </NeoCard>
             ))
@@ -340,19 +316,29 @@ export default function ModernResultsBlock({
             <>
               {/* Default metrics */}
               {metadata?.showRarity !== false && (
-                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
-                  visibleMetricsCount === 3 ? 'col-span-1' : ''
-                }`}>
+                <NeoCard
+                  color="white"
+                  hover={false}
+                  className={`relative overflow-hidden h-full ${
+                    visibleMetricsCount === 3 ? 'col-span-1' : ''
+                  }`}
+                >
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-sm font-bold uppercase text-foreground/80">Выраженность</h3>
+                        <h3 className="text-sm font-bold uppercase text-foreground/80">
+                          Выраженность
+                        </h3>
                         <p className="text-3xl font-heading mt-2">{result.percentage}%</p>
                       </div>
                     </div>
                     <p className="text-sm text-foreground/60">основного типа</p>
                     <div className="text-sm font-bold mt-2 text-chart-4">
-                      {result.percentage > 50 ? '↑ Доминирующий' : result.percentage > 35 ? '→ Выраженный' : '↓ Умеренный'}
+                      {result.percentage > 50
+                        ? '↑ Доминирующий'
+                        : result.percentage > 35
+                          ? '→ Выраженный'
+                          : '↓ Умеренный'}
                     </div>
                   </div>
                   <div className="absolute -bottom-1 -right-1 size-12 border-[3px] border-border bg-chart-1 rotate-45" />
@@ -360,9 +346,13 @@ export default function ModernResultsBlock({
               )}
 
               {metadata?.showStrengthsCount !== false && (
-                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
-                  visibleMetricsCount === 3 ? 'col-span-1' : ''
-                }`}>
+                <NeoCard
+                  color="white"
+                  hover={false}
+                  className={`relative overflow-hidden h-full ${
+                    visibleMetricsCount === 3 ? 'col-span-1' : ''
+                  }`}
+                >
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
@@ -387,9 +377,13 @@ export default function ModernResultsBlock({
               )}
 
               {metadata?.showCompatibility !== false && result.compatibleTypes && (
-                <NeoCard color="white" hover={false} className={`relative overflow-hidden h-full ${
-                  visibleMetricsCount === 3 ? 'col-span-2' : ''
-                }`}>
+                <NeoCard
+                  color="white"
+                  hover={false}
+                  className={`relative overflow-hidden h-full ${
+                    visibleMetricsCount === 3 ? 'col-span-2' : ''
+                  }`}
+                >
                   <div className="p-6 h-full flex flex-col">
                     <div className="flex items-start justify-between mb-4">
                       <div>
