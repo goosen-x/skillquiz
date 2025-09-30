@@ -1,9 +1,14 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
+  experimental: {
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+  },
   images: {
     unoptimized: false,
-    domains: ['psytest.ru', 'www.psytest.ru'],
+    domains: ['skillquiz.ru', 'www.skillquiz.ru'],
   },
   poweredByHeader: false,
   compress: true,
@@ -31,7 +36,29 @@ const nextConfig: NextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'",
+          },
         ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      // Редиректы для SEO
+      {
+        source: '/tests',
+        destination: '/tests',
       },
     ];
   },

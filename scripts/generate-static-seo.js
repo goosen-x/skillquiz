@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Import site config (we'll need to adjust this for Node.js)
-const siteUrl = process.env.SITE_URL || 'https://professional-test.ru';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://skillquiz.ru';
 
 // All available tests - you can expand this list
 const testSlugs = [
