@@ -51,3 +51,7 @@ docker-compose*.yml
 jest.config.js
 jest.setup.js
 tsconfig.tsbuildinfo
+.husky
+.git-blame-ignore-revs
+deploy-github.yml
+ecosystem.config.js
