@@ -54,8 +54,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./
 COPY --from=builder --chown=nextjs:nodejs /app/ecosystem.config.js ./
 
-# Install production dependencies only
-RUN npm ci --omit=dev --ignore-scripts
+# Install production dependencies (including TypeScript for next.config.ts)
+RUN npm ci --ignore-scripts
 
 # Set user
 USER nextjs
