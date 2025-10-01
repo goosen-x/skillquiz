@@ -52,11 +52,55 @@ jobs:
     steps:
     - name: Deploy to server
       uses: appleboy/ssh-action@v1.0.0
+      env:
+        REGISTRY: ${{ env.REGISTRY }}
+        IMAGE_NAME: ${{ env.IMAGE_NAME }}
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         port: 22
+        envs: REGISTRY,IMAGE_NAME
         script: |
-          ~/deploy-scripts/deploy-skillquiz.sh ghcr.io/${{ github.repository }}:latest
+          # Create app directory if it doesn't exist
+          mkdir -p ~/apps/skillquiz
+          cd ~/apps/skillquiz
+          
+          # Create .env.production if it doesn't exist
+          if [ ! -f .env.production ]; then
+            echo "Creating .env.production file..."
+            cat > .env.production << 'ENVEOF'
+          # Production environment variables
+          NEXT_PUBLIC_SITE_URL=https://skillquiz.ru
+          NODE_ENV=production
+          PORT=3000
+          HOSTNAME=0.0.0.0
+          ENVEOF
+            echo "Created .env.production file"
+          fi
+          
+          # Pull latest image
+          docker pull ${REGISTRY}/${IMAGE_NAME}:latest
+          
+          # Stop existing container
+          docker stop skillquiz || true
+          docker rm skillquiz || true
+          
+          # Start new container
+          docker run -d \
+            --name skillquiz \
+            --restart unless-stopped \
+            --env-file ~/apps/skillquiz/.env.production \
+            -p 3002:3000 \
+            ${REGISTRY}/${IMAGE_NAME}:latest
+          
+          # Check if container is running
+          if docker ps | grep -q skillquiz; then
+            echo "Deployment successful! Container is running."
+            docker logs skillquiz --tail 50
+          else
+            echo "Deployment failed! Container is not running."
+            docker logs skillquiz
+            exit 1
+          fi
 
