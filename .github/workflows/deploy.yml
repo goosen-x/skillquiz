@@ -60,11 +60,3 @@ jobs:
         script: |
           ~/deploy-scripts/deploy-skillquiz.sh ghcr.io/${{ github.repository }}:latest
 
-    - name: Notify deployment status
-      if: always()
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        text: 'Deployment ${{ job.status }} for SkillQuiz'
-        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-      continue-on-error: true
