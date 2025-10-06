@@ -1,4 +1,4 @@
-# Robots.txt for https://professional-test.ru
+# Robots.txt for https://skillquiz.ru
 # Optimized for Yandex
 
 User-agent: *
@@ -23,7 +23,7 @@ Disallow: /_next/
 Disallow: /admin/
 
 # Sitemap
-Sitemap: https://professional-test.ru/sitemap.xml
+Sitemap: https://skillquiz.ru/sitemap.xml
 
 # Host for Yandex
-Host: professional-test.ru
+Host: skillquiz.ru

@@ -68,7 +68,7 @@ export function Hero() {
                   '2px 2px 0px #000, -2px 2px 0px #000, 2px -2px 0px #000, -2px -2px 0px #000',
               }}
             >
-              Профессиональные
+              SkillQuiz
             </span>{' '}
             <br className="hidden sm:inline" />
             тесты и квизы онлайн

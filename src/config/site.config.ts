@@ -56,7 +56,7 @@ export const siteConfig = {
 
   // Аналитика
   analytics: {
-    yandexMetrikaId: '104046158', // Яндекс.Метрика счетчик
+    yandexMetrikaId: '104375294', // Яндекс.Метрика счетчик
     googleAnalyticsId: '', // Не используем Google Analytics - фокус на Яндекс
   },
 

@@ -466,7 +466,7 @@ export default async function ShortResultPage({ params, searchParams }: Props) {
         >
           <div className="border-2 border-border bg-background p-4 shadow-shadow">
             <p className="text-sm font-bold uppercase mb-4 text-center">Реклама</p>
-            <YandexAd blockId="R-A-17138338-1" className="w-full" />
+            <YandexAd blockId="R-A-17422960-1" className="w-full" />
           </div>
         </div>
       </div>

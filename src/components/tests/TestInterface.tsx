@@ -118,75 +118,73 @@ export function TestInterface({
           {/* Left column - Question Content */}
           <div className="flex items-center justify-center">
             <div className="w-full max-w-3xl">
-          <AnimatePresence mode="wait" custom={1}>
-            <motion.div
-              key={currentQuestionIndex}
-              custom={1}
-              variants={questionVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
-            >
-              <Card className="p-6 md:p-8 bg-white/90 backdrop-blur-sm border-0 shadow-xl">
-                <div className="text-center mb-8">
-                  <div className="text-sm font-medium text-indigo-600 mb-4">
-                    Вопрос {currentQuestionIndex + 1}
-                  </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
-                    {currentQuestion.question}
-                  </h2>
-                </div>
+              <AnimatePresence mode="wait" custom={1}>
+                <motion.div
+                  key={currentQuestionIndex}
+                  custom={1}
+                  variants={questionVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: 'spring', stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 },
+                  }}
+                >
+                  <Card className="p-6 md:p-8 bg-white/90 backdrop-blur-sm border-0 shadow-xl">
+                    <div className="text-center mb-8">
+                      <div className="text-sm font-medium text-indigo-600 mb-4">
+                        Вопрос {currentQuestionIndex + 1}
+                      </div>
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+                        {currentQuestion.question}
+                      </h2>
+                    </div>
 
-                <div className="space-y-3">
-                  {currentQuestion.options.map((option, index) => (
-                    <motion.button
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                      onClick={() => handleAnswerClick(option.value.toString())}
-                      className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] cursor-pointer ${
-                        answers[currentQuestion.id.toString()] === option.value.toString()
-                          ? 'border-indigo-500 bg-indigo-50 shadow-md'
-                          : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mt-0.5 transition-colors ${
+                    <div className="space-y-3">
+                      {currentQuestion.options.map((option, index) => (
+                        <motion.button
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: index * 0.1, duration: 0.3 }}
+                          onClick={() => handleAnswerClick(option.value.toString())}
+                          className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] cursor-pointer ${
                             answers[currentQuestion.id.toString()] === option.value.toString()
-                              ? 'border-indigo-500 bg-indigo-500'
-                              : 'border-gray-300'
+                              ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                              : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
                           }`}
                         >
-                          {answers[currentQuestion.id.toString()] === option.value.toString() && (
-                            <Check className="w-3 h-3 text-white" />
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-gray-900 font-medium leading-relaxed">{option.text}</p>
-                        </div>
-                      </div>
-                    </motion.button>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
-          </AnimatePresence>
+                          <div className="flex items-start gap-3">
+                            <div
+                              className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center mt-0.5 transition-colors ${
+                                answers[currentQuestion.id.toString()] === option.value.toString()
+                                  ? 'border-indigo-500 bg-indigo-500'
+                                  : 'border-gray-300'
+                              }`}
+                            >
+                              {answers[currentQuestion.id.toString()] ===
+                                option.value.toString() && <Check className="w-3 h-3 text-white" />}
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-gray-900 font-medium leading-relaxed">
+                                {option.text}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </Card>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-          
+
           {/* Right column - Advertisement (Desktop only) */}
           <div className="hidden lg:block">
             <div className="sticky top-24">
-              <YandexAd 
-                blockId="R-A-17138338-1" 
-                className="w-full"
-              />
+              <YandexAd blockId="R-A-17422960-1" className="w-full" />
             </div>
           </div>
         </div>
@@ -256,7 +254,6 @@ export function TestInterface({
           </div>
         </div>
       </div>
-
 
       {/* Milestone celebration toast */}
       <AnimatePresence>
