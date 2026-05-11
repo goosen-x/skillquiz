@@ -139,13 +139,11 @@
 @layer base {
   html {
     overscroll-behavior: none;
-    overflow-x: hidden;
   }
 
   body {
     @apply text-foreground font-base bg-background;
     overscroll-behavior: none;
-    overflow-x: hidden;
   }
 
   h1,
