@@ -19,32 +19,33 @@ interface BaseTestData {
 }
 
 export const testStatuses = {
-  // Реализованные тесты
-  'digital-wellness-persona': { status: 'completed' as const },
+  // ✅ Полностью рабочие тесты (есть массив Results или специальный recoverer)
   'personality-type': { status: 'completed' as const },
   'emotional-intelligence': { status: 'completed' as const },
   'impostor-syndrome': { status: 'completed' as const },
   'mental-resilience': { status: 'completed' as const },
   'dopamine-detox-need': { status: 'completed' as const },
-  
-  // Новые реализованные тесты
-  'introvert-extrovert': { status: 'completed' as const },
-  'stress-level': { status: 'completed' as const },
-  'temperament': { status: 'completed' as const },
-  'chronotype': { status: 'completed' as const },
-  'work-life-balance': { status: 'completed' as const },
-  'self-esteem': { status: 'completed' as const },
-  'procrastination': { status: 'completed' as const },
-  'time-management': { status: 'completed' as const },
+  temperament: { status: 'completed' as const },
   'love-language': { status: 'completed' as const },
   'attachment-style': { status: 'completed' as const },
-  'anxiety-level': { status: 'completed' as const },
-  'perfectionism': { status: 'completed' as const },
   'communication-style': { status: 'completed' as const },
-  'creativity-test': { status: 'completed' as const },
-  'decision-making': { status: 'completed' as const },
   'learning-style': { status: 'completed' as const },
-  'emotional-stability': { status: 'completed' as const },
+
+  // ⚠️ Тесты в доработке: страница результата падает (нет статичного Results массива)
+  // TODO: добавить массив <test>Results с возможными результатами в каждый файл
+  'digital-wellness-persona': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'introvert-extrovert': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'stress-level': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  chronotype: { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'work-life-balance': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'self-esteem': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  procrastination: { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'time-management': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'anxiety-level': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  perfectionism: { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'creativity-test': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'decision-making': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'emotional-stability': { status: 'in_development' as const, expectedDate: 'Скоро' },
 
   // В разработке (приоритет 1)
   'career-test': {
@@ -75,15 +76,15 @@ export const testStatuses = {
   'bad-habits': { status: 'planned' as const },
   'motivation-level': { status: 'planned' as const },
 
-  // Новые тесты - обновленные статусы
-  'conflict-style': { status: 'completed' as const },
-  'social-intelligence': { status: 'completed' as const },
-  'memory-type': { status: 'completed' as const },
-  'risk-tolerance': { status: 'completed' as const },
-  'work-motivation': { status: 'completed' as const },
-  'management-style': { status: 'completed' as const },
-  'sales-potential': { status: 'completed' as const },
-  'entrepreneurship': { status: 'completed' as const },
+  // Новые тесты - в доработке (страница результата падает)
+  'conflict-style': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'social-intelligence': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'memory-type': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'risk-tolerance': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'work-motivation': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'management-style': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  'sales-potential': { status: 'in_development' as const, expectedDate: 'Скоро' },
+  entrepreneurship: { status: 'in_development' as const, expectedDate: 'Скоро' },
   'negotiation-skills': { status: 'planned' as const },
   'workplace-personality': { status: 'planned' as const },
   'innovation-style': { status: 'planned' as const },
