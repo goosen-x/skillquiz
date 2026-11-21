@@ -16,7 +16,7 @@ export const SITE = {
 } as const
 
 /** Публичный номер счётчика, не секрет: он всё равно виден в HTML */
-export const YANDEX_METRIKA_ID = 104375294
+export const YANDEX_METRIKA_ID = 114488428
 
 /** Блок РСЯ старого проекта. Включается флагом NEXT_PUBLIC_ADS=on */
 export const YANDEX_AD_BLOCK_ID = 'R-A-17422960-1'

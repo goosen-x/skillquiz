@@ -7,7 +7,7 @@ declare global {
 }
 
 /**
- * Цели Метрики. Названия целей заведены в счётчике 104375294 как
+ * Цели Метрики. Названия целей заведены в счётчике 114488428 как
  * «JavaScript-событие» с этими идентификаторами.
  */
 export type GoalName = 'test_start' | 'test_complete' | 'pdf_download' | 'share'

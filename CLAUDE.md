@@ -62,6 +62,6 @@ curl -s http://127.0.0.1:3020/api/health
 
 ## Аналитика
 
-Метрика 104375294, цели: `test_start`, `test_complete`, `pdf_download`, `share`
+Метрика 114488428, цели: `test_start`, `test_complete`, `pdf_download`, `share`
 (`lib/analytics/goals.ts`). РСЯ R-A-17422960-1 выключена, включается
 `NEXT_PUBLIC_ADS=on` на этапе сборки.
