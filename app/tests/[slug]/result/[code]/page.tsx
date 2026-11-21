@@ -80,7 +80,7 @@ export default async function ResultPage({ params }: Props) {
 					<ArrowLeft className='h-4 w-4' aria-hidden='true' />
 					{quiz.title}
 				</Link>
-				<h1 className='mt-3 text-2xl leading-tight sm:text-3xl'>Результат теста «{quiz.title}»</h1>
+				<h1 className='mt-2 text-3xl leading-tight sm:text-4xl'>Ваш результат</h1>
 
 				<div className='mt-6'>
 					<ResultBlocks blocks={result.blocks} code={code} />

@@ -1,54 +1,37 @@
-# Multi-stage build for production optimization
+# Сборка на сервере goosen (scripts/deploy.sh), запуск standalone-сервера Next.js
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat python3 make g++
+RUN apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@9.9.0 --activate
 WORKDIR /app
-
-# Copy package files
 COPY package.json pnpm-lock.yaml ./
-
-# Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Rebuild the source code only when needed
 FROM node:20-alpine AS builder
 RUN apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@9.9.0 --activate
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Next.js collects completely anonymous telemetry data about general usage.
 ENV NEXT_TELEMETRY_DISABLED=1
-
-# Provide dummy environment variables for build time
-# These will be replaced with real values at runtime
-ENV NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co
-ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=placeholder_key
-ENV DATABASE_URL=postgresql://user:pass@localhost/db
-
-# Build the application
+ENV NODE_OPTIONS=--max-old-space-size=1536
+# Проверка всех тестов (validate:quizzes) идёт внутри pnpm build
 RUN pnpm build
 
-# Production image, copy all the files and run next
 FROM node:20-alpine AS runner
 WORKDIR /app
-
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy built application
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
+# Читаются с диска во время работы: статьи блога и схема БД
+COPY --from=builder /app/_posts ./_posts
+COPY --from=builder /app/lib/db/schema.sql ./lib/db/schema.sql
 USER nextjs
-
 EXPOSE 3000
-
-ENV PORT=3000
-
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+	CMD wget -qO- http://127.0.0.1:3000/api/health >/dev/null || exit 1
 CMD ["node", "server.js"]
