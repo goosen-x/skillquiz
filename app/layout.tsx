@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
-import { ReactNode, Suspense } from 'react'
+import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { SiteFooter } from '@/components/layout'
 import Header from '@/components/layout/Header/Header'
@@ -8,7 +8,6 @@ import YandexMetrika from '@/components/analytics/YandexMetrika'
 import { ScrollToTop } from '@/components/global/ScrollToTop'
 import { Toaster } from '@/components/ui/sonner'
 import { ThemeProvider } from '@/components/providers/theme-provider'
-import { NavigationProgress } from '@/components/ui/navigation-progress'
 import { CookieConsent } from '@/components/global/CookieConsent'
 import { ChunkErrorReload } from '@/components/global/ChunkErrorReload'
 import { SiteStructuredData } from '@/components/seo/SiteStructuredData'
@@ -84,9 +83,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
 		>
 			<body className={cn('flex min-h-dvh flex-col bg-background font-sans antialiased', interFont.className)}>
 				<ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
-					<Suspense fallback={null}>
-						<NavigationProgress />
-					</Suspense>
 					<YandexMetrika />
 					<ChunkErrorReload />
 					<Header />
