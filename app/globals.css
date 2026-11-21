@@ -1,0 +1,452 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html,
+body {
+	overscroll-behavior-y: none;
+}
+
+img,
+video {
+	max-width: 100%;
+	height: auto;
+}
+
+button,
+[role='button'],
+input[type='submit'],
+input[type='button'] {
+	corner-shape: squircle;
+}
+
+[data-corner='round'],
+[data-corner='round'] * {
+	corner-shape: round;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in {
+	animation: fadeIn 0.4s ease-out both;
+}
+
+@keyframes hero-rise {
+	from {
+		opacity: 0;
+		transform: translateY(1.25rem);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.hero-rise {
+	animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Смена вопроса: новый вопрос мягко въезжает справа (или слева при «Назад») */
+@keyframes q-in-right {
+	from {
+		opacity: 0;
+		transform: translateX(24px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes q-in-left {
+	from {
+		opacity: 0;
+		transform: translateX(-24px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.q-in-right {
+	animation: q-in-right 0.28s ease-out both;
+}
+
+.q-in-left {
+	animation: q-in-left 0.28s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-rise,
+	.animate-fade-in,
+	.q-in-right,
+	.q-in-left {
+		animation: none;
+	}
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	@apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background border-primary/50;
+}
+
+button:focus-visible,
+[role='button']:focus-visible {
+	@apply outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-background;
+}
+
+a:focus-visible {
+	@apply outline-none ring-2 ring-primary/40 ring-offset-1 ring-offset-background;
+}
+
+.dark *:focus-visible {
+	--tw-ring-offset-color: hsl(var(--background));
+}
+
+@theme {
+	--font-sans:
+		var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+	--font-heading:
+		var(--font-onest), 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+
+	--color-border: hsl(var(--border));
+	--color-input: hsl(var(--input));
+	--color-ring: hsl(var(--ring));
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
+
+	--color-primary: hsl(var(--primary));
+	--color-primary-foreground: hsl(var(--primary-foreground));
+
+	--color-secondary: hsl(var(--secondary));
+	--color-secondary-foreground: hsl(var(--secondary-foreground));
+
+	--color-destructive: hsl(var(--destructive));
+	--color-destructive-foreground: hsl(var(--destructive-foreground));
+
+	--color-muted: hsl(var(--muted));
+	--color-muted-foreground: hsl(var(--muted-foreground));
+
+	--color-accent: hsl(var(--accent));
+	--color-accent-foreground: hsl(var(--accent-foreground));
+
+	--color-popover: hsl(var(--popover));
+	--color-popover-foreground: hsl(var(--popover-foreground));
+
+	--color-card: hsl(var(--card));
+	--color-card-foreground: hsl(var(--card-foreground));
+
+	--color-success: hsl(var(--success));
+	--color-warning: hsl(var(--warning));
+
+	--radius-lg: var(--radius);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) - 4px);
+}
+
+@utility container {
+	margin-inline: auto;
+	padding-inline: 1rem;
+	@media (width >= 640px) {
+		padding-inline: 1.5rem;
+	}
+	@media (width >= 1280px) {
+		max-width: 1200px;
+	}
+}
+
+@utility font-heading {
+	font-family: var(--font-heading);
+}
+
+@layer base {
+	:root {
+		--background: 40 33% 99%;
+		--foreground: 250 30% 10%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 250 30% 10%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 250 30% 10%;
+
+		/* Акцент SkillQuiz: насыщенный фиолетовый #6D4AFF */
+		--primary: 252 100% 65%;
+		--primary-foreground: 0 0% 100%;
+
+		--secondary: 250 40% 96%;
+		--secondary-foreground: 250 30% 12%;
+
+		--muted: 250 25% 95.5%;
+		--muted-foreground: 250 10% 38%;
+
+		/* Тёплый второй цвет для бейджей и акцентов на карточках */
+		--accent: 18 95% 60%;
+		--accent-foreground: 0 0% 100%;
+
+		--success: 152 60% 38%;
+		--warning: 36 95% 48%;
+
+		--destructive: 0 80% 56%;
+		--destructive-foreground: 0 0% 98%;
+
+		--border: 250 20% 90%;
+		--input: 250 20% 88%;
+		--ring: 252 100% 65%;
+
+		--radius: 0.875rem;
+	}
+
+	.dark {
+		--background: 250 30% 6%;
+		--foreground: 250 20% 97%;
+
+		--card: 250 25% 10%;
+		--card-foreground: 250 20% 97%;
+
+		--popover: 250 25% 10%;
+		--popover-foreground: 250 20% 97%;
+
+		--primary: 252 100% 72%;
+		--primary-foreground: 250 40% 8%;
+
+		--secondary: 250 20% 16%;
+		--secondary-foreground: 250 20% 97%;
+
+		--muted: 250 20% 15%;
+		--muted-foreground: 250 12% 70%;
+
+		--accent: 18 95% 62%;
+		--accent-foreground: 0 0% 100%;
+
+		--success: 152 55% 50%;
+		--warning: 36 95% 58%;
+
+		--destructive: 0 62% 45%;
+		--destructive-foreground: 0 0% 98%;
+
+		--border: 250 15% 20%;
+		--input: 250 15% 22%;
+		--ring: 252 100% 72%;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-heading font-bold tracking-tight;
+	}
+
+	/* Всё кликабельное получает руку */
+	button,
+	a,
+	summary,
+	label[for],
+	[role='button'],
+	[role='link'],
+	[role='checkbox'],
+	[role='radio'],
+	[role='switch'],
+	[role='tab'],
+	[role='menuitem'],
+	[role='option'],
+	input[type='button'],
+	input[type='submit'],
+	input[type='reset'],
+	input[type='checkbox'],
+	input[type='radio'],
+	select {
+		@apply cursor-pointer;
+	}
+
+	input[type='text'],
+	input[type='email'],
+	input[type='search'],
+	input[type='tel'],
+	input[type='url'],
+	textarea {
+		@apply cursor-text;
+	}
+
+	button:disabled,
+	input:disabled,
+	select:disabled,
+	textarea:disabled,
+	[aria-disabled='true'],
+	[disabled] {
+		@apply cursor-not-allowed;
+	}
+}
+
+:not(pre) > code {
+	background-color: hsl(var(--muted));
+	color: hsl(var(--foreground));
+	padding: 0.125rem 0.375rem;
+	border-radius: 0.25rem;
+	font-size: 0.875rem;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+[data-sonner-toast] {
+	background: hsl(var(--card)) !important;
+	border: 1px solid hsl(var(--border)) !important;
+}
+
+[data-sonner-toast] [data-content] {
+	color: hsl(var(--card-foreground)) !important;
+}
+
+@keyframes enter {
+	from {
+		opacity: var(--tw-enter-opacity, 1);
+		transform: translate3d(
+				var(--tw-enter-translate-x, 0),
+				var(--tw-enter-translate-y, 0),
+				0
+			)
+			scale3d(
+				var(--tw-enter-scale, 1),
+				var(--tw-enter-scale, 1),
+				var(--tw-enter-scale, 1)
+			);
+	}
+}
+
+@keyframes exit {
+	to {
+		opacity: var(--tw-exit-opacity, 1);
+		transform: translate3d(
+				var(--tw-exit-translate-x, 0),
+				var(--tw-exit-translate-y, 0),
+				0
+			)
+			scale3d(
+				var(--tw-exit-scale, 1),
+				var(--tw-exit-scale, 1),
+				var(--tw-exit-scale, 1)
+			);
+	}
+}
+
+@utility animate-in {
+	animation-name: enter;
+	animation-duration: 150ms;
+	animation-fill-mode: both;
+	--tw-enter-opacity: initial;
+	--tw-enter-scale: initial;
+	--tw-enter-translate-x: initial;
+	--tw-enter-translate-y: initial;
+}
+
+@utility animate-out {
+	animation-name: exit;
+	animation-duration: 150ms;
+	animation-fill-mode: both;
+	--tw-exit-opacity: initial;
+	--tw-exit-scale: initial;
+	--tw-exit-translate-x: initial;
+	--tw-exit-translate-y: initial;
+}
+
+@utility fade-in-0 {
+	--tw-enter-opacity: 0;
+}
+
+@utility fade-out-0 {
+	--tw-exit-opacity: 0;
+}
+
+@utility zoom-in-95 {
+	--tw-enter-scale: 0.95;
+}
+
+@utility zoom-out-95 {
+	--tw-exit-scale: 0.95;
+}
+
+@utility slide-in-from-top {
+	--tw-enter-translate-y: -100%;
+}
+
+@utility slide-in-from-bottom {
+	--tw-enter-translate-y: 100%;
+}
+
+@utility slide-in-from-left {
+	--tw-enter-translate-x: -100%;
+}
+
+@utility slide-in-from-right {
+	--tw-enter-translate-x: 100%;
+}
+
+@utility slide-out-to-top {
+	--tw-exit-translate-y: -100%;
+}
+
+@utility slide-out-to-bottom {
+	--tw-exit-translate-y: 100%;
+}
+
+@utility slide-out-to-left {
+	--tw-exit-translate-x: -100%;
+}
+
+@utility slide-out-to-right {
+	--tw-exit-translate-x: 100%;
+}
+
+@utility anim-duration-300 {
+	animation-duration: 300ms;
+}
+
+@utility anim-duration-500 {
+	animation-duration: 500ms;
+}
+
+@media print {
+	header,
+	footer,
+	[data-no-print] {
+		display: none !important;
+	}
+}
+
+/* Пока идёт тест, справочный текст под ним прячем: на телефоне ничего не
+   отвлекает от вопроса (QuizRunner ставит body[data-quiz-active]) */
+body[data-quiz-active] [data-quiz-extra] {
+	display: none;
+}

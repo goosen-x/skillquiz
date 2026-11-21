@@ -1,10 +1,13 @@
 {
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": true,
-  "printWidth": 100,
-  "tabWidth": 2,
-  "useTabs": false,
-  "arrowParens": "always",
-  "endOfLine": "lf"
+	"trailingComma": "none",
+	"tabWidth": 2,
+	"semi": false,
+	"singleQuote": true,
+	"arrowParens": "avoid",
+	"jsxBracketSameLine": false,
+	"proseWrap": "always",
+	"useTabs": true,
+	"jsxSingleQuote": true,
+	"useEditorConfig": false,
+	"enableDebugLogs": true
 }

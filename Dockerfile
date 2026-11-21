@@ -1,72 +1,54 @@
-# Build stage
-FROM node:20-alpine AS builder
-
-# Install dependencies for canvas
-RUN apk add --no-cache \
-    build-base \
-    g++ \
-    cairo-dev \
-    jpeg-dev \
-    pango-dev \
-    giflib-dev \
-    pixman-dev \
-    libc6-compat
-
+# Multi-stage build for production optimization
+FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat python3 make g++
+RUN corepack enable && corepack prepare pnpm@9.9.0 --activate
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
-# Copy source code
+# Rebuild the source code only when needed
+FROM node:20-alpine AS builder
+RUN apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare pnpm@9.9.0 --activate
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate SEO files
-RUN npm run generate:seo
+# Next.js collects completely anonymous telemetry data about general usage.
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Provide dummy environment variables for build time
+# These will be replaced with real values at runtime
+ENV NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=placeholder_key
+ENV DATABASE_URL=postgresql://user:pass@localhost/db
 
 # Build the application
-RUN npm run build
+RUN pnpm build
 
-# Production stage
+# Production image, copy all the files and run next
 FROM node:20-alpine AS runner
-
-# Install runtime dependencies for canvas
-RUN apk add --no-cache \
-    cairo \
-    jpeg \
-    pango \
-    giflib \
-    pixman \
-    libc6-compat
-
 WORKDIR /app
 
-# Create user
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy built application
-COPY --from=builder --chown=nextjs:nodejs /app/package*.json ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./
-COPY --from=builder --chown=nextjs:nodejs /app/ecosystem.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Install production dependencies (including TypeScript for next.config.ts)
-RUN npm ci --ignore-scripts
-
-# Set user
 USER nextjs
 
-# Expose port
 EXPOSE 3000
 
-# Set environment
-ENV NODE_ENV=production
 ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
 
-# Start the application
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

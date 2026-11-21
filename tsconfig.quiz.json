@@ -1,0 +1,6 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": { "incremental": false },
+	"include": ["lib/quiz/**/*.ts", "content/quizzes/**/*.ts", "scripts/audit-one.ts"],
+	"exclude": ["node_modules"]
+}

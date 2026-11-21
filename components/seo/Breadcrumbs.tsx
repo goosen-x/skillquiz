@@ -1,0 +1,90 @@
+import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+export interface BreadcrumbItem {
+	name: string
+	/** Относительный путь, например "/tools" или "/" для главной */
+	url: string
+}
+
+interface BreadcrumbsProps {
+	items: BreadcrumbItem[]
+	className?: string
+}
+
+import { SITE } from '@/lib/site'
+
+const BASE_URL = SITE.url
+
+const toAbsolute = (url: string) =>
+	url === '/' ? BASE_URL : `${BASE_URL}${url}`
+
+/**
+ * Видимые хлебные крошки в контенте страницы + BreadcrumbList (JSON-LD).
+ * Серверный компонент: разметка попадает в SSR HTML — её видят Яндекс и Google.
+ */
+export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
+	if (!items || items.length === 0) return null
+
+	const jsonLd = {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: items.map((item, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: item.name,
+			item: toAbsolute(item.url)
+		}))
+	}
+
+	return (
+		<nav
+			aria-label='Хлебные крошки'
+			// Отступы по бокам те же, что у контейнера страницы, — иначе крошки
+			// висят левее контента, с которым должны быть на одной вертикали.
+			className={cn(
+				'container pt-4 pb-2 sm:pt-6 sm:pb-4',
+				className
+			)}
+		>
+			{/* pb-1.5: на iOS оверлейный индикатор скролла рисуется поверх
+			    контента у самого низа скролл-контейнера — без запаса он ложится
+			    прямо на текст. Классы скрытия скроллбара выше на сам индикатор
+			    не действуют, это разные вещи. */}
+			<ol className='flex items-center gap-1.5 overflow-x-auto pb-1.5 text-sm text-muted-foreground [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+				{items.map((item, index) => {
+					const isLast = index === items.length - 1
+
+					return (
+						<li key={item.url} className='flex shrink-0 items-center gap-1.5'>
+							{index > 0 && (
+								<ChevronRight className='h-3.5 w-3.5 shrink-0 opacity-40' />
+							)}
+							{isLast ? (
+								<span
+									className='font-medium text-foreground truncate max-w-[60vw] sm:max-w-none'
+									aria-current='page'
+								>
+									{item.name}
+								</span>
+							) : (
+								<Link
+									href={item.url}
+									className='cursor-pointer hover:text-foreground transition-colors'
+								>
+									{item.name}
+								</Link>
+							)}
+						</li>
+					)
+				})}
+			</ol>
+
+			<script
+				type='application/ld+json'
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+		</nav>
+	)
+}

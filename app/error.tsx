@@ -1,0 +1,136 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { AlertCircle, Copy, Check } from 'lucide-react'
+
+import Link from 'next/link'
+import {
+	isChunkLoadError,
+	reloadOnceForChunkError
+} from '@/lib/utils/chunk-error'
+
+export default function Error({
+	error,
+	reset
+}: {
+	error: Error & { digest?: string }
+	reset: () => void
+}) {
+	const [copied, setCopied] = useState(false)
+
+	useEffect(() => {
+		// Логирование ошибки в консоль для отладки
+		console.error('Server error:', error)
+
+		// Устаревший чанк после деплоя — React ловит его через этот error
+		// boundary раньше, чем событие дошло бы до глобальных слушателей
+		// в ChunkErrorReload. Перезагружаем молча, не показывая «Упс».
+		if (isChunkLoadError(error.message)) reloadOnceForChunkError()
+	}, [error])
+
+	const copyErrorDetails = async () => {
+		const errorText = `Error: ${error.message}${
+			error.digest ? `\nDigest: ${error.digest}` : ''
+		}\nStack: ${error.stack || 'No stack trace available'}`
+
+		try {
+			await navigator.clipboard.writeText(errorText)
+			setCopied(true)
+			setTimeout(() => setCopied(false), 2000)
+		} catch (err) {
+			console.error('Failed to copy error details:', err)
+		}
+	}
+
+	const handleReset = () => {
+		try {
+			reset()
+		} catch (err) {
+			console.error('Reset failed:', err)
+			// Fallback: перезагрузка страницы
+			window.location.reload()
+		}
+	}
+
+	return (
+		<div className='grid min-h-[60vh] place-content-center bg-background px-4 py-16'>
+			<div className='text-center max-w-lg'>
+				<div className='mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-destructive/10'>
+					<AlertCircle className='h-10 w-10 text-destructive' />
+				</div>
+
+				<h1 className='mb-4 text-2xl font-bold tracking-tight text-foreground sm:text-4xl'>
+					Что-то сломалось
+				</h1>
+
+				<p className='mb-4 text-muted-foreground'>
+					Страница не загрузилась из-за ошибки. Попробуйте ещё раз: обычно это
+					помогает. Если тест был в процессе, ответы сохранились.
+				</p>
+
+				{/* Показываем детали ошибки только в development */}
+				{process.env.NODE_ENV === 'development' && (
+					<div className='mb-6 rounded-lg bg-muted p-4 text-left relative'>
+						<div className='flex items-center justify-between mb-2'>
+							<p className='text-sm font-semibold text-foreground'>
+								Детали ошибки
+							</p>
+							<Button
+								variant='ghost'
+								size='sm'
+								onClick={copyErrorDetails}
+								className='h-8 px-2'
+							>
+								{copied ? (
+									<Check className='h-4 w-4 text-green-500' />
+								) : (
+									<Copy className='h-4 w-4' />
+								)}
+							</Button>
+						</div>
+						<pre className='overflow-auto text-xs text-muted-foreground'>
+							{error.message}
+							{error.digest && (
+								<>
+									{'\n'}
+									Digest: {error.digest}
+								</>
+							)}
+						</pre>
+					</div>
+				)}
+
+				{/* В production показываем digest для поддержки */}
+				{process.env.NODE_ENV === 'production' && error.digest && (
+					<div className='mb-6 flex items-center gap-2 justify-center'>
+						<p className='text-sm text-muted-foreground'>
+							ID ошибки: <code className='font-mono'>{error.digest}</code>
+						</p>
+						<Button
+							variant='ghost'
+							size='sm'
+							onClick={copyErrorDetails}
+							className='h-8 px-2'
+						>
+							{copied ? (
+								<Check className='h-4 w-4 text-green-500' />
+							) : (
+								<Copy className='h-4 w-4' />
+							)}
+						</Button>
+					</div>
+				)}
+
+				<div className='flex gap-4 justify-center'>
+					<Button onClick={handleReset} variant='default'>
+						Попробовать снова
+					</Button>
+					<Button asChild variant='outline'>
+						<Link href='/'>На главную</Link>
+					</Button>
+				</div>
+			</div>
+		</div>
+	)
+}
